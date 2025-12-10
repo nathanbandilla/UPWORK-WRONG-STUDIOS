@@ -1,7 +1,23 @@
 /** @import must precede all other statements */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
-@import url("https://fonts.cdnfonts.com/css/glacial-indifference-2");
-@import url("https://fonts.cdnfonts.com/css/bebas-neue");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+/* Glacial Indifference from CDN Fonts */
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('https://fonts.cdnfonts.com/s/14985/GlacialIndifference-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('https://fonts.cdnfonts.com/s/14985/GlacialIndifference-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
