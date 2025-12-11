@@ -25,7 +25,7 @@ export default function Footer() {
             <nav className="space-y-[35px]">
               <Link to="/" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Home</Link>
               <Link to="/about" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">About</Link>
-              <Link to="/work" className="block text-[18px] lowercase hover:text-[#03E9F4] transition-colors">our work</Link>
+              <Link to="/work" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Our Work</Link>
               <Link to="/services" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Services</Link>
               <Link to="/philosophy" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Philosophy</Link>
             </nav>

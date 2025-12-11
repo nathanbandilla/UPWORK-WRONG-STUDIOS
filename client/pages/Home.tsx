@@ -57,14 +57,16 @@ function HeroSection() {
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
         {/* Section Label */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          
-          <span className="font-display text-[24.77px] tracking-wider uppercase">[  WRONG STUDIOS  ]</span>
-         
+        <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+          <div className="h-7 w-[147px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
+            <span className="h-9 font-display text-[24.77px] tracking-wider uppercase">&nbsp;WRONG STUDIOS</span>          
+          </div>
+         <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
         </div>
 
         {/* Main Heading */}
         <div className="text-center mb-12">
-          <h1 className="font-display text-[194px] leading-[170px] tracking-tight bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
+          <h1 className="font-display text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
             DOING IT WRONG
           </h1>
           <p className="font-display text-[64px] leading-[72px] uppercase">
@@ -167,7 +169,7 @@ function PhoneSlideshow() {
       <div className="absolute right-12 top-8 z-20 flex items-center gap-3">
         <button 
           onClick={handlePrevious}
-          className="w-12 h-12 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
+          className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
           aria-label="Previous"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
@@ -176,7 +178,7 @@ function PhoneSlideshow() {
         </button>
         <button 
           onClick={handleNext}
-          className="w-12 h-12 rounded-full border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
+          className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
           aria-label="Next"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
@@ -314,22 +316,27 @@ function PhoneSlideshow() {
 
 function LogoBanner() {
   const logos = [
-    { name: "FocalPoint", icon: "🎯" },
-    { name: "Screentime", icon: "📱" },
-    { name: "Segment", icon: "📊" },
-    { name: "Shutterframe", icon: "📷" },
-    { name: "Lightspeed", icon: "⚡" },
-    { name: "Mastermat", icon: "🎨" },
+    { name: "Casetify", img_path: "/casetify.png" },
+    { name: "Billy Brunch Barcelona", img_path: "/billy_brunch.png" },
+    { name: "Darry Ring", img_path: "/darry_ring.png" },
+    { name: "Crumbl", img_path: "/crumbl.png" },
+    { name: "Humble Crumble", img_path: "/humble_crumble.png" },
+    { name: "Halara", img_path: "/halara.png" },
+    { name: "Bali Zoo", img_path: "/bali_zoo_black.png" },
+    { name: "KIBAKO", img_path: "/kibako.png" },
   ];
 
   return (
-    <div className="relative bg-[#03E9F4] py-8 overflow-hidden">
+    <div className="relative bg-[#03E9F4] py-1 overflow-hidden">
       {/* Scrolling Content */}
-      <div className="flex gap-16 animate-scroll">
+      <div className="flex gap-24 animate-scroll">
         {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
           <div key={i} className="flex items-center gap-4 flex-shrink-0">
-            <span className="text-4xl">{logo.icon}</span>
-            <span className="font-display text-2xl font-bold text-black whitespace-nowrap">{logo.name}</span>
+
+           <img src={logo.img_path}  />
+
+           {/* <span className="text-4xl">{logo.img_path}</span>
+            <span className="font-display text-2xl font-bold text-black whitespace-nowrap">{logo.name}</span>*/}
           </div>
         ))}
       </div>
@@ -356,9 +363,11 @@ function AboutSection() {
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="space-y-8">
             <div className="flex items-center gap-2">
-              <img src="/bracket-left-alt.svg" alt="" className="w-[7px] h-[23px]" />
-              <span className="font-display text-[24px] tracking-wider uppercase">We Don't Play It Safe.</span>
-              <img src="/bracket-right-alt.svg" alt="" className="w-[7px] h-[23px]" />
+              <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+              <div className="h-5 w-[200px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
+                <span className="font-display text-[24px] tracking-wider uppercase">We Don't Play It Safe.</span>
+              </div>
+              <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
 
             <h2 className="font-display text-[100px] leading-[104px] uppercase">
@@ -409,9 +418,11 @@ function ServicesSection() {
           <div className="relative z-10 space-y-12">
             <div className="text-center space-y-6">
               <div className="flex items-center justify-center gap-2">
-                <img src="/bracket-left-alt.svg" alt="" className="w-[7px] h-[23px]" />
+                <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+                <div className="h-6 w-[178px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
                 <span className="font-display text-[24px] tracking-wider uppercase">how we do it wrong</span>
-                <img src="/bracket-right-alt.svg" alt="" className="w-[7px] h-[23px]" />
+                </div>
+                <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
               </div>
               <h2 className="font-display text-[70px] leading-[70px] uppercase">
                 What We Do Best
@@ -452,9 +463,11 @@ function WorkSection() {
       <div className="max-w-[1440px] mx-auto px-8">
         <div className="text-center space-y-8 mb-16">
           <div className="flex items-center justify-center gap-2">
-            <img src="/bracket-left-alt.svg" alt="" className="w-[7px] h-[23px]" />
+            <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+            <div className="h-6 w-[85px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
             <span className="font-display text-[24px] tracking-wider uppercase">Our Work</span>
-            <img src="/bracket-right-alt.svg" alt="" className="w-[7px] h-[23px]" />
+            </div>
+            <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
           </div>
           <h2 className="font-display text-[70px] leading-[67px] uppercase">
             When We Do It Wrong, It Works.
@@ -509,9 +522,11 @@ function StorySection() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div className="flex items-center gap-2">
-              <img src="/bracket-left-alt.svg" alt="" className="w-[7px] h-[23px]" />
+              <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+              <div className="h-6 w-[90px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
               <span className="font-display text-[24px] tracking-wider uppercase">Our Story</span>
-              <img src="/bracket-right-alt.svg" alt="" className="w-[7px] h-[23px]" />
+              </div>
+              <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
 
             <h2 className="font-display text-[70px] leading-[70px] uppercase">
@@ -547,9 +562,11 @@ function CTASection() {
       <div className="max-w-[1040px] mx-auto px-8 relative z-10">
         <div className="text-center space-y-8">
           <div className="flex items-center justify-center gap-2">
-            <img src="/bracket-left-alt.svg" alt="" className="w-[7px] h-[23px]" />
+            <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+            <div className="h-6 w-[264px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
             <span className="font-display text-[24px] tracking-wider uppercase">Ready to Stop Being Ignored?</span>
-            <img src="/bracket-right-alt.svg" alt="" className="w-[7px] h-[23px]" />
+            </div>
+            <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
           </div>
 
           <h2 className="font-display text-[70px] leading-[67px] uppercase">
