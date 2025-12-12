@@ -1,6 +1,36 @@
 import React from "react";
 import Layout from "@/components/Layout";
 
+// Hook for fade-in on scroll
+function useFadeInOnScroll() {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const ref = React.useRef<HTMLElement | null>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  return { ref, isVisible };
+}
+
 export default function Home() {
   return (
     <Layout>
@@ -105,26 +135,52 @@ function HeroSection() {
 }
 
 function PhoneSlideshow() {
-  const [currentIndex, setCurrentIndex] = React.useState(3); // Start with center image (index 3)
-  const totalImages = 7;
+  const [currentIndex, setCurrentIndex] = React.useState(3); // Start with center video (index 3)
+  const totalVideos = 8;
+
+  // Refs for all video elements
+  const videoRefs = React.useRef<(HTMLVideoElement | null)[]>([]);
 
   const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalImages - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? totalVideos - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === totalImages - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === totalVideos - 1 ? 0 : prev + 1));
   };
 
-  const images = [
-    "/phone-1.png",
-    "/phone-2.png", 
-    "/phone-3.png",
-    "/phone-4.png",
-    "/phone-5.png",
-    "/phone-6.png",
-    "/phone-7.png"
+  const videos = [
+    "/videos/vid_1.mp4",
+    "/videos/vid_2.mp4", 
+    "/videos/vid_3.mp4",
+    "/videos/vid_4.mp4",
+    "/videos/vid_5.mp4",
+    "/videos/vid_6.mp4",
+    "/videos/vid_7.mp4",
+    "/videos/vid_8.mp4"
   ];
+
+  // Auto-play/pause videos based on currentIndex
+  React.useEffect(() => {
+    // Pause all videos first
+    videoRefs.current.forEach((video) => {
+      if (video) {
+        video.pause();
+      }
+    });
+
+    // Play only the center (active) video
+    // The center video is always at refs index 3
+    const centerVideo = videoRefs.current[3];
+    if (centerVideo) {
+      // Reset to beginning and play
+      centerVideo.currentTime = 0;
+      centerVideo.play().catch((error) => {
+        // Handle autoplay restrictions
+        console.log("Autoplay prevented:", error);
+      });
+    }
+  }, [currentIndex]);
 
   return (
     <div className="relative max-w-[1440px] mx-auto px-8 pb-20">
@@ -152,7 +208,7 @@ function PhoneSlideshow() {
 
       {/* Position Tracker - Upper Left */}
       <div className="absolute left-12 top-8 z-20 flex items-center gap-2">
-        {Array.from({ length: totalImages }).map((_, index) => (
+        {Array.from({ length: totalVideos }).map((_, index) => (
           <div
             key={index}
             className={`h-2 rounded-full transition-all duration-300 ${
@@ -199,9 +255,12 @@ function PhoneSlideshow() {
             zIndex: 1
           }}
         >
-          <img 
-            src={images[(currentIndex - 3 + totalImages) % totalImages]}
-            alt="" 
+          <video 
+            ref={(el) => { videoRefs.current[0] = el; }}
+            src={videos[(currentIndex - 3 + totalVideos) % totalVideos]}
+            muted
+            loop
+            playsInline
             className="w-[240px] h-[360px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
           />
         </div>
@@ -216,9 +275,12 @@ function PhoneSlideshow() {
             zIndex: 2
           }}
         >
-          <img 
-            src={images[(currentIndex - 2 + totalImages) % totalImages]}
-            alt="" 
+          <video 
+            ref={(el) => { videoRefs.current[1] = el; }}
+            src={videos[(currentIndex - 2 + totalVideos) % totalVideos]}
+            muted
+            loop
+            playsInline
             className="w-[280px] h-[420px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
           />
         </div>
@@ -233,9 +295,12 @@ function PhoneSlideshow() {
             zIndex: 3
           }}
         >
-          <img 
-            src={images[(currentIndex - 1 + totalImages) % totalImages]}
-            alt="" 
+          <video 
+            ref={(el) => { videoRefs.current[2] = el; }}
+            src={videos[(currentIndex - 1 + totalVideos) % totalVideos]}
+            muted
+            loop
+            playsInline
             className="w-[320px] h-[480px] rounded-[24px] border-4 border-white/50 object-cover shadow-2xl"
           />
         </div>
@@ -250,9 +315,12 @@ function PhoneSlideshow() {
             zIndex: 10
           }}
         >
-          <img 
-            src={images[currentIndex]}
-            alt="" 
+          <video 
+            ref={(el) => { videoRefs.current[3] = el; }}
+            src={videos[currentIndex]}
+            muted
+            loop
+            playsInline
             className="w-[360px] h-[540px] rounded-[28px] border-4 border-white/60 object-cover shadow-[0_0_80px_rgba(3,233,244,0.4),0_0_40px_rgba(3,233,244,0.3)]"
           />
         </div>
@@ -268,9 +336,12 @@ function PhoneSlideshow() {
             zIndex: 3
           }}
         >
-          <img 
-            src={images[(currentIndex + 1) % totalImages]}
-            alt="" 
+          <video 
+            ref={(el) => { videoRefs.current[4] = el; }}
+            src={videos[(currentIndex + 1) % totalVideos]}
+            muted
+            loop
+            playsInline
             className="w-[320px] h-[480px] rounded-[24px] border-4 border-white/50 object-cover shadow-2xl"
           />
         </div>
@@ -285,9 +356,12 @@ function PhoneSlideshow() {
             zIndex: 2
           }}
         >
-          <img 
-            src={images[(currentIndex + 2) % totalImages]}
-            alt="" 
+          <video 
+            ref={(el) => { videoRefs.current[5] = el; }}
+            src={videos[(currentIndex + 2) % totalVideos]}
+            muted
+            loop
+            playsInline
             className="w-[280px] h-[420px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
           />
         </div>
@@ -302,9 +376,12 @@ function PhoneSlideshow() {
             zIndex: 1
           }}
         >
-          <img 
-            src={images[(currentIndex + 3) % totalImages]}
-            alt="" 
+          <video 
+            ref={(el) => { videoRefs.current[6] = el; }}
+            src={videos[(currentIndex + 3) % totalVideos]}
+            muted
+            loop
+            playsInline
             className="w-[240px] h-[360px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
           />
         </div>
@@ -344,8 +421,9 @@ function LogoBanner() {
 }
 
 function TaglineSection() {
+  const { ref, isVisible } = useFadeInOnScroll();
   return (
-    <section className="py-32">
+    <section ref={ref} className={`py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-8">
         <h2 className="font-display text-[100px] leading-[104px] text-center uppercase">
           we specialize in scroll-stopping short-form content
@@ -356,8 +434,9 @@ function TaglineSection() {
 }
 
 function AboutSection() {
+  const { ref, isVisible } = useFadeInOnScroll();
   return (
-    <section className="py-20">
+    <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-8">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="space-y-8">
@@ -390,6 +469,7 @@ function AboutSection() {
 }
 
 function ServicesSection() {
+  const { ref, isVisible } = useFadeInOnScroll();
   const services = [
     {
       title: "Creative Strategy & Identity",
@@ -406,7 +486,7 @@ function ServicesSection() {
   ];
 
   return (
-    <section className="py-20">
+    <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1420px] mx-auto px-8">
         <div className="border border-[#292929] rounded-[20px] p-16 relative overflow-hidden">
           {/* Background Pattern */}
@@ -457,8 +537,9 @@ function ServicesSection() {
 }
 
 function WorkSection() {
+  const { ref, isVisible } = useFadeInOnScroll();
   return (
-    <section className="py-20">
+    <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1440px] mx-auto px-8">
         <div className="text-center space-y-8 mb-16">
           <div className="flex items-center justify-center gap-2">
@@ -515,8 +596,9 @@ function StatsBanner() {
 }
 
 function StorySection() {
+  const { ref, isVisible } = useFadeInOnScroll();
   return (
-    <section className="py-20">
+    <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-8">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
@@ -551,8 +633,9 @@ function StorySection() {
 }
 
 function CTASection() {
+  const { ref, isVisible } = useFadeInOnScroll();
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section ref={ref} className={`py-32 relative overflow-hidden fade-in-section ${isVisible ? 'visible' : ''}`}>
       {/* Background */}
       <div className="absolute inset-0 opacity-20">
         <img src="/cta-bg.svg" alt="" className="w-full h-full object-cover" />
