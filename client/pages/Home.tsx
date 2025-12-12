@@ -36,8 +36,7 @@ export default function Home() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen pt-[120px] pb-20 overflow-hidden">
- 
+    <section className="relative pt-[200px] pb-20 overflow-hidden"> 
 
       {/* Gradient Overlays */}
       <div 
@@ -58,8 +57,8 @@ function HeroSection() {
         {/* Section Label */}
         <div className="flex items-center justify-center gap-2 mb-8">
         <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-          <div className="h-7 w-[147px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
-            <span className="h-9 font-display text-[24.77px] tracking-wider uppercase">&nbsp;WRONG STUDIOS</span>          
+          <div className="h-7 w-[142px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
+            <span className="h-9 ml-1 font-display text-[24.77px] tracking-wider uppercase">WRONG STUDIOS</span>          
           </div>
          <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
         </div>
@@ -364,7 +363,7 @@ function AboutSection() {
           <div className="space-y-8">
             <div className="flex items-center gap-2">
               <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-              <div className="h-5 w-[200px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
+              <div className="h-6 w-[200px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
                 <span className="font-display text-[24px] tracking-wider uppercase">We Don't Play It Safe.</span>
               </div>
               <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
@@ -569,8 +568,10 @@ function CTASection() {
             <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
           </div>
 
-          <h2 className="font-display text-[70px] leading-[67px] uppercase">
-            Lets build something unforgettable.
+          <h2 className="font-display text-[60px] md:text-[70px] leading-[1] uppercase">
+             Let&apos;s build something
+             <br />
+              unforgettable.
           </h2>
 
           <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">

@@ -20,35 +20,28 @@ export default function About() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[576px] pt-32 pb-20 overflow-hidden">
+    <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
+      
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-50">
+      <div className="absolute inset-0">
         <img 
-          src="https://api.builder.io/api/v1/image/assets/TEMP/33fa508b1d3fc266e702260f64313319c472e24b?width=2840" 
+          src="/about_header.png" 
           alt="" 
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20"
+          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
         />
       </div>
 
-      {/* Decorative Images */}
-      <img 
-        src="https://api.builder.io/api/v1/image/assets/TEMP/4d6113d07fb2ce6d71c0def8e601bc7722a602a2?width=429" 
-        alt="" 
-        className="absolute left-4 md:left-10 top-[200px] md:top-[240px] w-[150px] md:w-[214px] h-[172px] md:h-[246px] -rotate-[10deg] rounded-3xl object-cover"
-      />
-      <img 
-        src="https://api.builder.io/api/v1/image/assets/TEMP/de59b0bb3c98f87642b3c7ac5ea7a93886bc1ff0?width=425" 
-        alt="" 
-        className="absolute right-4 md:right-32 top-[200px] md:top-[240px] w-[150px] md:w-[212px] h-[172px] md:h-[246px] rotate-[10deg] rounded-3xl object-cover"
-      />
-
-      {/* Content */}
+       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-cyan" />
-          <span className="font-display text-sm tracking-wider">ABOUT US</span>
-          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-cyan" />
-        </div>
+
+        {/* Section Label */}
+         <div className="flex items-center justify-center gap-2 mb-8">
+          <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+            <div className="h-7 w-[88px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
+              <span className="h-9 ml-1 font-display text-[24.77px] tracking-wider uppercase">ABOUT US</span>          
+            </div>
+          <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
+         </div>       
 
         <h1 className="font-display text-[60px] md:text-[94px] leading-[1.05] uppercase max-w-[760px] mx-auto">
           <span className="text-white/60">We Break the Rules.</span>
@@ -62,14 +55,29 @@ function HeroSection() {
 
 function StorySection() {
   return (
+    
     <section className="py-20 md:py-32">
+       {/* Decorative Images */}
+            <img 
+        src="/about_header_image_left.png" 
+        alt="" 
+        className="absolute left-1 md:left-52 top-[200px] md:top-[800px] w-[150px] md:w-[214px] h-[172px] md:h-[246px] -rotate-[5deg] rounded-3xl object-cover"
+      />
+      <img 
+        src="/about_header_image_right.png" 
+        alt="" 
+        className="absolute right-1 md:right-52 top-[200px] md:top-[800px] w-[150px] md:w-[212px] h-[172px] md:h-[246px] rotate-[5deg] rounded-3xl object-cover"
+      />
+
       <div className="max-w-[1280px] mx-auto px-8">
         <div className="text-center space-y-12">
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-px flex-1 max-w-[87px] bg-gradient-to-r from-transparent to-cyan" />
-            <span className="font-display text-sm tracking-wider">OUR STORY</span>
-            <div className="h-px flex-1 max-w-[87px] bg-gradient-to-l from-transparent to-cyan" />
-          </div>
+        <div className="flex items-center justify-center gap-2 mb-8">
+          <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+            <div className="h-7 w-[98px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
+              <span className="h-9 font-display text-[24.77px] tracking-wider uppercase">&nbsp;OUR STORY</span>          
+            </div>
+          <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
+         </div>  
 
           <h2 className="font-display text-[60px] md:text-[100px] leading-[1.04] uppercase">
             Built by creators, With passion!
@@ -92,9 +100,9 @@ function IdentitySection() {
         <div className="relative w-full h-full">
           <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent rounded-3xl" />
           <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/2efc7961ebd6c465c3283516c6004e292dd9504f?width=2840" 
+            src="/about_image_middle.png" 
             alt="" 
-            className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-plus-lighter rounded-3xl"
+            className="absolute inset-0 w-full h-full object-cover opacity-100 mix-blend-plus-lighter rounded-3xl"
           />
         </div>
       </div>

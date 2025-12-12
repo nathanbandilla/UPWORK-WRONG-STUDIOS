@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="border-t border-[#1a1a1a]">
-      <div className="max-w-[1280px] mx-auto px-8 py-20">
+      <div className="max-w-[1440px] mx-auto px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
@@ -11,7 +11,7 @@ export default function Footer() {
             <h3 className="font-display text-[30px] leading-[29px] uppercase">
               Doing It Wrong Has Never Looked This Right.
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-6">
               <p className="text-[16px] text-white/70 capitalize">Social:</p>
               <p className="text-[18px] capitalize">
                 Instagram | TikTok | Snapchat
@@ -20,7 +20,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation Column */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <h4 className="font-display text-[30px] leading-[29px] uppercase">Navigation</h4>
             <nav className="space-y-[35px]">
               <Link to="/" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Home</Link>
@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Column */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <h4 className="font-display text-[30px] leading-[29px] uppercase">Contact Info</h4>
             <div className="space-y-[35px]">
               <div>
@@ -49,16 +49,16 @@ export default function Footer() {
           </div>
 
           {/* Newsletter Column */}
-          <div className="space-y-6">
+          <div className="w-full mx-auto space-y-6">
             <h4 className="font-display text-[30px] leading-[29px] uppercase">Newsletter Signup</h4>
             <p className="text-[18px] capitalize">Get fresh design insights monthly.</p>
             <div className="space-y-3">
               <input 
                 type="email" 
                 placeholder="Email Here" 
-                className="w-full bg-transparent border border-white/10 rounded-xl px-6 py-4 text-[14px] placeholder:text-[#999999] focus:outline-none focus:border-[#03E9F4] transition-colors"
+                className="w-[196px] mr-2 bg-transparent border border-white/10 rounded-xl px-3 py-4 text-[14px] placeholder:text-[#999999] focus:outline-none focus:border-[#03E9F4] transition-colors"
               />
-              <button className="w-full bg-[#03E9F4] text-[#191919] px-6 py-4 rounded-xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+              <button className="w-[104px] bg-[#03E9F4] text-[#191919] px-3 py-4 rounded-[10px] font-bold text-[16px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
                 Subscribe
               </button>
             </div>
