@@ -66,7 +66,7 @@ export default function Home() {
 
 function HeroSection() {
   return (
-    <section className="relative pt-[200px] pb-20 overflow-hidden"> 
+    <section className="relative pt-[200px] overflow-hidden"> 
 
       {/* Gradient Overlays */}
       <div 
@@ -94,7 +94,7 @@ function HeroSection() {
         </div>
 
         {/* Main Heading */}
-        <div className="text-center mb-12">
+        <div className="relative text-center mb-12">
           <h1 className="font-display text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
             DOING IT WRONG
           </h1>
@@ -126,7 +126,24 @@ function HeroSection() {
             </div>
           </div>
         </div>
+
+ 
+
       </div>
+
+             {/* Left and Right Images */}
+        <div className="flex justify-center gap-32 -mt-32">
+          <img 
+            src="/vector_left.png" 
+            alt="" 
+            className="h-auto"
+          />
+          <img 
+            src="/vector_right.png" 
+            alt="" 
+            className="h-auto"
+          />
+        </div>
 
       {/* Phone Mockups Slideshow Section */}
       <PhoneSlideshow />
@@ -183,29 +200,8 @@ function PhoneSlideshow() {
   }, [currentIndex]);
 
   return (
-    <div className="relative max-w-[1440px] mx-auto px-8 pb-20">
-      {/* Decorative background curves - cyan color */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[400px] h-[600px] opacity-40">
-        <svg viewBox="0 0 400 600" fill="none" className="w-full h-full">
-          <path 
-            d="M 100 0 Q 250 300 100 600" 
-            stroke="#03E9F4" 
-            strokeWidth="3" 
-            fill="none"
-          />
-        </svg>
-      </div>
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[600px] opacity-40">
-        <svg viewBox="0 0 400 600" fill="none" className="w-full h-full">
-          <path 
-            d="M 300 0 Q 150 300 300 600" 
-            stroke="#03E9F4" 
-            strokeWidth="3" 
-            fill="none"
-          />
-        </svg>
-      </div>
-
+    <div className="relative max-w-[1440px] mx-auto px-8 pb-20 -mt-20">
+     
       {/* Position Tracker - Upper Left */}
       <div className="absolute left-12 top-8 z-20 flex items-center gap-2">
         {Array.from({ length: totalVideos }).map((_, index) => (
@@ -403,7 +399,7 @@ function LogoBanner() {
   ];
 
   return (
-    <div className="relative bg-[#03E9F4] py-1 overflow-hidden">
+    <div className="relative bg-[#03E9F4] py-1 overflow-hidden -mt-32">
       {/* Scrolling Content */}
       <div className="flex gap-24 animate-scroll">
         {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
@@ -570,24 +566,23 @@ function StatsBanner() {
   const stats = [
     "1M+ FOLLOWERS ACCUMULATED",
     "OVER 1 BILLION VIEWS EACH YEAR",
-    "OVER 150 MILLION LIKES"
+    "OVER 150 MILLION LIKES",
+    
   ];
 
   return (
-    <div className="relative py-16 overflow-hidden -rotate-[3deg] my-20">
+    <div className="relative bg-[#03E9F4] py-10 overflow-hidden -rotate-[3deg] my-20">
       {/* Background */}
-      <div className="absolute inset-0">
-        <img src="/stats-banner-bg.svg" alt="" className="w-full h-full object-cover" />
-      </div>
+ 
 
       {/* Scrolling Content */}
       <div className="relative z-10 flex gap-16 animate-scroll">
         {[...stats, ...stats, ...stats].map((stat, i) => (
           <div key={i} className="flex items-center gap-8 flex-shrink-0">
-            <span className="font-display text-[40px] leading-[67px] tracking-wide whitespace-nowrap">
+            <span className="font-display text-[40px] text-[#191919] leading-[67px] tracking-wide whitespace-nowrap">
               {stat}
             </span>
-            <img src="/signature.png" alt="" className="w-[73px] h-[49px]" />
+            <img src="/signature_black.png" alt="" className="w-[73px] h-[49px]" />
           </div>
         ))}
       </div>
@@ -652,7 +647,7 @@ function CTASection() {
           </div>
 
           <h2 className="font-display text-[60px] md:text-[70px] leading-[1] uppercase">
-             Let&apos;s build something
+             Let's build something
              <br />
               unforgettable.
           </h2>

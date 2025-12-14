@@ -33,7 +33,6 @@ function HeroSection() {
 
        {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
-
         {/* Section Label */}
          <div className="flex items-center justify-center gap-2 mb-8">
           <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
