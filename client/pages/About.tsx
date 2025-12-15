@@ -159,14 +159,14 @@ function CTASection() {
       <div className="relative z-10 max-w-[1280px] mx-auto px-8">
         <div className="space-y-16">
           {/* Main CTA Text */}
-          <div className="space-y-4">
-            <h2 className="font-display text-[120px] md:text-[294px] leading-[0.62] uppercase font-bold text-white">
+          <div className="space-y-24">
+            <h2 className="font-display text-[120px] md:text-[294px] leading-[0.62] uppercase text-white">
               READY TO
             </h2>
             
             <div className="pl-8 md:pl-32">
               <h3 
-                className="font-display text-[100px] md:text-[264px] leading-[0.69] uppercase font-bold"
+                className="font-display text-[100px] md:text-[264px] leading-[0.69] uppercase"
                 style={{
                   WebkitTextStroke: '9px white',
                   WebkitTextFillColor: 'transparent'
@@ -176,14 +176,14 @@ function CTASection() {
               </h3>
             </div>
 
-            <h4 className="font-display text-[100px] md:text-[244px] leading-[0.75] uppercase font-bold text-white">
+            <h4 className="font-display text-[100px] md:text-[244px] leading-[0.75] uppercase text-white">
               IGNORED?
             </h4>
           </div>
 
           {/* CTA Button */}
-          <div className="flex items-center gap-4 pt-8">
-            <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-8 md:px-12 md:py-10 hover:bg-white/5 transition-all">
+          <div className="flex items-center gap-1 pt-8">
+            <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-8 md:px-12 md:py-7 hover:bg-white/5 transition-all">
               <span className="font-display text-[40px] md:text-[60px] leading-[1.1] uppercase text-white">
                 JOIN THE WRONG SIDE
               </span>

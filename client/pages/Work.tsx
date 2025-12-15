@@ -57,22 +57,22 @@ function FeaturedProjects() {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Waterfall Expedition",
+      title: "",
       image:
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=80",
+        "/project1.png",
     },
     {
       id: 2,
-      title: "Product Packaging",
+      title: "",
       image:
-        "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1400&q=80",
+        "/project2.png",
     },
     {
       id: 3,
       title: "Visit Rwanda",
       subtitle: "social media management",
       image:
-        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
+        "/group.png",
       stats: [
         { label: "TikTok followers", value: "168K" },
         { label: "TikTok views", value: "986K" },
@@ -80,33 +80,33 @@ function FeaturedProjects() {
     },
     {
       id: 4,
-      title: "Night Shift",
+      title: "",
       image:
-        "https://images.unsplash.com/photo-1522204502516-3c5a946b1fde?auto=format&fit=crop&w=1400&q=80",
+        "/project4.png",
     },
     {
       id: 5,
       title: "Fitness App",
       image:
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=80",
+        "/project5.png",
     },
     {
       id: 6,
-      title: "Brand Packaging",
+      title: "",
       image:
-        "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1400&q=80",
+        "/project6.png",
     },
     {
       id: 7,
-      title: "Creative Splash",
+      title: "",
       image:
-        "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?auto=format&fit=crop&w=1400&q=80",
+        "/project7.png",
     },
     {
       id: 8,
-      title: "Banking UI",
+      title: "",
       image:
-        "https://images.unsplash.com/photo-1505842730843-3c6de0323f5f?auto=format&fit=crop&w=1400&q=80",
+        "/project8.png",
     },
   ];
 

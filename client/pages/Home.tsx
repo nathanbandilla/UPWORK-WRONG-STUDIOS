@@ -95,7 +95,7 @@ function HeroSection() {
 
         {/* Main Heading */}
         <div className="relative text-center mb-12">
-          <h1 className="font-display text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
+          <h1 className="font-display text-[165px] md:text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
             DOING IT WRONG
           </h1>
           <p className="font-display text-[64px] leading-[72px] uppercase">
@@ -167,14 +167,14 @@ function PhoneSlideshow() {
   };
 
   const videos = [
-    "/videos/vid_1.mp4",
-    "/videos/vid_2.mp4", 
-    "/videos/vid_3.mp4",
-    "/videos/vid_4.mp4",
-    "/videos/vid_5.mp4",
-    "/videos/vid_6.mp4",
-    "/videos/vid_7.mp4",
-    "/videos/vid_8.mp4"
+    "/videos/vid_1.webm",
+    "/videos/vid_2.webm", 
+    "/videos/vid_3.webm",
+    "/videos/vid_4.webm",
+    "/videos/vid_5.webm",
+    "/videos/vid_6.webm",
+    "/videos/vid_7.webm",
+    "/videos/vid_8.webm"
   ];
 
   // Auto-play/pause videos based on currentIndex
@@ -207,7 +207,7 @@ function PhoneSlideshow() {
         {Array.from({ length: totalVideos }).map((_, index) => (
           <div
             key={index}
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className={`h-4 rounded-full transition-all duration-300 ${
               index === currentIndex 
                 ? 'w-8 bg-[#03E9F4]' 
                 : 'w-2 bg-white/30'
@@ -317,7 +317,7 @@ function PhoneSlideshow() {
             muted
             loop
             playsInline
-            className="w-[360px] h-[540px] rounded-[28px] border-4 border-white/60 object-cover shadow-[0_0_80px_rgba(3,233,244,0.4),0_0_40px_rgba(3,233,244,0.3)]"
+            className="w-[360px] h-[540px] rounded-[28px] border-4 border-white/60 object-fill ..."
           />
         </div>
 
