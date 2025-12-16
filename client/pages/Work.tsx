@@ -22,14 +22,14 @@ function HeroSection() {
   return (
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
-      {/* Background Image */}
+      {/* Background Image // -- commented for now
       <div className="absolute inset-0">
         <img
           src="/work_header.png"
           alt=""
           className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
         />
-      </div>
+      </div> */} 
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -84,30 +84,7 @@ function FeaturedProjects() {
       image:
         "/project4.png",
     },
-    {
-      id: 5,
-      title: "Fitness App",
-      image:
-        "/project5.png",
-    },
-    {
-      id: 6,
-      title: "",
-      image:
-        "/project6.png",
-    },
-    {
-      id: 7,
-      title: "",
-      image:
-        "/project7.png",
-    },
-    {
-      id: 8,
-      title: "",
-      image:
-        "/project8.png",
-    },
+   
   ];
 
   return (

@@ -26,8 +26,7 @@ export default function Footer() {
               <Link to="/" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Home</Link>
               <Link to="/about" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">About</Link>
               <Link to="/work" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Our Work</Link>
-              <Link to="/services" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Services</Link>
-              <Link to="/philosophy" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Philosophy</Link>
+              <Link to="/services" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Services</Link>          
             </nav>
           </div>
 
@@ -51,7 +50,7 @@ export default function Footer() {
           {/* Newsletter Column */}
           <div className="w-full mx-auto space-y-6">
             <h4 className="font-display text-[30px] leading-[29px] uppercase">Newsletter Signup</h4>
-            <p className="text-[18px] capitalize">Get fresh design insights monthly.</p>
+            <p className="text-[18px] capitalize">Get Wrong Studios Updates Monthly</p>
             <div className="space-y-3">
               <input 
                 type="email" 

@@ -447,10 +447,7 @@ function AboutSection() {
             <h2 className="font-display text-[100px] leading-[104px] uppercase">
               Wrong Studios are Creators first
             </h2>
-
-            <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
-              Learn More About Us
-            </button>
+           
           </div>
 
           <div className="space-y-6 pt-16">
@@ -459,6 +456,9 @@ function AboutSection() {
             </p>
           </div>
         </div>
+        <button className="block mx-auto bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+              Learn More About Us
+            </button>
       </div>
     </section>
   );
@@ -618,8 +618,9 @@ function StorySection() {
             </button>
           </div>
 
-          <div className="relative h-[520px]">
-            <img src="/story-images.svg" alt="Our story" className="w-full h-full object-contain" />
+          <div className="flex relative h-[520px] gap-3">
+            <img src="/story-images-left.png" alt="Our story" className="w-full h-full object-contain" />
+            <img src="/story-images-right.png" alt="Our story" className="w-full h-full object-contain" />
           </div>
         </div>
       </div>

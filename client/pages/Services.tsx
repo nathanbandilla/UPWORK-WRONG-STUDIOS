@@ -26,14 +26,14 @@ function HeroSection() {
   return (
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
-      {/* Background Image */}
+      {/* Background Image *
       <div className="absolute inset-0">
         <img
           src="/services_header.png"
           alt=""
           className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
         />
-      </div>
+      </div> /}
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -170,7 +170,7 @@ function ServiceSection1() {
             </h2>
 
             {/* Description */}
-            <p className="text-[18px] leading-[34px] text-white/90">
+            <p className="text-[18px] leading-[34px] text-white/90 uppercase">
               we help you find your tone, attitude and digital personality; the
               human behind the logo. from storytelling frameworks to content
               pillars, we build strategies that feel as natural as the creators

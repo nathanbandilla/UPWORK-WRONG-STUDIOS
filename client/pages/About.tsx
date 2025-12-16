@@ -22,14 +22,14 @@ function HeroSection() {
   return (
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
       
-      {/* Background Image */}
+      {/* Background Image ----commented for now
       <div className="absolute inset-0">
         <img 
           src="/about_header.png" 
           alt="" 
           className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
         />
-      </div>
+      </div> */}
 
        {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -60,12 +60,12 @@ function StorySection() {
             <img 
         src="/about_header_image_left.png" 
         alt="" 
-        className="absolute left-1 md:left-52 top-[200px] md:top-[800px] w-[150px] md:w-[214px] h-[172px] md:h-[246px] -rotate-[5deg] rounded-3xl object-cover"
+        className="absolute left-12 md:left-52 top-[500px] md:top-[500px] w-[150px] md:w-[214px] h-[172px] md:h-[246px] -rotate-[5deg] rounded-3xl object-cover"
       />
       <img 
         src="/about_header_image_right.png" 
         alt="" 
-        className="absolute right-1 md:right-52 top-[200px] md:top-[800px] w-[150px] md:w-[212px] h-[172px] md:h-[246px] rotate-[5deg] rounded-3xl object-cover"
+        className="absolute right-12 md:right-52 top-[500px] md:top-[500px] w-[150px] md:w-[212px] h-[172px] md:h-[246px] rotate-[5deg] rounded-3xl object-cover"
       />
 
       <div className="max-w-[1280px] mx-auto px-8">
@@ -93,7 +93,7 @@ function StorySection() {
 
 function IdentitySection() {
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden">
+    <section className="py-8 md:py-8 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="relative w-full h-full">
@@ -109,11 +109,11 @@ function IdentitySection() {
       {/* Content */}
       <div className="relative z-10 max-w-[1420px] mx-auto px-8">
         <div className="max-w-[795px] mx-auto text-center space-y-6">
-          <h2 className="font-display text-[80px] md:text-[136px] leading-[0.82] uppercase">
+          <h2 className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase">
             WRONG STUDIOS IS
           </h2>
 
-          <div className="font-display text-[80px] md:text-[136px] leading-[0.82] uppercase -rotate-3 py-4">
+          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase -rotate-3 py-4">
             <span 
               className="inline-block"
               style={{
@@ -125,11 +125,11 @@ function IdentitySection() {
             </span>
           </div>
 
-          <h3 className="font-display text-[80px] md:text-[136px] leading-[0.82] uppercase text-white">
+          <h3 className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white">
             PRODUCTION HOUSE
           </h3>
 
-          <div className="font-display text-[80px] md:text-[136px] leading-[0.82] uppercase rotate-3 py-4">
+          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase rotate-3 py-4">
             <span 
               className="inline-block"
               style={{
@@ -141,7 +141,7 @@ function IdentitySection() {
             </span>
           </div>
 
-          <h4 className="font-display text-[80px] md:text-[136px] leading-[0.82] uppercase text-white">
+          <h4 className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white">
             AND CLARA
           </h4>
         </div>
@@ -152,23 +152,23 @@ function IdentitySection() {
 
 function CTASection() {
   return (
-    <section className="py-32 md:py-40 relative overflow-hidden">
+    <section className="py-4 md:py-4 relative overflow-hidden">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-8">
-        <div className="space-y-16">
+        <div className="pl-8 md:pl-32 space-y-16">
           {/* Main CTA Text */}
-          <div className="space-y-24">
-            <h2 className="font-display text-[120px] md:text-[294px] leading-[0.62] uppercase text-white">
+          <div className="space-y-12">
+            <h2 className="font-display text-[60px] md:text-[100px] leading-[0.62] uppercase text-white">
               READY TO
             </h2>
             
             <div className="pl-8 md:pl-32">
               <h3 
-                className="font-display text-[100px] md:text-[264px] leading-[0.69] uppercase"
+                className="font-display text-[60px] md:text-[100px] leading-[0.69] uppercase"
                 style={{
-                  WebkitTextStroke: '9px white',
+                  WebkitTextStroke: '4px white',
                   WebkitTextFillColor: 'transparent'
                 }}
               >
@@ -176,20 +176,20 @@ function CTASection() {
               </h3>
             </div>
 
-            <h4 className="font-display text-[100px] md:text-[244px] leading-[0.75] uppercase text-white">
+            <h4 className="font-display text-[60px] md:text-[100px] leading-[0.75] uppercase text-white">
               IGNORED?
             </h4>
           </div>
 
           {/* CTA Button */}
           <div className="flex items-center gap-1 pt-8">
-            <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-8 md:px-12 md:py-7 hover:bg-white/5 transition-all">
-              <span className="font-display text-[40px] md:text-[60px] leading-[1.1] uppercase text-white">
+            <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-4 md:px-8 md:py-4 hover:bg-white/5 transition-all">
+              <span className="font-display text-[20px] md:text-[40px] leading-[1.1] uppercase text-white">
                 JOIN THE WRONG SIDE
               </span>
             </button>
             
-            <div className="w-[100px] md:w-[116px] h-[100px] md:h-[128px] flex items-center justify-center bg-transparent border-2 border-white rounded-xl group-hover:bg-white/5 transition-all">
+            <div className="w-[80px] md:w-[80px] h-[60px] md:h-[80px] flex items-center justify-center bg-transparent border-2 border-white rounded-xl group-hover:bg-white/5 transition-all">
               <svg width="33" height="58" viewBox="0 0 33 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M30.6712 29.0257L2.75488 56.4486C16.8775 42.585 16.232 14.3275 3.24825 1.10938L30.6712 29.0257Z" fill="white"/>
               </svg>
