@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "@/components/Layout";
+import emailjs from "@emailjs/browser";
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
@@ -90,8 +91,36 @@ function ContactFormSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+  
+    emailjs
+      .send(
+        "service_i2wbx2x",
+        "template_jk5ilx4",
+        {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          address: formData.address,
+          message: formData.message,
+        },
+        "UTBrXKFBF642K78XH"
+      )
+      .then(
+        () => {
+          alert("Message sent successfully.");
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            address: "",
+            message: "",
+          });
+        },
+        (error) => {
+          console.error("Email error:", error);
+          alert("Failed to send message. Please try again.");
+        }
+      );
   };
 
   const handleChange = (

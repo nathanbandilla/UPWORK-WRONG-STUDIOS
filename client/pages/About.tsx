@@ -185,7 +185,9 @@ function CTASection() {
           <div className="flex items-center gap-1 pt-8">
             <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-4 md:px-8 md:py-4 hover:bg-white/5 transition-all">
               <span className="font-display text-[20px] md:text-[40px] leading-[1.1] uppercase text-white">
+              <a href="/contact">
                 JOIN THE WRONG SIDE
+              </a>
               </span>
             </button>
             

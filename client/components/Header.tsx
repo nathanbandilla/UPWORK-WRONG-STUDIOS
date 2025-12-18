@@ -61,7 +61,7 @@ export default function Header() {
           {/* Desktop CTA Button */}
           <div className="hidden md:block">
             <button className="bg-white text-[#191919] px-6 py-3 rounded-[40px] font-bold text-[18px] hover:bg-white/80 transition-colors capitalize">
-              Contact us
+             <a href="/contact">Contact Us</a>           
             </button>
           </div>
 

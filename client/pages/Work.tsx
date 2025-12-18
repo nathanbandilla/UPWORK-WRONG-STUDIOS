@@ -163,7 +163,9 @@ function CtaSection() {
           unforgettable.
         </h2>
         <button className="mt-8 rounded-2xl bg-cyan px-6 py-3 text-black font-semibold transition hover:scale-[1.02]">
+          <a href="/contact">
           Join the Wrong Side
+          </a>
         </button>
       </div>
     </section>

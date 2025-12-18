@@ -498,9 +498,13 @@ function AboutSection() {
             </p>
           </div>
         </div>
-        <button className="block mx-auto bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+         
+            <button className="block mx-auto bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+            <a href="/about">
               Learn More About Us
+            </a>
             </button>
+            
       </div>
     </section>
   );
@@ -563,9 +567,13 @@ function ServicesSection() {
             </div>
 
             <div className="text-center pt-8">
+           
               <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+              <a href="/services">
                 See Our Services
+              </a>
               </button>
+            
             </div>
           </div>
         </div>
@@ -654,10 +662,13 @@ function StorySection() {
             <p className="text-[18px] leading-[34px] text-white/90 capitalize">
               most brands post to be seen. We create to be felt. Every brand has a heart beat, a story that deserves more than likes or views. At Wrong Studios, we don't just make videos that look good, we build personalities that stick in people's minds. Our work crafts intention and character behind content that turns short-form content into lasting cultural impact.
             </p>
-
+           
             <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+            <a href="/work">
               Read Our Story
+            </a>
             </button>
+            
           </div>
 
           <div className="flex relative h-[520px] gap-3">
@@ -696,7 +707,9 @@ function CTASection() {
           </h2>
 
           <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+          <a href="/contact">
             join the wrong side
+           </a>
           </button>
         </div>
       </div>
