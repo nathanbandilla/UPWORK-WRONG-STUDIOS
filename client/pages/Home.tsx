@@ -277,10 +277,29 @@ const PhoneThumbnail = React.memo(({
       }}
       onClick={onClick}
     >
-      <img
-        src={thumbnailSrc}
-        className="w-full h-full object-cover border-4 border-white/50 rounded-[24px]"
-      />
+      {/* Hover Layer */}
+      <div
+        className="
+          w-full h-full
+          cursor-pointer
+          transition-all duration-300 ease-out
+          hover:-translate-y-3
+          hover:scale-[1.04]
+          hover:shadow-[0_30px_80px_rgba(3,233,244,0.35)]
+        "
+      >
+        <img
+          src={thumbnailSrc}
+          className="
+            w-full h-full object-cover
+            border-4 border-white/50
+            rounded-[24px]
+            transition-all duration-300
+            hover:border-[#03E9F4]
+          "
+          draggable={false}
+        />
+      </div>
     </div>
   );
 });
