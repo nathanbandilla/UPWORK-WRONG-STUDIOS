@@ -246,11 +246,17 @@ const VideoModal = ({ videoSrc, isOpen, onClose }: { videoSrc: string; isOpen: b
 // Memoized Phone Thumbnail Component
 const PhoneThumbnail = React.memo(({
   thumbnailSrc,
+  videoSrc,
+  isCenter,
   motion,
+  videoRef,
   onClick,
 }: {
   thumbnailSrc: string;
+  videoSrc: string;
+  isCenter: boolean;
   motion: any;
+  videoRef?: React.RefObject<HTMLVideoElement>;
   onClick: () => void;
 }) => {
   return (
@@ -274,17 +280,29 @@ const PhoneThumbnail = React.memo(({
           opacity 500ms ease
         `,
         willChange: 'transform',
+        cursor: 'pointer',
       }}
       onClick={onClick}
     >
-      <img
-        src={thumbnailSrc}
-        className="w-full h-full object-cover border-4 border-white/50 rounded-[24px]"
-      />
+      {isCenter ? (
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          muted
+          playsInline
+          loop
+          preload="auto"
+          className="w-full h-full object-cover border-4 border-white/60 rounded-[28px] shadow-[0_0_50px_rgba(3,233,244,0.5)]"
+        />
+      ) : (
+        <img
+          src={thumbnailSrc}
+          className="w-full h-full object-cover border-4 border-white/40 rounded-[24px]"
+        />
+      )}
     </div>
   );
 });
-
 PhoneThumbnail.displayName = 'PhoneThumbnail';
 
 function PhoneSlideshow() {
@@ -293,8 +311,16 @@ function PhoneSlideshow() {
   const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
   const [direction, setDirection] = React.useState<1 | -1>(1);
   const isTransitioningRef = React.useRef(false);
-  
+  const centerVideoRef = React.useRef<HTMLVideoElement | null>(null);
+
   const totalVideos = 8;
+
+  React.useEffect(() => {
+    if (centerVideoRef.current) {
+      centerVideoRef.current.currentTime = 0;
+      centerVideoRef.current.play().catch(() => {});
+    }
+  }, [currentIndex]);
 
   const handlePrevious = React.useCallback(() => {
     if (isTransitioningRef.current) return;
@@ -405,16 +431,19 @@ function PhoneSlideshow() {
               totalVideos / 2;
 
             const pos = getPositionStyle(delta);
-
+            const isCenter = delta === 0;
             if (!pos) return null;
 
             return (
               <PhoneThumbnail
-                key={index}
-                thumbnailSrc={media.thumb}
-                onClick={() => setSelectedVideo(media.video)}
-                motion={pos}
-              />
+              key={index}
+              thumbnailSrc={media.thumb}
+              videoSrc={media.video}
+              isCenter={isCenter}
+              motion={pos}
+              videoRef={isCenter ? centerVideoRef : undefined}
+              onClick={() => setSelectedVideo(media.video)}
+        />
             );
           })}
         </div>
