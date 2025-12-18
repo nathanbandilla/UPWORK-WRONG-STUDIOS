@@ -95,7 +95,7 @@ function HeroSection() {
 
         {/* Main Heading */}
         <div className="relative text-center mb-12">
-          <h1 className="font-display text-[165px] md:text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
+          <h1 className="font-display text-[110px] md:text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
             DOING IT WRONG
           </h1>
           <p className="font-display text-[64px] leading-[72px] uppercase">
@@ -169,8 +169,7 @@ const PhoneVideo = React.memo(({
       ? 'translate(-50%, -50%)'
       : `translateY(-50%) rotate(${position.rotate}deg) scale(${position.scale})`,
     opacity: position.opacity,
-    zIndex: position.zIndex,
-    transition: 'transform 0.1s cubic-bezier(2, 2, 2, 2), opacity 0.1s ease-out',
+    zIndex: position.zIndex, 
     willChange: 'transform, opacity',
   };
 
@@ -245,66 +244,43 @@ const VideoModal = ({ videoSrc, isOpen, onClose }: { videoSrc: string; isOpen: b
 };
 
 // Memoized Phone Thumbnail Component
-const PhoneThumbnail = React.memo(({ 
-  thumbnailSrc, 
-  position,
-  onClick
-}: { 
-  thumbnailSrc: string; 
-  position: any;
+const PhoneThumbnail = React.memo(({
+  thumbnailSrc,
+  motion,
+  onClick,
+}: {
+  thumbnailSrc: string;
+  motion: any;
   onClick: () => void;
 }) => {
-  const style: React.CSSProperties = {
-    position: 'absolute',
-    ...(position.left ? { left: position.left } : { right: position.right }),
-    top: position.top,
-    transform: position.center 
-      ? 'translate(-50%, -50%)'
-      : `translateY(-50%) rotate(${position.rotate}deg) scale(${position.scale})`,
-    opacity: position.opacity,
-    zIndex: position.zIndex,
-    transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    willChange: 'transform, opacity',
-  };
-
   return (
-    <div style={style}>
-      <div
-        onClick={onClick}
-        className={`relative cursor-pointer group ${
-          position.center ? 'shadow-[0_0_50px_rgba(3,233,244,0.5)]' : 'shadow-xl'
-        }`}
-        style={{
-          width: `${position.width}px`,
-          height: `${position.height}px`,
-          borderRadius: position.center ? '28px' : '24px',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Thumbnail Image */}
-        <img
-          src={thumbnailSrc}
-          alt="Video thumbnail"
-          className={`w-full h-full object-cover border-4 ${
-            position.center ? 'border-white/60' : 'border-white/50'
-          }`}
-          style={{
-            borderRadius: position.center ? '28px' : '24px',
-          }}
-        />
-        
-        {/* Play Button Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all">
-               {/* commented play button for now 
-          <div className="w-16 h-16 rounded-full bg-[#03E9F4] flex items-center justify-center group-hover:scale-110 transition-transform">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="black">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-          */}
-
-        </div>
-      </div>
+    <div
+      style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        width: motion.width,
+        height: motion.height,
+        opacity: motion.opacity,
+        zIndex: motion.zIndex,
+        transform: `
+          translate(-50%, -50%)
+          translateX(${motion.x}px)
+          rotate(${motion.rotate}deg)
+          scale(${motion.scale})
+        `,
+        transition: `
+          transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 500ms ease
+        `,
+        willChange: 'transform',
+      }}
+      onClick={onClick}
+    >
+      <img
+        src={thumbnailSrc}
+        className="w-full h-full object-cover border-4 border-white/50 rounded-[24px]"
+      />
     </div>
   );
 });
@@ -312,27 +288,36 @@ const PhoneThumbnail = React.memo(({
 PhoneThumbnail.displayName = 'PhoneThumbnail';
 
 function PhoneSlideshow() {
+ 
   const [currentIndex, setCurrentIndex] = React.useState(3);
   const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
+  const [direction, setDirection] = React.useState<1 | -1>(1);
   const isTransitioningRef = React.useRef(false);
+  
   const totalVideos = 8;
 
   const handlePrevious = React.useCallback(() => {
     if (isTransitioningRef.current) return;
     isTransitioningRef.current = true;
+  
+    setDirection(-1);
     setCurrentIndex((prev) => (prev === 0 ? totalVideos - 1 : prev - 1));
+  
     setTimeout(() => {
       isTransitioningRef.current = false;
-    }, 500);
+    }, 700);
   }, []);
-
+  
   const handleNext = React.useCallback(() => {
     if (isTransitioningRef.current) return;
     isTransitioningRef.current = true;
+  
+    setDirection(1);
     setCurrentIndex((prev) => (prev === totalVideos - 1 ? 0 : prev + 1));
+  
     setTimeout(() => {
       isTransitioningRef.current = false;
-    }, 500);
+    }, 600);
   }, []);
 
   // Video sources and their thumbnails
@@ -351,15 +336,26 @@ function PhoneSlideshow() {
     return (currentIndex + offset + totalVideos) % totalVideos;
   }, [currentIndex]);
 
-  const phonePositions = React.useMemo(() => [
-    { offset: -3, left: '8%', top: '60%', rotate: -25, scale: 0.7, opacity: 0.6, zIndex: 1, width: 240, height: 360 },
-    { offset: -2, left: '20%', top: '50%', rotate: -15, scale: 0.85, opacity: 0.75, zIndex: 2, width: 280, height: 420 },
-    { offset: -1, left: '33%', top: '50%', rotate: -8, scale: 0.92, opacity: 0.85, zIndex: 3, width: 320, height: 480 },
-    { offset: 0, left: '50%', top: '50%', rotate: 0, scale: 1, opacity: 1, zIndex: 10, width: 360, height: 540, center: true },
-    { offset: 1, right: '33%', top: '50%', rotate: 8, scale: 0.92, opacity: 0.85, zIndex: 3, width: 320, height: 480 },
-    { offset: 2, right: '20%', top: '50%', rotate: 15, scale: 0.85, opacity: 0.75, zIndex: 2, width: 280, height: 420 },
-    { offset: 3, right: '8%', top: '60%', rotate: 25, scale: 0.7, opacity: 0.6, zIndex: 1, width: 240, height: 360 },
-  ], []);
+  const getPositionStyle = (delta: number) => {
+    const abs = Math.abs(delta);
+  
+    if (abs > 3) {
+      return {
+        opacity: 0,
+        pointerEvents: 'none',
+      };
+    }
+  
+    return {
+      x: delta * 220,
+      scale: 1 - abs * 0.08,
+      rotate: delta * 6,
+      opacity: abs >= 3 ? 0.1 : 1 - abs * 0.25,
+      zIndex: 10 - abs,
+      width: 360 - abs * 40,
+      height: 540 - abs * 60,
+    };
+  };
 
   return (
     <>
@@ -402,20 +398,27 @@ function PhoneSlideshow() {
         </div>
 
         {/* Phone Mockups Grid */}
-        <div className="relative h-[640px] flex items-center justify-center">
-          {phonePositions.map((position, idx) => {
-            const videoIndex = getVideoIndex(position.offset);
-            const media = mediaData[videoIndex];
+        <div className="relative h-[640px] flex items-center justify-center overflow-hidden">
+          {mediaData.map((media, index) => {
+            const delta =
+              ((index - currentIndex + totalVideos + totalVideos / 2) % totalVideos) -
+              totalVideos / 2;
+
+            const pos = getPositionStyle(delta);
+
+            if (!pos) return null;
+
             return (
               <PhoneThumbnail
-                key={idx}
+                key={index}
                 thumbnailSrc={media.thumb}
-                position={position}
                 onClick={() => setSelectedVideo(media.video)}
+                motion={pos}
               />
             );
           })}
         </div>
+
       </div>
 
       {/* Video Modal */}
