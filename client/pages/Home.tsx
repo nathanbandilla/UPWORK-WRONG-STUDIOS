@@ -151,238 +151,280 @@ function HeroSection() {
   );
 }
 
-function PhoneSlideshow() {
-  const [currentIndex, setCurrentIndex] = React.useState(3); // Start with center video (index 3)
-  const totalVideos = 8;
-
-  // Refs for all video elements
-  const videoRefs = React.useRef<(HTMLVideoElement | null)[]>([]);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalVideos - 1 : prev - 1));
+// Memoized Video Component
+const PhoneVideo = React.memo(({ 
+  videoSrc, 
+  position, 
+  videoRef 
+}: { 
+  videoSrc: string; 
+  position: any; 
+  videoRef: (el: HTMLVideoElement | null) => void;
+}) => {
+  const style: React.CSSProperties = {
+    position: 'absolute',
+    ...(position.left ? { left: position.left } : { right: position.right }),
+    top: position.top,
+    transform: position.center 
+      ? 'translate(-50%, -50%)'
+      : `translateY(-50%) rotate(${position.rotate}deg) scale(${position.scale})`,
+    opacity: position.opacity,
+    zIndex: position.zIndex,
+    transition: 'transform 0.1s cubic-bezier(2, 2, 2, 2), opacity 0.1s ease-out',
+    willChange: 'transform, opacity',
   };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === totalVideos - 1 ? 0 : prev + 1));
-  };
-
-  const videos = [
-    "/videos/vid_1.webm",
-    "/videos/vid_2.webm", 
-    "/videos/vid_3.webm",
-    "/videos/vid_4.webm",
-    "/videos/vid_5.webm",
-    "/videos/vid_6.webm",
-    "/videos/vid_7.webm",
-    "/videos/vid_8.webm"
-  ];
-
-  // Auto-play/pause videos based on currentIndex
-  React.useEffect(() => {
-    // Pause all videos first
-    videoRefs.current.forEach((video) => {
-      if (video) {
-        video.pause();
-      }
-    });
-
-    // Play only the center (active) video
-    // The center video is always at refs index 3
-    const centerVideo = videoRefs.current[3];
-    if (centerVideo) {
-      // Reset to beginning and play
-      centerVideo.currentTime = 0;
-      centerVideo.play().catch((error) => {
-        // Handle autoplay restrictions
-        console.log("Autoplay prevented:", error);
-      });
-    }
-  }, [currentIndex]);
 
   return (
-    <div className="relative max-w-[1440px] mx-auto px-8 pb-20 -mt-20">
-     
-      {/* Position Tracker - Upper Left */}
-      <div className="absolute left-12 top-8 z-20 flex items-center gap-2">
-        {Array.from({ length: totalVideos }).map((_, index) => (
-          <div
-            key={index}
-            className={`h-4 rounded-full transition-all duration-300 ${
-              index === currentIndex 
-                ? 'w-8 bg-[#03E9F4]' 
-                : 'w-2 bg-white/30'
-            }`}
-          />
-        ))}
+    <div style={style}>
+      <video 
+        ref={videoRef}
+        src={videoSrc}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        style={{
+          width: `${position.width}px`,
+          height: `${position.height}px`,
+          objectFit: position.center ? 'fill' : 'cover',
+          borderRadius: position.center ? '28px' : '24px',
+          backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)',
+        }}
+        className={`border-4 ${position.center ? 'border-white/60' : 'border-white/50'} ${
+          position.center ? 'shadow-[0_0_50px_rgba(3,233,244,0.5)]' : 'shadow-xl'
+        }`}
+      />
+    </div>
+  );
+});
+
+PhoneVideo.displayName = 'PhoneVideo';
+
+// Video Popup Modal
+const VideoModal = ({ videoSrc, isOpen, onClose }: { videoSrc: string; isOpen: boolean; onClose: () => void }) => {
+  const videoRef = React.useRef<HTMLVideoElement | null>(null);
+
+  React.useEffect(() => {
+    if (isOpen && videoRef.current) {
+      videoRef.current.play();
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
+        aria-label="Close"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          controls
+          autoPlay
+          loop
+          playsInline
+          className="w-full h-full rounded-2xl shadow-2xl"
+          style={{ maxHeight: '90vh' }}
+        />
       </div>
+    </div>
+  );
+};
 
-      {/* Navigation Buttons - Upper Right */}
-      <div className="absolute right-12 top-8 z-20 flex items-center gap-3">
-        <button 
-          onClick={handlePrevious}
-          className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
-          aria-label="Previous"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button 
-          onClick={handleNext}
-          className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
-          aria-label="Next"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-      </div>
+// Memoized Phone Thumbnail Component
+const PhoneThumbnail = React.memo(({ 
+  thumbnailSrc, 
+  position,
+  onClick
+}: { 
+  thumbnailSrc: string; 
+  position: any;
+  onClick: () => void;
+}) => {
+  const style: React.CSSProperties = {
+    position: 'absolute',
+    ...(position.left ? { left: position.left } : { right: position.right }),
+    top: position.top,
+    transform: position.center 
+      ? 'translate(-50%, -50%)'
+      : `translateY(-50%) rotate(${position.rotate}deg) scale(${position.scale})`,
+    opacity: position.opacity,
+    zIndex: position.zIndex,
+    transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    willChange: 'transform, opacity',
+  };
 
-      {/* Phone Mockups Grid with Slideshow */}
-      <div className="relative h-[640px] flex items-center justify-center">
-        {/* Left side phones - smaller and rotated */}
-        <div 
-          className="absolute transition-all duration-500 ease-out"
-          style={{ 
-            left: '8%', 
-            top: '60%', 
-            transform: 'translateY(-50%) rotate(-25deg) scale(0.7)',
-            opacity: 0.6,
-            zIndex: 1
+  return (
+    <div style={style}>
+      <div
+        onClick={onClick}
+        className={`relative cursor-pointer group ${
+          position.center ? 'shadow-[0_0_50px_rgba(3,233,244,0.5)]' : 'shadow-xl'
+        }`}
+        style={{
+          width: `${position.width}px`,
+          height: `${position.height}px`,
+          borderRadius: position.center ? '28px' : '24px',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Thumbnail Image */}
+        <img
+          src={thumbnailSrc}
+          alt="Video thumbnail"
+          className={`w-full h-full object-cover border-4 ${
+            position.center ? 'border-white/60' : 'border-white/50'
+          }`}
+          style={{
+            borderRadius: position.center ? '28px' : '24px',
           }}
-        >
-          <video 
-            ref={(el) => { videoRefs.current[0] = el; }}
-            src={videos[(currentIndex - 3 + totalVideos) % totalVideos]}
-            muted
-            loop
-            playsInline
-            className="w-[240px] h-[360px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
-          />
-        </div>
+        />
         
-        <div 
-          className="absolute transition-all duration-500 ease-out"
-          style={{ 
-            left: '20%', 
-            top: '50%', 
-            transform: 'translateY(-50%) rotate(-15deg) scale(0.85)',
-            opacity: 0.75,
-            zIndex: 2
-          }}
-        >
-          <video 
-            ref={(el) => { videoRefs.current[1] = el; }}
-            src={videos[(currentIndex - 2 + totalVideos) % totalVideos]}
-            muted
-            loop
-            playsInline
-            className="w-[280px] h-[420px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
-          />
-        </div>
+        {/* Play Button Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all">
+               {/* commented play button for now 
+          <div className="w-16 h-16 rounded-full bg-[#03E9F4] flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="black">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+          */}
 
-        <div 
-          className="absolute transition-all duration-500 ease-out"
-          style={{ 
-            left: '33%', 
-            top: '50%', 
-            transform: 'translateY(-50%) rotate(-8deg) scale(0.92)',
-            opacity: 0.85,
-            zIndex: 3
-          }}
-        >
-          <video 
-            ref={(el) => { videoRefs.current[2] = el; }}
-            src={videos[(currentIndex - 1 + totalVideos) % totalVideos]}
-            muted
-            loop
-            playsInline
-            className="w-[320px] h-[480px] rounded-[24px] border-4 border-white/50 object-cover shadow-2xl"
-          />
-        </div>
-        
-        {/* Center phone - largest with cyan glow */}
-        <div 
-          className="absolute transition-all duration-500 ease-out"
-          style={{ 
-            left: '50%', 
-            top: '50%', 
-            transform: 'translate(-50%, -50%)',
-            zIndex: 10
-          }}
-        >
-          <video 
-            ref={(el) => { videoRefs.current[3] = el; }}
-            src={videos[currentIndex]}
-            muted
-            loop
-            playsInline
-            className="w-[360px] h-[540px] rounded-[28px] border-4 border-white/60 object-fill ..."
-          />
-        </div>
-
-        {/* Right side phones - smaller and rotated */}
-        <div 
-          className="absolute transition-all duration-500 ease-out"
-          style={{ 
-            right: '33%', 
-            top: '50%', 
-            transform: 'translateY(-50%) rotate(8deg) scale(0.92)',
-            opacity: 0.85,
-            zIndex: 3
-          }}
-        >
-          <video 
-            ref={(el) => { videoRefs.current[4] = el; }}
-            src={videos[(currentIndex + 1) % totalVideos]}
-            muted
-            loop
-            playsInline
-            className="w-[320px] h-[480px] rounded-[24px] border-4 border-white/50 object-cover shadow-2xl"
-          />
-        </div>
-
-        <div 
-          className="absolute transition-all duration-500 ease-out"
-          style={{ 
-            right: '20%', 
-            top: '50%', 
-            transform: 'translateY(-50%) rotate(15deg) scale(0.85)',
-            opacity: 0.75,
-            zIndex: 2
-          }}
-        >
-          <video 
-            ref={(el) => { videoRefs.current[5] = el; }}
-            src={videos[(currentIndex + 2) % totalVideos]}
-            muted
-            loop
-            playsInline
-            className="w-[280px] h-[420px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
-          />
-        </div>
-
-        <div 
-          className="absolute transition-all duration-500 ease-out"
-          style={{ 
-            right: '8%', 
-            top: '60%', 
-            transform: 'translateY(-50%) rotate(25deg) scale(0.7)',
-            opacity: 0.6,
-            zIndex: 1
-          }}
-        >
-          <video 
-            ref={(el) => { videoRefs.current[6] = el; }}
-            src={videos[(currentIndex + 3) % totalVideos]}
-            muted
-            loop
-            playsInline
-            className="w-[240px] h-[360px] rounded-[24px] border-4 border-white/50 object-cover shadow-xl"
-          />
         </div>
       </div>
     </div>
+  );
+});
+
+PhoneThumbnail.displayName = 'PhoneThumbnail';
+
+function PhoneSlideshow() {
+  const [currentIndex, setCurrentIndex] = React.useState(3);
+  const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
+  const isTransitioningRef = React.useRef(false);
+  const totalVideos = 8;
+
+  const handlePrevious = React.useCallback(() => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+    setCurrentIndex((prev) => (prev === 0 ? totalVideos - 1 : prev - 1));
+    setTimeout(() => {
+      isTransitioningRef.current = false;
+    }, 500);
+  }, []);
+
+  const handleNext = React.useCallback(() => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+    setCurrentIndex((prev) => (prev === totalVideos - 1 ? 0 : prev + 1));
+    setTimeout(() => {
+      isTransitioningRef.current = false;
+    }, 500);
+  }, []);
+
+  // Video sources and their thumbnails
+  const mediaData = React.useMemo(() => [
+    { video: "/videos/vid_1.mp4", thumb: "/thumbnails/thumb_1.jpg" },
+    { video: "/videos/vid_2.mp4", thumb: "/thumbnails/thumb_2.jpg" },
+    { video: "/videos/vid_3.mp4", thumb: "/thumbnails/thumb_3.jpg" },
+    { video: "/videos/vid_4.mp4", thumb: "/thumbnails/thumb_4.jpg" },
+    { video: "/videos/vid_5.mp4", thumb: "/thumbnails/thumb_5.jpg" },
+    { video: "/videos/vid_6.mp4", thumb: "/thumbnails/thumb_6.jpg" },
+    { video: "/videos/vid_7.mp4", thumb: "/thumbnails/thumb_7.jpg" },
+    { video: "/videos/vid_8.mp4", thumb: "/thumbnails/thumb_8.jpg" }
+  ], []);
+
+  const getVideoIndex = React.useCallback((offset: number) => {
+    return (currentIndex + offset + totalVideos) % totalVideos;
+  }, [currentIndex]);
+
+  const phonePositions = React.useMemo(() => [
+    { offset: -3, left: '8%', top: '60%', rotate: -25, scale: 0.7, opacity: 0.6, zIndex: 1, width: 240, height: 360 },
+    { offset: -2, left: '20%', top: '50%', rotate: -15, scale: 0.85, opacity: 0.75, zIndex: 2, width: 280, height: 420 },
+    { offset: -1, left: '33%', top: '50%', rotate: -8, scale: 0.92, opacity: 0.85, zIndex: 3, width: 320, height: 480 },
+    { offset: 0, left: '50%', top: '50%', rotate: 0, scale: 1, opacity: 1, zIndex: 10, width: 360, height: 540, center: true },
+    { offset: 1, right: '33%', top: '50%', rotate: 8, scale: 0.92, opacity: 0.85, zIndex: 3, width: 320, height: 480 },
+    { offset: 2, right: '20%', top: '50%', rotate: 15, scale: 0.85, opacity: 0.75, zIndex: 2, width: 280, height: 420 },
+    { offset: 3, right: '8%', top: '60%', rotate: 25, scale: 0.7, opacity: 0.6, zIndex: 1, width: 240, height: 360 },
+  ], []);
+
+  return (
+    <>
+      <div className="relative max-w-[1440px] mx-auto px-8 pb-20 -mt-20">
+       
+        {/* Position Tracker */}
+        <div className="absolute left-12 top-8 z-20 flex items-center gap-2">
+          {Array.from({ length: totalVideos }).map((_, index) => (
+            <div
+              key={index}
+              className={`h-4 rounded-full transition-all duration-300 ease-out ${
+                index === currentIndex 
+                  ? 'w-8 bg-[#03E9F4]' 
+                  : 'w-2 bg-white/30'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="absolute right-12 top-8 z-20 flex items-center gap-3">
+          <button 
+            onClick={handlePrevious}
+            className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
+            aria-label="Previous"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button 
+            onClick={handleNext}
+            className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
+            aria-label="Next"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Phone Mockups Grid */}
+        <div className="relative h-[640px] flex items-center justify-center">
+          {phonePositions.map((position, idx) => {
+            const videoIndex = getVideoIndex(position.offset);
+            const media = mediaData[videoIndex];
+            return (
+              <PhoneThumbnail
+                key={idx}
+                thumbnailSrc={media.thumb}
+                position={position}
+                onClick={() => setSelectedVideo(media.video)}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        videoSrc={selectedVideo || ''}
+        isOpen={!!selectedVideo}
+        onClose={() => setSelectedVideo(null)}
+      />
+    </>
   );
 }
 
