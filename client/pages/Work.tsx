@@ -59,13 +59,13 @@ function FeaturedProjects() {
       id: 1,
       title: "",
       image:
-        "/project1.png",
+        "/project/project1.png",
     },
     {
       id: 2,
       title: "",
       image:
-        "/project2.png",
+        "/project/project2.png",
     },
     {
       id: 3,
@@ -82,7 +82,7 @@ function FeaturedProjects() {
       id: 4,
       title: "",
       image:
-        "/project4.png",
+        "/project/project4.png",
     },
    
   ];

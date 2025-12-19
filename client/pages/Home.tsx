@@ -520,12 +520,13 @@ function AboutSection() {
             </p>
           </div>
         </div>
-         
+         <div className="space-y-6 pt-8">
             <button className="block mx-auto bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
             <a href="/about">
               Learn More About Us
             </a>
             </button>
+        </div>
             
       </div>
     </section>
@@ -606,6 +607,20 @@ function ServicesSection() {
 
 function WorkSection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  
+  const projects = [
+    { id: 1, img: "/project/work1.png", title: "work 1" },
+    { id: 2, img: "/project/work2.png", title: "work 2" },
+    { id: 3, img: "/project/work3.png", title: "work 3" },
+    { id: 4, img: "/project/work4.png", title: "work 4" },
+    { id: 5, img: "/project/work5.png", title: "work 5" },
+    { id: 6, img: "/project/work5.png", title: "work 6" },
+    { id: 7, img: "/project/work4.png", title: "work 7" },
+    { id: 8, img: "/project/work1.png", title: "work 8" },
+    { id: 9, img: "/project/work2.png", title: "work 9" },
+    { id: 10, img: "/project/work3.png", title: "work 10" }, // Duplicate to fill 8 spots (4x2)
+  ];
+
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1440px] mx-auto px-8">
@@ -625,9 +640,42 @@ function WorkSection() {
           </p>
         </div>
 
-        {/* Work Grid Image */}
+        {/* Work Grid - 5 Columns x 2 Rows */}
         <div className="mb-16">
-          <img src="/work-grid.svg" alt="Portfolio showcase" className="w-full h-auto" />
+          <div className="grid grid-cols-5 grid-rows-2 gap-4">
+            {projects.map((project, index) => (
+              <div
+                key={`${project.id}-${index}`}
+                className="relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-500"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                {/* Image */}
+                <div className="relative overflow-hidden aspect-mobile">
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  
+                  {/* Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
+               
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* View All Work Button */}
+        <div className="text-center">
+          <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
+            <a href="/work">
+              View All Work
+            </a>
+          </button>
         </div>
       </div>
     </section>
@@ -693,9 +741,9 @@ function StorySection() {
             
           </div>
 
-          <div className="flex relative h-[520px] gap-3">
-            <img src="/story-images-left.png" alt="Our story" className="w-full h-full object-contain" />
-            <img src="/story-images-right.png" alt="Our story" className="w-full h-full object-contain" />
+          <div className="flex relative h-[520px]">
+            <img src="/story-images-left.png" alt="Our story" className="w-full h-full object-contain rotate-[0deg]" />
+            <img src="/story-images-right.png" alt="Our story" className="w-full h-full object-contain -rotate-[0deg]" />
           </div>
         </div>
       </div>

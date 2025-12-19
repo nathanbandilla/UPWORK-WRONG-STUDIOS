@@ -124,21 +124,21 @@
   }
 
   .animate-scroll {
-    animation: scroll 30s linear infinite;
+    animation: scroll 20s linear infinite;
   }
 
   /* Reverse scroll animation for mirror effect */
-  @keyframes scroll-reverse {
+  @keyframes infinite-scroll {
     0% {
-      transform: translateX(-50%);
+      transform: translateX(-100%);
     }
     100% {
       transform: translateX(0);
     }
   }
 
-  .animate-scroll-reverse {
-    animation: scroll-reverse 30s linear infinite;
+  .infinite-scroll  {
+    animation: infinite-scroll 10s linear infinite;
   }
 
   /* Fade-in on scroll animation */
