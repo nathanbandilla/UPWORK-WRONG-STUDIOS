@@ -1,4 +1,35 @@
 import Layout from "@/components/Layout";
+import { useEffect, useRef, useState } from 'react';
+
+// Hook for fade-in on scroll
+function useFadeInOnScroll() {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  return { ref, isVisible };
+}
 
 export default function About() {
   return (
@@ -53,9 +84,10 @@ function HeroSection() {
 }
 
 function StorySection() {
+  const { ref, isVisible } = useFadeInOnScroll();
   return (
     
-    <section className="py-20 md:py-32">
+    <section ref={ref} className={`py-20 md:py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
        {/* Decorative Images */}
             <img 
         src="/about_header_image_left.png" 

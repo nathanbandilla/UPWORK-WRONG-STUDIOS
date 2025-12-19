@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import { useEffect, useRef, useState } from 'react';
 
 type Project = {
   id: number;
@@ -7,6 +8,36 @@ type Project = {
   image: string;
   stats?: { label: string; value: string }[];
 };
+
+// Hook for fade-in on scroll
+function useFadeInOnScroll() {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  return { ref, isVisible };
+}
 
 export default function Work() {
   return (
@@ -54,6 +85,7 @@ function HeroSection() {
 }
 
 function FeaturedProjects() {
+  const { ref, isVisible } = useFadeInOnScroll();
   const projects: Project[] = [
     {
       id: 1,
@@ -87,8 +119,8 @@ function FeaturedProjects() {
    
   ];
 
-  return (
-    <section className="bg-black py-16 md:py-24">
+  return (   
+   <section ref={ref} className={`bg-black py-16 md:py-24 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-12 md:mb-16">
             <h1 className="font-display text-[60px] md:text-[94px] leading-[1.05] uppercase max-w-[1054px] mx-auto">

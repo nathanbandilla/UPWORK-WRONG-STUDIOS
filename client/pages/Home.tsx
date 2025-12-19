@@ -1,12 +1,13 @@
 import React from "react";
 import Layout from "@/components/Layout";
+import { useEffect, useRef, useState } from 'react';
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const ref = React.useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLElement | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -65,9 +66,9 @@ export default function Home() {
 }
 
 function HeroSection() {
-  return (
-    <section className="relative pt-[200px] overflow-hidden"> 
-
+  const { ref, isVisible } = useFadeInOnScroll();
+  return (   
+  <section ref={ref} className={`relative pt-[200px] overflow-hidden fade-in-section ${isVisible ? 'visible' : ''}`}>
       {/* Gradient Overlays */}
       <div 
         className="absolute top-[787px] left-[42px] w-[482px] h-[474px] pointer-events-none"
@@ -95,7 +96,7 @@ function HeroSection() {
 
         {/* Main Heading */}
         <div className="relative text-center mb-12">
-          <h1 className="font-display text-[110px] md:text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
+          <h1 className="font-display text-[140px] md:text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
             DOING IT WRONG
           </h1>
           <p className="font-display text-[64px] leading-[72px] uppercase">
@@ -104,7 +105,7 @@ function HeroSection() {
         </div>
 
         {/* Stats */}
-        <div className="flex items-center justify-center gap-8 mb-20">
+        <div className="flex items-center justify-center gap-4 md:gap-8 mb-20">
           <div className="text-center">
             <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">1.5B+</div>
             <div className="text-[18px] leading-[20px] text-white/90 lowercase">
@@ -378,10 +379,10 @@ function PhoneSlideshow() {
 
   return (
     <>
-      <div className="relative max-w-[1440px] mx-auto px-8 pb-20 -mt-20">
+      <div className="relative max-w-[1440px] mx-auto px-8 pb-20">
        
         {/* Position Tracker */}
-        <div className="absolute left-12 top-8 z-20 flex items-center gap-2">
+        <div className="absolute left-12 top-8 z-20 flex items-center gap-2 -mt-5 md:mt-0">
           {Array.from({ length: totalVideos }).map((_, index) => (
             <div
               key={index}
@@ -395,7 +396,7 @@ function PhoneSlideshow() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="absolute right-12 top-8 z-20 flex items-center gap-3">
+        <div className="absolute right-12 top-8 z-20 flex items-center gap-3 -mt-10 md:mt-0">
           <button 
             onClick={handlePrevious}
             className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
@@ -417,7 +418,7 @@ function PhoneSlideshow() {
         </div>
 
         {/* Phone Mockups Grid */}
-        <div className="relative h-[640px] flex items-center justify-center overflow-hidden">
+        <div className="relative h-[640px] flex items-center justify-center overflow-hidden md:-mt-20">
           {mediaData.map((media, index) => {
             const delta =
               ((index - currentIndex + totalVideos + totalVideos / 2) % totalVideos) -
@@ -621,6 +622,41 @@ function WorkSection() {
     { id: 10, img: "/project/work3.png", title: "work 10" }, // Duplicate to fill 8 spots (4x2)
   ];
 
+  // Inside your component:
+    const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
+    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const index = itemRefs.current.indexOf(entry.target as HTMLDivElement);
+            if (index !== -1) {
+              setVisibleItems(prev => {
+                const newSet = new Set(prev);
+                if (entry.isIntersecting) {
+                  newSet.add(index);
+                } else {
+                  newSet.delete(index);
+                }
+                return newSet;
+              });
+            }
+          });
+        },
+        { 
+          threshold: 0.1, 
+          rootMargin: '0px 0px -50px 0px' // Adjust this to control when animation triggers
+        }
+      );
+    
+      itemRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
+    
+      return () => observer.disconnect();
+    }, []);
+
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1440px] mx-auto px-8">
@@ -646,9 +682,16 @@ function WorkSection() {
             {projects.map((project, index) => (
               <div
                 key={`${project.id}-${index}`}
-                className="relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-500"
+                ref={(el) => (itemRefs.current[index] = el)}
+                className={`relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-700 ease-in-out ${
+                  visibleItems.has(index) 
+                    ? 'opacity-100 translate-x-0' 
+                    : 'opacity-0 -translate-x-20'
+                }`}
                 style={{
-                  animationDelay: `${index * 100}ms`,
+                  transitionDelay: visibleItems.has(index) 
+                    ? `${(index % 5) * 80}ms` 
+                    : `${(4 - (index % 5)) * 80}ms`, // Reverse delay for exit
                 }}
               >
                 {/* Image */}
@@ -741,7 +784,7 @@ function StorySection() {
             
           </div>
 
-          <div className="flex relative h-[520px]">
+          <div className="flex relative h-[300px] md:h-[520px]">
             <img src="/story-images-left.png" alt="Our story" className="w-full h-full object-contain rotate-[0deg]" />
             <img src="/story-images-right.png" alt="Our story" className="w-full h-full object-contain -rotate-[0deg]" />
           </div>
