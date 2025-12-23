@@ -115,13 +115,7 @@ export default function Header() {
                       </Link>
                     ))}
                   </nav>
-
-                  {/* Mobile CTA Button */}
-                  <div className="p-6 border-t border-white/20">
-                    <button className="w-full bg-white text-[#191919] px-6 py-3 rounded-[40px] font-bold text-[18px] hover:bg-white/80 transition-colors capitalize">
-                      Contact us
-                    </button>
-                  </div>
+             
                 </div>
               </SheetContent>
             </Sheet>

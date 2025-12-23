@@ -229,19 +229,19 @@ function IdentitySection() {
 
 function CTASection() {
   return (
-    <section className="py-32 md:py-52 relative overflow-hidden">
+    <section className="py-32 md:py-32 relative overflow-hidden text-center">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-8">
-        <div className="pl-8 md:pl-32 space-y-16">
+      <div className="relative z-10 max-w-[1420px] mx-auto px-8">
+        <div className="space-y-16">
           {/* Main CTA Text */}
           <div className="space-y-12">
             <h2 className="font-display text-[80px] md:text-[140px] leading-[0.62] uppercase text-white">
               READY TO
             </h2>
             
-            <div className="pl-8 md:pl-32">
+            <div className="">
               <h3 
                 className="font-display text-[80px] md:text-[140px] leading-[0.69] uppercase"
                 style={{
@@ -259,21 +259,24 @@ function CTASection() {
           </div>
 
           {/* CTA Button */}
-          <div className="flex items-center gap-1 pt-8">
-            <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-4 md:px-8 md:py-4 hover:bg-white/5 transition-all">
-              <span className="font-display text-[20px] md:text-[40px] leading-[1.1] uppercase text-white">
-              <a href="/contact">
-                JOIN THE WRONG SIDE
-              </a>
-              </span>
-            </button>
-            
-            <div className="w-[80px] md:w-[80px] h-[60px] md:h-[80px] flex items-center justify-center bg-transparent border-2 border-white rounded-xl group-hover:bg-white/5 transition-all">
-              <svg width="33" height="58" viewBox="0 0 33 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30.6712 29.0257L2.75488 56.4486C16.8775 42.585 16.232 14.3275 3.24825 1.10938L30.6712 29.0257Z" fill="white"/>
-              </svg>
+          <div className="grid place-items-center pt-12"> 
+            <div className="flex gap-2">
+              <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-4 md:px-8 md:py-4 hover:bg-cyan/20 transition-all">
+                <span className="font-display text-[20px] md:text-[40px] leading-[1.1] uppercase text-white">
+                <a href="/contact">
+                  JOIN THE WRONG SIDE
+                </a>
+                </span>
+              </button>
+              
+              <div className="w-[80px] md:w-[80px] h-[60px] md:h-[80px] flex items-center justify-center bg-transparent border-2 border-white rounded-xl group-hover:bg-white/5 transition-all">
+                <svg width="33" height="38" viewBox="0 0 33 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M30.6712 29.0257L2.75488 56.4486C16.8775 42.585 16.232 14.3275 3.24825 1.10938L30.6712 29.0257Z" fill="white"/>
+                </svg>
+              </div>
             </div>
           </div>
+       
         </div>
       </div>
     </section>
