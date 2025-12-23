@@ -87,21 +87,27 @@ function StorySection() {
   const { ref, isVisible } = useFadeInOnScroll();
   return (
     
-    <section ref={ref} className={`py-20 md:py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
-       {/* Decorative Images */}
-            <img 
-        src="/about_header_image_left.png" 
-        alt="" 
-        className="absolute left-12 md:left-52 top-[500px] md:top-[500px] w-[150px] md:w-[214px] h-[172px] md:h-[246px] -rotate-[5deg] rounded-3xl object-cover"
-      />
-      <img 
-        src="/about_header_image_right.png" 
-        alt="" 
-        className="absolute right-12 md:right-52 top-[500px] md:top-[500px] w-[150px] md:w-[212px] h-[172px] md:h-[246px] rotate-[5deg] rounded-3xl object-cover"
-      />
+    <section ref={ref} className={`py-10 md:py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
+      
+      <div className="">    
+         {/* Left Decorative Image */} 
+         <img 
+          src="/about_header_image_left.png" 
+          alt="" 
+          className="absolute left-12 md:left-12 top-[-150px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] -rotate-[5deg] rounded-3xl"
+           />
 
-      <div className="max-w-[1280px] mx-auto px-8">
-        <div className="text-center space-y-12">
+           {/* Right Decorative Image */}
+          <img 
+            src="/about_header_image_right.png" 
+            alt="" 
+            className="absolute right-12 md:right-12 top-[-150px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] rotate-[5deg] rounded-3xl"
+          />
+     </div>
+
+      <div className="relative max-w-[1440px] mx-auto px-8">
+
+        <div className="text-center">
         <div className="flex items-center justify-center gap-2 mb-8">
           <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
             <div className="h-7 w-[98px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
@@ -110,6 +116,8 @@ function StorySection() {
           <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
          </div>  
 
+  
+
           <h2 className="font-display text-[60px] md:text-[100px] leading-[1.04] uppercase">
             Built by creators, With passion!
           </h2>
@@ -117,6 +125,9 @@ function StorySection() {
           <p className="text-[20px] md:text-[24px] leading-[1.67] text-white/90 max-w-[880px] mx-auto">
             Wrong Studios was born out of frustration. We were tired of seeing lifeless creations made by people who dont live online. We started as creators, not marketers. In 2022, it was just two people, a phone and a belief that content should feel something.
           </p>
+
+   
+
         </div>
       </div>
     </section>
@@ -125,7 +136,7 @@ function StorySection() {
 
 function IdentitySection() {
   return (
-    <section className="py-8 md:py-8 relative overflow-hidden">
+    <section className="py-32 md:py-52 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="relative w-full h-full">
@@ -145,11 +156,11 @@ function IdentitySection() {
             WRONG STUDIOS IS
           </h2>
 
-          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase -rotate-3 py-4">
+          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase -rotate-0 py-4">
             <span 
               className="inline-block"
               style={{
-                WebkitTextStroke: '4px white',
+                WebkitTextStroke: '1px white',
                 WebkitTextFillColor: 'transparent'
               }}
             >
@@ -161,11 +172,11 @@ function IdentitySection() {
             PRODUCTION HOUSE
           </h3>
 
-          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase rotate-3 py-4">
+          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase rotate-0 py-4">
             <span 
               className="inline-block"
               style={{
-                WebkitTextStroke: '4px white',
+                WebkitTextStroke: '1px white',
                 WebkitTextFillColor: 'transparent'
               }}
             >
@@ -184,7 +195,7 @@ function IdentitySection() {
 
 function CTASection() {
   return (
-    <section className="py-4 md:py-4 relative overflow-hidden">
+    <section className="py-32 md:py-52 relative overflow-hidden">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
 
@@ -192,15 +203,15 @@ function CTASection() {
         <div className="pl-8 md:pl-32 space-y-16">
           {/* Main CTA Text */}
           <div className="space-y-12">
-            <h2 className="font-display text-[60px] md:text-[100px] leading-[0.62] uppercase text-white">
+            <h2 className="font-display text-[80px] md:text-[140px] leading-[0.62] uppercase text-white">
               READY TO
             </h2>
             
             <div className="pl-8 md:pl-32">
               <h3 
-                className="font-display text-[60px] md:text-[100px] leading-[0.69] uppercase"
+                className="font-display text-[80px] md:text-[140px] leading-[0.69] uppercase"
                 style={{
-                  WebkitTextStroke: '4px white',
+                  WebkitTextStroke: '1px white',
                   WebkitTextFillColor: 'transparent'
                 }}
               >
@@ -208,7 +219,7 @@ function CTASection() {
               </h3>
             </div>
 
-            <h4 className="font-display text-[60px] md:text-[100px] leading-[0.75] uppercase text-white">
+            <h4 className="font-display text-[80px] md:text-[140px] leading-[0.75] uppercase text-white">
               IGNORED?
             </h4>
           </div>

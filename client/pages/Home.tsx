@@ -784,9 +784,16 @@ function StorySection() {
             
           </div>
 
-          <div className="flex relative h-[300px] md:h-[520px]">
-            <img src="/story-images-left.png" alt="Our story" className="w-full h-full object-contain rotate-[0deg]" />
-            <img src="/story-images-right.png" alt="Our story" className="w-full h-full object-contain -rotate-[0deg]" />
+          <div className="grid place-items-center h-[80px] md:h-[400px]">
+          <img
+              src="/logo.svg"
+              alt="Wrong Studios"
+              className="w-[180px] md:w-[220px] h-[40px] md:h-[60px]"
+            />
+            
+          {/*className="w-full h-full object-contain rotate-[0deg]" />*/}
+          
+          
           </div>
         </div>
       </div>

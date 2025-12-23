@@ -202,9 +202,9 @@ function ServiceSection1() {
             </h2>
 
             {/* Description */}
-            <p className="text-[18px] leading-[34px] text-white/90 uppercase">
-              we help you find your tone, attitude and digital personality; the
-              human behind the logo. from storytelling frameworks to content
+            <p className="text-[18px] leading-[34px] text-white/90">
+              We help you find your tone, attitude and digital personality; The
+              human behind the logo. From storytelling frameworks to content
               pillars, we build strategies that feel as natural as the creators
               who inspire them.
             </p>
