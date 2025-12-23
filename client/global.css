@@ -127,18 +127,18 @@
     animation: scroll 20s linear infinite;
   }
 
-  /* Reverse scroll animation for mirror effect */
+  /* Infinite scroll animation for work grid */
   @keyframes infinite-scroll {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(0);
+      transform: translateX(-33.333%);
     }
   }
 
-  .infinite-scroll  {
-    animation: infinite-scroll 10s linear infinite;
+  .animate-infinite-scroll {
+    animation: infinite-scroll 25s linear infinite;
   }
 
   /* Fade-in on scroll animation */

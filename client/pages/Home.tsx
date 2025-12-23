@@ -608,54 +608,22 @@ function ServicesSection() {
 
 function WorkSection() {
   const { ref, isVisible } = useFadeInOnScroll();
-  
+
   const projects = [
     { id: 1, img: "/project/work1.png", title: "work 1" },
     { id: 2, img: "/project/work2.png", title: "work 2" },
     { id: 3, img: "/project/work3.png", title: "work 3" },
     { id: 4, img: "/project/work4.png", title: "work 4" },
     { id: 5, img: "/project/work5.png", title: "work 5" },
-    { id: 6, img: "/project/work5.png", title: "work 6" },
-    { id: 7, img: "/project/work4.png", title: "work 7" },
-    { id: 8, img: "/project/work1.png", title: "work 8" },
-    { id: 9, img: "/project/work2.png", title: "work 9" },
-    { id: 10, img: "/project/work3.png", title: "work 10" }, // Duplicate to fill 8 spots (4x2)
+    { id: 6, img: "/project/work1.png", title: "work 6" },
+    { id: 7, img: "/project/work2.png", title: "work 7" },
+    { id: 8, img: "/project/work3.png", title: "work 8" },
+    { id: 9, img: "/project/work4.png", title: "work 9" },
+    { id: 10, img: "/project/work5.png", title: "work 10" },
   ];
 
-  // Inside your component:
-    const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
-    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const index = itemRefs.current.indexOf(entry.target as HTMLDivElement);
-            if (index !== -1) {
-              setVisibleItems(prev => {
-                const newSet = new Set(prev);
-                if (entry.isIntersecting) {
-                  newSet.add(index);
-                } else {
-                  newSet.delete(index);
-                }
-                return newSet;
-              });
-            }
-          });
-        },
-        { 
-          threshold: 0.1, 
-          rootMargin: '0px 0px -50px 0px' // Adjust this to control when animation triggers
-        }
-      );
-    
-      itemRefs.current.forEach((ref) => {
-        if (ref) observer.observe(ref);
-      });
-    
-      return () => observer.disconnect();
-    }, []);
+  // Duplicate projects for seamless infinite scroll
+  const duplicatedProjects = [...projects, ...projects, ...projects];
 
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
@@ -663,7 +631,7 @@ function WorkSection() {
         <div className="text-center space-y-8 mb-16">
           <div className="flex items-center justify-center gap-2">
             <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-            <div className="h-6 w-[85px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
+            <div className="h-6 w-[85px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
             <span className="font-display text-[24px] tracking-wider uppercase">Our Work</span>
             </div>
             <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
@@ -676,39 +644,60 @@ function WorkSection() {
           </p>
         </div>
 
-        {/* Work Grid - 5 Columns x 2 Rows */}
-        <div className="mb-16">
-          <div className="grid grid-cols-5 grid-rows-2 gap-4">
-            {projects.map((project, index) => (
-              <div
-                key={`${project.id}-${index}`}
-                ref={(el) => (itemRefs.current[index] = el)}
-                className={`relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-700 ease-in-out ${
-                  visibleItems.has(index) 
-                    ? 'opacity-100 translate-x-0' 
-                    : 'opacity-0 -translate-x-20'
-                }`}
-                style={{
-                  transitionDelay: visibleItems.has(index) 
-                    ? `${(index % 5) * 80}ms` 
-                    : `${(4 - (index % 5)) * 80}ms`, // Reverse delay for exit
-                }}
-              >
-                {/* Image */}
-                <div className="relative overflow-hidden aspect-mobile">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+        {/* Infinite Scrolling Work Grid - 2 Rows */}
+        <div className="mb-16 overflow-hidden">
+          <div className="grid grid-rows-2 gap-4">
+            {/* Row 1 */}
+            <div className="flex animate-infinite-scroll">
+              {duplicatedProjects.slice(0, 15).map((project, index) => (
+                <div
+                  key={`row1-${project.id}-${index}`}
+                  className="flex-shrink-0 w-[280px] mx-2"
+                >
+                  <div className="relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-500">
+                    {/* Image */}
+                    <div className="relative overflow-hidden aspect-mobile">
+                      <img
+                        src={project.img}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+
+                      {/* Overlay on Hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
                   
-                  {/* Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
-               
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Row 2 */}
+            <div className="flex animate-infinite-scroll" style={{ animationDirection: 'reverse', animationDelay: '5s' }}>
+              {duplicatedProjects.slice(15, 30).map((project, index) => (
+                <div
+                  key={`row2-${project.id}-${index}`}
+                  className="flex-shrink-0 w-[280px] mx-2"
+                >
+                  <div className="relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-500">
+                    {/* Image */}
+                    <div className="relative overflow-hidden aspect-mobile">
+                      <img
+                        src={project.img}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+
+                      {/* Overlay on Hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
+                  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
