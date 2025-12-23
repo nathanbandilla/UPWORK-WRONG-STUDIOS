@@ -94,14 +94,14 @@ function StorySection() {
          <img 
           src="/about_header_image_left.png" 
           alt="" 
-          className="absolute left-12 md:left-12 top-[-150px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] -rotate-[5deg] rounded-3xl"
+          className="absolute left-12 md:left-12 top-[-130px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] -rotate-[5deg] rounded-3xl"
            />
 
            {/* Right Decorative Image */}
           <img 
             src="/about_header_image_right.png" 
             alt="" 
-            className="absolute right-12 md:right-12 top-[-150px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] rotate-[5deg] rounded-3xl"
+            className="absolute right-12 md:right-12 top-[-130px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] rotate-[5deg] rounded-3xl"
           />
      </div>
 
@@ -135,15 +135,34 @@ function StorySection() {
 }
 
 function IdentitySection() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const getTransform = (index: number, baseDelay: number) => {
+    const triggerPoint = 700 + index * 100; // Adjust trigger points as needed
+    const progress = Math.max(0, Math.min(1, (scrollY - triggerPoint) / 100));
+
+    return {
+      transform: `translateY(${50 - progress * 50}px)`,
+      opacity: progress,
+      transition: 'all 0.5s ease-out',
+    };
+  };
+
   return (
     <section className="py-32 md:py-52 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="relative w-full h-full">
           <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent rounded-3xl" />
-          <img 
-            src="/about_image_middle.png" 
-            alt="" 
+          <img
+            src="/about_image_middle.png"
+            alt=""
             className="absolute inset-0 w-full h-full object-cover opacity-100 mix-blend-plus-lighter rounded-3xl"
           />
         </div>
@@ -152,12 +171,18 @@ function IdentitySection() {
       {/* Content */}
       <div className="relative z-10 max-w-[1420px] mx-auto px-8">
         <div className="max-w-[795px] mx-auto text-center space-y-6">
-          <h2 className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase">
+          <h2
+            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase"
+            style={getTransform(0, 0)}
+          >
             WRONG STUDIOS IS
           </h2>
 
-          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase -rotate-0 py-4">
-            <span 
+          <div
+            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase -rotate-0 py-4"
+            style={getTransform(1, 200)}
+          >
+            <span
               className="inline-block"
               style={{
                 WebkitTextStroke: '1px white',
@@ -168,12 +193,18 @@ function IdentitySection() {
             </span>
           </div>
 
-          <h3 className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white">
+          <h3
+            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white"
+            style={getTransform(2, 400)}
+          >
             PRODUCTION HOUSE
           </h3>
 
-          <div className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase rotate-0 py-4">
-            <span 
+          <div
+            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase rotate-0 py-4"
+            style={getTransform(3, 600)}
+          >
+            <span
               className="inline-block"
               style={{
                 WebkitTextStroke: '1px white',
@@ -184,7 +215,10 @@ function IdentitySection() {
             </span>
           </div>
 
-          <h4 className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white">
+          <h4
+            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white"
+            style={getTransform(4, 800)}
+          >
             AND CLARA
           </h4>
         </div>
@@ -245,4 +279,3 @@ function CTASection() {
     </section>
   );
 }
-

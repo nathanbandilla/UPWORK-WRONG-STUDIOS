@@ -578,7 +578,7 @@ function ServicesSection() {
               {services.map((service, i) => (
                 <div 
                   key={i} 
-                  className={`p-8 ${i > 0 ? 'border-l border-dashed border-white' : ''}`}
+                  className={`p-0 md:p-8 pb-8 md:pb-0 ${i > 0 ? 'border-none md:border-white md:border-l md:border-dashed' : ''}`}
                 >
                   <h3 className="font-display text-[31.51px] leading-[34.66px] uppercase mb-6">
                     {service.title}
@@ -590,7 +590,7 @@ function ServicesSection() {
               ))}
             </div>
 
-            <div className="text-center pt-8">
+            <div className="text-center pt-0 md:pt-8 ">
            
               <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
               <a href="/services">
