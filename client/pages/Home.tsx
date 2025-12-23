@@ -360,37 +360,78 @@ const PhoneThumbnail = React.memo(({
 PhoneThumbnail.displayName = 'PhoneThumbnail';
 
 function PhoneSlideshow() {
- 
+
   const [currentIndex, setCurrentIndex] = React.useState(3);
   const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
   const [direction, setDirection] = React.useState<1 | -1>(1);
   const isTransitioningRef = React.useRef(false);
-  
+
   const totalVideos = 8;
 
   const handlePrevious = React.useCallback(() => {
     if (isTransitioningRef.current) return;
     isTransitioningRef.current = true;
-  
+
     setDirection(-1);
     setCurrentIndex((prev) => (prev === 0 ? totalVideos - 1 : prev - 1));
-  
+
     setTimeout(() => {
       isTransitioningRef.current = false;
     }, 700);
   }, []);
-  
+
   const handleNext = React.useCallback(() => {
     if (isTransitioningRef.current) return;
     isTransitioningRef.current = true;
-  
+
     setDirection(1);
     setCurrentIndex((prev) => (prev === totalVideos - 1 ? 0 : prev + 1));
-  
+
     setTimeout(() => {
       isTransitioningRef.current = false;
     }, 600);
   }, []);
+
+  // Swipe gesture handling
+  const touchStartRef = React.useRef<{ x: number; y: number } | null>(null);
+  const touchEndRef = React.useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = React.useCallback((e: React.TouchEvent) => {
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  }, []);
+
+  const handleTouchMove = React.useCallback((e: React.TouchEvent) => {
+    touchEndRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  }, []);
+
+  const handleTouchEnd = React.useCallback(() => {
+    if (!touchStartRef.current || !touchEndRef.current) return;
+
+    const distanceX = touchStartRef.current.x - touchEndRef.current.x;
+    const distanceY = touchStartRef.current.y - touchEndRef.current.y;
+    const isLeftSwipe = distanceX > 50;
+    const isRightSwipe = distanceX < -50;
+    const isVerticalSwipe = Math.abs(distanceY) > Math.abs(distanceX);
+
+    // Only handle horizontal swipes, ignore vertical ones
+    if (isVerticalSwipe) return;
+
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrevious();
+    }
+
+    // Reset touch refs
+    touchStartRef.current = null;
+    touchEndRef.current = null;
+  }, [handleNext, handlePrevious]);
 
   // Video sources and their thumbnails
   const mediaData = React.useMemo(() => [
@@ -471,7 +512,12 @@ function PhoneSlideshow() {
         </div>
 
         {/* Phone Mockups Grid */}
-        <div className="relative h-[640px] flex items-center justify-center overflow-hidden md:-mt-20">
+        <div
+          className="relative h-[640px] flex items-center justify-center overflow-hidden md:-mt-20"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {mediaData.map((media, index) => {
             const delta =
               ((index - currentIndex + totalVideos + totalVideos / 2) % totalVideos) -
