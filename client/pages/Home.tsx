@@ -247,13 +247,42 @@ const VideoModal = ({ videoSrc, isOpen, onClose }: { videoSrc: string; isOpen: b
 // Memoized Phone Thumbnail Component
 const PhoneThumbnail = React.memo(({
   thumbnailSrc,
+  videoSrc,
   motion,
   onClick,
 }: {
   thumbnailSrc: string;
+  videoSrc: string;
   motion: any;
   onClick: () => void;
 }) => {
+  const videoRef = React.useRef<HTMLVideoElement | null>(null);
+
+  // Auto-play video for center position
+  React.useEffect(() => {
+    if (motion.center && videoRef.current) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Handle autoplay failure silently
+        });
+      }
+    } else if (!motion.center && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [motion.center]);
+
+  const handleClick = (e: React.MouseEvent) => {
+    // Prevent any click events on center phone
+    if (motion.center) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    // Only allow clicking on non-center phones
+    //onClick();
+  };
+
   return (
     <div
       style={{
@@ -276,30 +305,53 @@ const PhoneThumbnail = React.memo(({
         `,
         willChange: 'transform',
       }}
-      onClick={onClick}
+      onClick={handleClick}
     >
-      {/* Hover Layer */}
+      {/* Content Layer */}
       <div
-        className="
+        className={`
           w-full h-full
-          cursor-pointer
+          ${motion.center ? '' : 'cursor-pointer'}
           transition-all duration-300 ease-out
-          hover:-translate-y-3
-          hover:scale-[1.04]
-          hover:shadow-[0_30px_80px_rgba(3,233,244,0.35)]
-        "
+          ${motion.center ? '' : 'hover:-translate-y-3 hover:scale-[1.04]'}
+          ${motion.center ? '' : 'hover:shadow-[0_30px_80px_rgba(3,233,244,0.35)]'}
+        `}
       >
-        <img
-          src={thumbnailSrc}
-          className="
-            w-full h-full object-cover
-            border-4 border-white/50
-            rounded-[24px]
-            transition-all duration-300
-            hover:border-[#03E9F4]
-          "
-          draggable={false}
-        />
+        {motion.center ? (
+          // Center phone: Show autoplay video
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className={`
+              w-full h-full object-cover
+              border-4 border-white/60
+              rounded-[28px]
+              shadow-[0_0_50px_rgba(3,233,244,0.5)]
+            `}
+            style={{
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+            }}
+          />
+        ) : (
+          // Other phones: Show thumbnail
+          <img
+            src={thumbnailSrc}
+            className="
+              w-full h-full object-cover
+              border-4 border-white/50
+              rounded-[24px]
+              transition-all duration-300
+              hover:border-[#03E9F4]
+            "
+            draggable={false}
+          />
+        )}
       </div>
     </div>
   );
@@ -358,14 +410,14 @@ function PhoneSlideshow() {
 
   const getPositionStyle = (delta: number) => {
     const abs = Math.abs(delta);
-  
+
     if (abs > 3) {
       return {
         opacity: 0,
         pointerEvents: 'none',
       };
     }
-  
+
     return {
       x: delta * 220,
       scale: 1 - abs * 0.08,
@@ -374,6 +426,7 @@ function PhoneSlideshow() {
       zIndex: 10 - abs,
       width: 360 - abs * 40,
       height: 540 - abs * 60,
+      center: abs < 0.5, // Center position when delta is close to 0
     };
   };
 
@@ -432,6 +485,7 @@ function PhoneSlideshow() {
               <PhoneThumbnail
                 key={index}
                 thumbnailSrc={media.thumb}
+                videoSrc={media.video}
                 onClick={() => setSelectedVideo(media.video)}
                 motion={pos}
               />
