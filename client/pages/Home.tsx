@@ -435,14 +435,14 @@ function PhoneSlideshow() {
 
   // Video sources and their thumbnails
   const mediaData = React.useMemo(() => [
-    { video: "/videos/vid_1.mp4", thumb: "/thumbnails/thumb_1.jpg" },
-    { video: "/videos/vid_2.mp4", thumb: "/thumbnails/thumb_2.jpg" },
-    { video: "/videos/vid_3.mp4", thumb: "/thumbnails/thumb_3.jpg" },
-    { video: "/videos/vid_4.mp4", thumb: "/thumbnails/thumb_4.jpg" },
-    { video: "/videos/vid_5.mp4", thumb: "/thumbnails/thumb_5.jpg" },
-    { video: "/videos/vid_6.mp4", thumb: "/thumbnails/thumb_6.jpg" },
-    { video: "/videos/vid_7.mp4", thumb: "/thumbnails/thumb_7.jpg" },
-    { video: "/videos/vid_8.mp4", thumb: "/thumbnails/thumb_8.jpg" }
+    { video: "/vid_compressed/vid_1.mp4", thumb: "/thumbnails/thumb_1.jpg" },
+    { video: "/vid_compressed/vid_2.mp4", thumb: "/thumbnails/thumb_2.jpg" },
+    { video: "/vid_compressed/vid_3.mp4", thumb: "/thumbnails/thumb_3.jpg" },
+    { video: "/vid_compressed/vid_4.mp4", thumb: "/thumbnails/thumb_4.jpg" },
+    { video: "/vid_compressed/vid_5.mp4", thumb: "/thumbnails/thumb_5.jpg" },
+    { video: "/vid_compressed/vid_6.mp4", thumb: "/thumbnails/thumb_6.jpg" },
+    { video: "/vid_compressed/vid_7.mp4", thumb: "/thumbnails/thumb_7.jpg" },
+    { video: "/vid_compressed/vid_8.mp4", thumb: "/thumbnails/thumb_8.jpg" }
   ], []);
 
   const getVideoIndex = React.useCallback((offset: number) => {
