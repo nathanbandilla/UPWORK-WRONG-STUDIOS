@@ -636,6 +636,37 @@ function AboutSection() {
 
 function ServicesSection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  const [scrollY, setScrollY] = useState(0);
+
+  // scroll y effect for slide to left and right
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  const slideToLeft = (index: number, baseDelay: number) => {
+    const triggerPoint = 700 + index * 100; // Adjust trigger points as needed
+    const progress = Math.max(0, Math.min(1, (scrollY - triggerPoint) / 100));
+  
+    return {
+      transform: `translateX(${500 - progress * 500}px)`,
+      opacity: progress,
+      transition: 'all 1s ease-out',
+    };
+  };
+  
+  const slideToRight = (index: number, baseDelay: number) => {
+    const triggerPoint = 700 + index * 100; // Adjust trigger points as needed
+    const progress = Math.max(0, Math.min(1, (scrollY - triggerPoint) / 100));
+  
+    return {
+      transform: `translateX(${-500 - progress * -500}px)`,
+      opacity: progress,
+      transition: 'all 1s ease-out',
+    };
+  };
+
   const services = [
     {
       title: "Creative Strategy & Identity",
@@ -669,21 +700,22 @@ function ServicesSection() {
                 </div>
                 <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
               </div>
-              <h2 className="font-display text-[70px] leading-[70px] uppercase">
+              <h2 className="font-display text-[70px] leading-[70px] uppercase"
+               style={slideToLeft(12,0)}>
                 What We Do Best
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-0">
+            <div className="grid md:grid-cols-3 gap-0 bg-[#033C3D] rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
               {services.map((service, i) => (
                 <div 
                   key={i} 
-                  className={`p-0 md:p-8 pb-8 md:pb-0 ${i > 0 ? 'border-none md:border-white md:border-l md:border-dashed' : ''}`}
+                  className={`p-4 md:p-8 pb-8 md:pb-0 ${i > 0 ? 'border-none md:border-white md:border-l md:border-dashed' : ''}`}
                 >
-                  <h3 className="font-display text-[31.51px] leading-[34.66px] uppercase mb-6">
+                  <h3 className="font-display text-[31.51px] leading-[34.66px] uppercase mb-6" style={slideToLeft(12,200)}>
                     {service.title}
                   </h3>
-                  <p className="text-[16px] leading-[28px] text-white/90 capitalize">
+                  <p className="text-[18px] leading-[28px] hover:leading-[30px] text-white/70 hover:text-white/100 capitalize" style={slideToRight(12,400)}>
                     {service.description}
                   </p>
                 </div>
@@ -877,12 +909,11 @@ function StorySection() {
           <img
               src="/logo.svg"
               alt="Wrong Studios"
-              className="w-[180px] md:w-[220px] h-[40px] md:h-[60px]"
+              className="w-[220px] md:w-[280px] h-[60px] md:h-[90px]"
             />
             
           {/*className="w-full h-full object-contain rotate-[0deg]" />*/}
-          
-          
+                    
           </div>
         </div>
       </div>
