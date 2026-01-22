@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
@@ -30,6 +31,85 @@ function useFadeInOnScroll() {
   }, []);
 
   return { ref, isVisible };
+}
+
+// Count-up animation component
+function CountUpNumber({ 
+  value, 
+  suffix = '', 
+  duration = 2000,
+  isVisible = false 
+}: { 
+  value: string; 
+  suffix?: string;
+  duration?: number;
+  isVisible?: boolean;
+}) {
+  const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
+
+  // Parse the value (e.g., "1.5B" -> 1.5 billion, "1M" -> 1 million, "150M" -> 150 million)
+  const parseValue = (val: string): number => {
+    const numStr = val.replace(/[^0-9.]/g, '');
+    const num = parseFloat(numStr);
+    
+    if (val.includes('B') || val.includes('b')) {
+      return num * 1000000000; // billions
+    } else if (val.includes('M') || val.includes('m')) {
+      return num * 1000000; // millions
+    } else if (val.includes('K') || val.includes('k')) {
+      return num * 1000; // thousands
+    }
+    return num;
+  };
+
+  // Format the number back to display format
+  const formatNumber = (num: number, originalValue: string): string => {
+    if (originalValue.includes('B') || originalValue.includes('b')) {
+      const billions = num / 1000000000;
+      return billions % 1 === 0 ? `${billions}B` : `${billions.toFixed(1)}B`;
+    } else if (originalValue.includes('M') || originalValue.includes('m')) {
+      const millions = num / 1000000;
+      return millions % 1 === 0 ? `${millions}M` : `${millions.toFixed(1)}M`;
+    } else if (originalValue.includes('K') || originalValue.includes('k')) {
+      const thousands = num / 1000;
+      return thousands % 1 === 0 ? `${thousands}K` : `${thousands.toFixed(1)}K`;
+    }
+    return Math.floor(num).toLocaleString();
+  };
+
+  useEffect(() => {
+    if (!isVisible || hasAnimated.current) return;
+    
+    hasAnimated.current = true;
+    const targetValue = parseValue(value);
+    const startTime = Date.now();
+    const startValue = 0;
+
+    const animate = () => {
+      const now = Date.now();
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function (ease-out)
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const currentValue = startValue + (targetValue - startValue) * easeOut;
+      
+      setCount(currentValue);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(targetValue);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isVisible, value, duration]);
+
+  const displayValue = isVisible ? formatNumber(count, value) : '0';
+  
+  return <>{displayValue}{suffix}</>;
 }
 
 export default function Home() {
@@ -107,21 +187,27 @@ function HeroSection() {
         {/* Stats */}
         <div className="flex items-center justify-center gap-4 md:gap-8 mb-20">
           <div className="text-center">
-            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">1.5B+</div>
+            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">
+              <CountUpNumber value="1.5B" suffix="+" isVisible={isVisible} />
+            </div>
             <div className="text-[18px] leading-[20px] text-white/90 lowercase">
               views in<br />viral videos
             </div>
           </div>
           <div className="w-px h-[103px] bg-white/30" />
           <div className="text-center">
-            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">1M+</div>
+            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">
+              <CountUpNumber value="1M" suffix="+" isVisible={isVisible} />
+            </div>
             <div className="text-[18px] leading-[20px] text-white/90 lowercase">
               followers<br />accumulated
             </div>
           </div>
           <div className="w-px h-[103px] bg-white/30" />
           <div className="text-center">
-            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">150M</div>
+            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">
+              <CountUpNumber value="150M" isVisible={isVisible} />
+            </div>
             <div className="text-[18px] leading-[20px] text-white/90 lowercase">
               overall<br />likes
             </div>
@@ -151,55 +237,6 @@ function HeroSection() {
     </section>
   );
 }
-
-// Memoized Video Component
-const PhoneVideo = React.memo(({ 
-  videoSrc, 
-  position, 
-  videoRef 
-}: { 
-  videoSrc: string; 
-  position: any; 
-  videoRef: (el: HTMLVideoElement | null) => void;
-}) => {
-  const style: React.CSSProperties = {
-    position: 'absolute',
-    ...(position.left ? { left: position.left } : { right: position.right }),
-    top: position.top,
-    transform: position.center 
-      ? 'translate(-50%, -50%)'
-      : `translateY(-50%) rotate(${position.rotate}deg) scale(${position.scale})`,
-    opacity: position.opacity,
-    zIndex: position.zIndex, 
-    willChange: 'transform, opacity',
-  };
-
-  return (
-    <div style={style}>
-      <video 
-        ref={videoRef}
-        src={videoSrc}
-        muted
-        loop
-        playsInline
-        preload="auto"
-        style={{
-          width: `${position.width}px`,
-          height: `${position.height}px`,
-          objectFit: position.center ? 'fill' : 'cover',
-          borderRadius: position.center ? '28px' : '24px',
-          backfaceVisibility: 'hidden',
-          transform: 'translateZ(0)',
-        }}
-        className={`border-4 ${position.center ? 'border-white/60' : 'border-white/50'} ${
-          position.center ? 'shadow-[0_0_50px_rgba(3,233,244,0.5)]' : 'shadow-xl'
-        }`}
-      />
-    </div>
-  );
-});
-
-PhoneVideo.displayName = 'PhoneVideo';
 
 // Video Popup Modal
 const VideoModal = ({ videoSrc, isOpen, onClose }: { videoSrc: string; isOpen: boolean; onClose: () => void }) => {
@@ -250,11 +287,13 @@ const PhoneThumbnail = React.memo(({
   videoSrc,
   motion,
   onClick,
+  shouldPreload = false,
 }: {
   thumbnailSrc: string;
   videoSrc: string;
   motion: any;
   onClick: () => void;
+  shouldPreload?: boolean;
 }) => {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
 
@@ -289,8 +328,8 @@ const PhoneThumbnail = React.memo(({
         position: 'absolute',
         left: '50%',
         top: '50%',
-        width: motion.width,
-        height: motion.height,
+        width: `${motion.width}px`,
+        height: `${motion.height}px`,
         opacity: motion.opacity,
         zIndex: motion.zIndex,
         transform: `
@@ -299,11 +338,14 @@ const PhoneThumbnail = React.memo(({
           rotate(${motion.rotate}deg)
           scale(${motion.scale})
         `,
+        transformOrigin: 'center center',
         transition: `
           transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
-          opacity 500ms ease
+          opacity 500ms ease,
+          width 700ms cubic-bezier(0.22, 1, 0.36, 1),
+          height 700ms cubic-bezier(0.22, 1, 0.36, 1)
         `,
-        willChange: 'transform',
+        willChange: 'transform, opacity',
       }}
       onClick={handleClick}
     >
@@ -311,6 +353,7 @@ const PhoneThumbnail = React.memo(({
       <div
         className={`
           w-full h-full
+          flex items-center justify-center
           ${motion.center ? '' : 'cursor-pointer'}
           transition-all duration-300 ease-out
           ${motion.center ? '' : 'hover:-translate-y-3 hover:scale-[1.04]'}
@@ -327,12 +370,7 @@ const PhoneThumbnail = React.memo(({
             loop
             playsInline
             preload="auto"
-            className={`
-              w-full h-full object-cover
-              border-4 border-white/60
-              rounded-[28px]
-              shadow-[0_0_50px_rgba(3,233,244,0.5)]
-            `}
+            className="h-full border-4 border-white/60 rounded-[28px] shadow-[0_0_50px_rgba(3,233,244,0.5)]"
             style={{
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0)',
@@ -342,14 +380,9 @@ const PhoneThumbnail = React.memo(({
           // Other phones: Show thumbnail
           <img
             src={thumbnailSrc}
-            className="
-              w-full h-full object-cover
-              border-4 border-white/50
-              rounded-[24px]
-              transition-all duration-300
-              hover:border-[#03E9F4]
-            "
+            className="h-full object-fill border-4 border-white/50 rounded-[24px] transition-all duration-300 hover:border-[#03E9F4]"
             draggable={false}
+            alt="Video thumbnail"
           />
         )}
       </div>
@@ -435,14 +468,14 @@ function PhoneSlideshow() {
 
   // Video sources and their thumbnails
   const mediaData = React.useMemo(() => [
-    { video: "/vid_compressed/vid_1.mp4", thumb: "/thumbnails/thumb_1.jpg" },
-    { video: "/vid_compressed/vid_2.mp4", thumb: "/thumbnails/thumb_2.jpg" },
-    { video: "/vid_compressed/vid_3.mp4", thumb: "/thumbnails/thumb_3.jpg" },
-    { video: "/vid_compressed/vid_4.mp4", thumb: "/thumbnails/thumb_4.jpg" },
-    { video: "/vid_compressed/vid_5.mp4", thumb: "/thumbnails/thumb_5.jpg" },
-    { video: "/vid_compressed/vid_6.mp4", thumb: "/thumbnails/thumb_6.jpg" },
-    { video: "/vid_compressed/vid_7.mp4", thumb: "/thumbnails/thumb_7.jpg" },
-    { video: "/vid_compressed/vid_8.mp4", thumb: "/thumbnails/thumb_8.jpg" }
+    { video: "/vid_compressed/vid_1.webm", thumb: "/thumbnails/thumb_1.jpg" },
+    { video: "/vid_compressed/vid_2.webm", thumb: "/thumbnails/thumb_2.jpg" },
+    { video: "/vid_compressed/vid_3.webm", thumb: "/thumbnails/thumb_3.jpg" },
+    { video: "/vid_compressed/vid_4.webm", thumb: "/thumbnails/thumb_4.jpg" },
+    { video: "/vid_compressed/vid_5.webm", thumb: "/thumbnails/thumb_5.jpg" },
+    { video: "/vid_compressed/vid_6.webm", thumb: "/thumbnails/thumb_6.jpg" },
+    { video: "/vid_compressed/vid_7.webm", thumb: "/thumbnails/thumb_7.jpg" },
+    { video: "/vid_compressed/vid_8.webm", thumb: "/thumbnails/thumb_8.jpg" }
   ], []);
 
   const getVideoIndex = React.useCallback((offset: number) => {
@@ -476,7 +509,7 @@ function PhoneSlideshow() {
       <div className="relative max-w-[1440px] mx-auto px-8 pb-20">
        
         {/* Position Tracker */}
-        <div className="absolute left-12 top-8 z-20 flex items-center gap-2 -mt-5 md:mt-0">
+        <div className="absolute left-8 md:left-12 top-8 z-20 flex items-center gap-2 -mt-5 md:mt-0">
           {Array.from({ length: totalVideos }).map((_, index) => (
             <div
               key={index}
@@ -490,7 +523,7 @@ function PhoneSlideshow() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="absolute right-12 top-8 z-20 flex items-center gap-3 -mt-10 md:mt-0">
+        <div className="absolute right-8 md:right-12 top-8 z-20 flex items-center gap-3 -mt-10 md:mt-0">
           <button 
             onClick={handlePrevious}
             className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
@@ -513,10 +546,13 @@ function PhoneSlideshow() {
 
         {/* Phone Mockups Grid */}
         <div
-          className="relative h-[640px] flex items-center justify-center overflow-hidden md:-mt-20"
+          className="relative h-[640px] w-full flex items-center justify-center overflow-hidden md:-mt-20"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          style={{
+            perspective: '1000px',
+          }}
         >
           {mediaData.map((media, index) => {
             const delta =
@@ -527,6 +563,9 @@ function PhoneSlideshow() {
 
             if (!pos) return null;
 
+            // Only preload current video and adjacent ones (within 2 positions)
+            const shouldPreload = Math.abs(delta) <= 2;
+
             return (
               <PhoneThumbnail
                 key={index}
@@ -534,6 +573,7 @@ function PhoneSlideshow() {
                 videoSrc={media.video}
                 onClick={() => setSelectedVideo(media.video)}
                 motion={pos}
+                shouldPreload={shouldPreload}
               />
             );
           })}
@@ -596,6 +636,7 @@ function TaglineSection() {
 
 function AboutSection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  const navigate = useNavigate();
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-8">
@@ -622,10 +663,11 @@ function AboutSection() {
           </div>
         </div>
          <div className="space-y-6 pt-8">
-            <button className="block mx-auto bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
-            <a href="/about">
+            <button 
+              onClick={() => navigate('/about')}
+              className="block mx-auto bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
+            >
               Learn More About Us
-            </a>
             </button>
         </div>
             
@@ -636,6 +678,7 @@ function AboutSection() {
 
 function ServicesSection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
 
   // scroll y effect for slide to left and right
@@ -724,10 +767,11 @@ function ServicesSection() {
 
             <div className="text-center pt-0 md:pt-8 ">
            
-              <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
-              <a href="/services">
+              <button 
+                onClick={() => navigate('/services')}
+                className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
+              >
                 See Our Services
-              </a>
               </button>
             
             </div>
@@ -740,6 +784,7 @@ function ServicesSection() {
 
 function WorkSection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  const navigate = useNavigate();
 
   const projects = [
     { id: 1, img: "/project/work1.png", title: "work 1" },
@@ -835,10 +880,11 @@ function WorkSection() {
 
         {/* View All Work Button */}
         <div className="text-center">
-          <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
-            <a href="/work">
-              View All Work
-            </a>
+          <button 
+            onClick={() => navigate('/work')}
+            className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
+          >
+            View All Work
           </button>
         </div>
       </div>
@@ -876,6 +922,7 @@ function StatsBanner() {
 
 function StorySection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  const navigate = useNavigate();
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-8">
@@ -897,10 +944,11 @@ function StorySection() {
               most brands post to be seen. We create to be felt. Every brand has a heart beat, a story that deserves more than likes or views. At Wrong Studios, we don't just make videos that look good, we build personalities that stick in people's minds. Our work crafts intention and character behind content that turns short-form content into lasting cultural impact.
             </p>
            
-            <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
-            <a href="/work">
+            <button 
+              onClick={() => navigate('/work')}
+              className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
+            >
               Read Our Story
-            </a>
             </button>
             
           </div>
@@ -923,6 +971,7 @@ function StorySection() {
 
 function CTASection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  const navigate = useNavigate();
   return (
     <section ref={ref} className={`py-32 relative overflow-hidden fade-in-section ${isVisible ? 'visible' : ''}`}>
       {/* Background */}
@@ -946,10 +995,11 @@ function CTASection() {
               unforgettable.
           </h2>
 
-          <button className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]">
-          <a href="/contact">
+          <button 
+            onClick={() => navigate('/contact')}
+            className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
+          >
             join the wrong side
-           </a>
           </button>
         </div>
       </div>
