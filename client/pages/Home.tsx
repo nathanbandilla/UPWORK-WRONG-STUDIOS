@@ -658,9 +658,9 @@ function ServicesSection() {
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1420px] mx-auto px-8">
-        <div className="border border-[#292929] rounded-[20px] p-16 relative overflow-hidden">
+        <div className="border-none border-[#292929] rounded-[20px] p-16 relative overflow-hidden">
           {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 opacity-0">
             <img src="/services-bg.svg" alt="" className="w-full h-full object-cover" />
           </div>
 
@@ -885,7 +885,7 @@ function StorySection() {
 
           <div className="grid place-items-center h-[80px] md:h-[400px]">
           <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="Wrong Studios"
               className="w-[220px] md:w-[280px] h-[60px] md:h-[90px]"
             />

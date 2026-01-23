@@ -43,11 +43,12 @@ export default function Header() {
       <div className="max-w-[1440px] mx-auto px-4 md:px-[60px] py-4 md:py-[30px]">
         <div className="flex items-center justify-between">
           {/* Logo */}
+          
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="Wrong Studios"
-              className="w-[140px] md:w-[172px] h-[26px] md:h-[32px]"
+              className="w-[180px] md:w-[200px] h-[40px] md:h-[60px]"
             />
           </Link>
 
