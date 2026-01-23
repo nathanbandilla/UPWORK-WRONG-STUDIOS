@@ -238,61 +238,17 @@ function HeroSection() {
   );
 }
 
-// Video Popup Modal
-const VideoModal = ({ videoSrc, isOpen, onClose }: { videoSrc: string; isOpen: boolean; onClose: () => void }) => {
-  const videoRef = React.useRef<HTMLVideoElement | null>(null);
-
-  React.useEffect(() => {
-    if (isOpen && videoRef.current) {
-      videoRef.current.play();
-    }
-  }, [isOpen]);
-
-  if (!isOpen) return null;
-
-  return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <button
-        onClick={onClose}
-        className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
-        aria-label="Close"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-          <path d="M18 6L6 18M6 6l12 12" />
-        </svg>
-      </button>
-      
-      <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          controls
-          autoPlay
-          loop
-          playsInline
-          className="w-full h-full rounded-2xl shadow-2xl"
-          style={{ maxHeight: '90vh' }}
-        />
-      </div>
-    </div>
-  );
-};
-
 // Memoized Phone Thumbnail Component
 const PhoneThumbnail = React.memo(({
   thumbnailSrc,
   videoSrc,
   motion,
-  onClick,
+  
   shouldPreload = false,
 }: {
   thumbnailSrc: string;
   videoSrc: string;
-  motion: any;
-  onClick: () => void;
+  motion: any; 
   shouldPreload?: boolean;
 }) => {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
@@ -310,17 +266,6 @@ const PhoneThumbnail = React.memo(({
       videoRef.current.pause();
     }
   }, [motion.center]);
-
-  const handleClick = (e: React.MouseEvent) => {
-    // Prevent any click events on center phone
-    if (motion.center) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
-    // Only allow clicking on non-center phones
-    //onClick();
-  };
 
   return (
     <div
@@ -347,7 +292,7 @@ const PhoneThumbnail = React.memo(({
         `,
         willChange: 'transform, opacity',
       }}
-      onClick={handleClick}
+      
     >
       {/* Content Layer */}
       <div
@@ -356,12 +301,12 @@ const PhoneThumbnail = React.memo(({
           flex items-center justify-center
           ${motion.center ? '' : 'cursor-pointer'}
           transition-all duration-300 ease-out
-          ${motion.center ? '' : 'hover:-translate-y-3 hover:scale-[1.04]'}
-          ${motion.center ? '' : 'hover:shadow-[0_30px_80px_rgba(3,233,244,0.35)]'}
+          ${motion.center ? '' : 'hover:-translate-y-3 hover:scale-[1.04]'}     
         `}
       >
-        {motion.center ? (
+        {
           // Center phone: Show autoplay video
+        }
           <video
             ref={videoRef}
             src={videoSrc}
@@ -370,21 +315,13 @@ const PhoneThumbnail = React.memo(({
             loop
             playsInline
             preload="auto"
-            className="h-full border-4 border-white/60 rounded-[28px] shadow-[0_0_50px_rgba(3,233,244,0.5)]"
+            className="bg-black h-full border-4 border-white/60 rounded-[28px] shadow-[0_0_50px_rgba(3,233,244,0.5)]"
             style={{
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0)',
             }}
           />
-        ) : (
-          // Other phones: Show thumbnail
-          <img
-            src={thumbnailSrc}
-            className="h-full object-fill border-4 border-white/50 rounded-[24px] transition-all duration-300 hover:border-[#03E9F4]"
-            draggable={false}
-            alt="Video thumbnail"
-          />
-        )}
+       
       </div>
     </div>
   );
@@ -468,14 +405,14 @@ function PhoneSlideshow() {
 
   // Video sources and their thumbnails
   const mediaData = React.useMemo(() => [
-    { video: "/vid_compressed/vid_1.webm", thumb: "/thumbnails/thumb_1.jpg" },
-    { video: "/vid_compressed/vid_2.webm", thumb: "/thumbnails/thumb_2.jpg" },
-    { video: "/vid_compressed/vid_3.webm", thumb: "/thumbnails/thumb_3.jpg" },
-    { video: "/vid_compressed/vid_4.webm", thumb: "/thumbnails/thumb_4.jpg" },
-    { video: "/vid_compressed/vid_5.webm", thumb: "/thumbnails/thumb_5.jpg" },
-    { video: "/vid_compressed/vid_6.webm", thumb: "/thumbnails/thumb_6.jpg" },
-    { video: "/vid_compressed/vid_7.webm", thumb: "/thumbnails/thumb_7.jpg" },
-    { video: "/vid_compressed/vid_8.webm", thumb: "/thumbnails/thumb_8.jpg" }
+    { video: "/vid_compressed/vid_1.mp4", thumb: "/thumbnails/thumb_1.jpg" },
+    { video: "/vid_compressed/vid_2.mp4", thumb: "/thumbnails/thumb_2.jpg" },
+    { video: "/vid_compressed/vid_3.mp4", thumb: "/thumbnails/thumb_3.jpg" },
+    { video: "/vid_compressed/vid_4.mp4", thumb: "/thumbnails/thumb_4.jpg" },
+    { video: "/vid_compressed/vid_5.mp4", thumb: "/thumbnails/thumb_5.jpg" },
+    { video: "/vid_compressed/vid_6.mp4", thumb: "/thumbnails/thumb_6.jpg" },
+    { video: "/vid_compressed/vid_7.mp4", thumb: "/thumbnails/thumb_7.jpg" },
+    { video: "/vid_compressed/vid_8.mp4", thumb: "/thumbnails/thumb_8.jpg" }
   ], []);
 
   const getVideoIndex = React.useCallback((offset: number) => {
@@ -570,8 +507,7 @@ function PhoneSlideshow() {
               <PhoneThumbnail
                 key={index}
                 thumbnailSrc={media.thumb}
-                videoSrc={media.video}
-                onClick={() => setSelectedVideo(media.video)}
+                videoSrc={media.video}               
                 motion={pos}
                 shouldPreload={shouldPreload}
               />
@@ -581,12 +517,6 @@ function PhoneSlideshow() {
 
       </div>
 
-      {/* Video Modal */}
-      <VideoModal
-        videoSrc={selectedVideo || ''}
-        isOpen={!!selectedVideo}
-        onClose={() => setSelectedVideo(null)}
-      />
     </>
   );
 }
