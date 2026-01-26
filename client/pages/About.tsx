@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
@@ -53,14 +54,14 @@ function HeroSection() {
   return (
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
       
-      {/* Background Image ----commented for now
-      <div className="absolute inset-0">
-        <img 
+     {/*  Background Image ----commented for now */}
+      <div className="absolute inset-0 bg-[#232023]">
+         {/* <img 
           src="/about_header.png" 
           alt="" 
           className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
-        />
-      </div> */}
+        />*/}
+      </div> 
 
        {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -76,7 +77,7 @@ function HeroSection() {
         <h1 className="font-display text-[60px] md:text-[94px] leading-[1.05] uppercase max-w-[760px] mx-auto">
           <span className="text-white/60">We Break the Rules.</span>
           <br />
-          <span className="text-white">You Break the Internet.</span>
+          <span className="text-[white]">You Break the Internet.</span>
         </h1>
       </div>
     </section>
@@ -228,6 +229,7 @@ function IdentitySection() {
 }
 
 function CTASection() {
+  const navigate = useNavigate();
   return (
     <section className="py-32 md:py-32 relative overflow-hidden text-center">
       {/* Background gradient effect */}
@@ -261,11 +263,11 @@ function CTASection() {
           {/* CTA Button */}
           <div className="grid place-items-center pt-12"> 
             <div className="flex gap-2">
-              <button className="group relative bg-black border-2 border-white rounded-xl px-8 py-4 md:px-8 md:py-4 hover:bg-cyan/20 transition-all">
-                <span className="font-display text-[20px] md:text-[40px] leading-[1.1] uppercase text-white">
-                <a href="/contact">
-                  JOIN THE WRONG SIDE
-                </a>
+              <button
+              onClick={() => navigate('/contact')}  
+              className="group relative bg-black border-2 border-white rounded-xl px-8 py-4 md:px-8 md:py-4 hover:bg-cyan/20 transition-all">
+                <span className="font-display text-[20px] md:text-[40px] leading-[1.1] uppercase text-white">               
+                  JOIN THE WRONG SIDE                
                 </span>
               </button>
               

@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Project = {
   id: number;
@@ -53,14 +54,8 @@ function HeroSection() {
   return (
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
-      {/* Background Image // -- commented for now
-      <div className="absolute inset-0">
-        <img
-          src="/work_header.png"
-          alt=""
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
-        />
-      </div> */} 
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[#232023] "></div> 
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -89,32 +84,45 @@ function FeaturedProjects() {
   const projects: Project[] = [
     {
       id: 1,
-      title: "",
+      title: "BILLY BRUNCH BARCELONA",
+      subtitle: "Brunch Restaurant",
       image:
         "/project/project1.png",
+      stats: [
+          { label: "TikTok views", value: "27.3M" },
+          { label: "Instagram views", value: "22.6M" },
+      ],  
     },
     {
       id: 2,
-      title: "",
+      title: "TASTE OF HILTON (Lenz social dining)",
+      subtitle: "Restaurant",
       image:
         "/project/project2.png",
+      stats: [
+          { label: "Instagram Views", value: "1.9M" }        
+      ],  
     },
     {
       id: 3,
-      title: "Visit Rwanda",
-      subtitle: "social media management",
+      title: "KIBAKO",
+      subtitle: "Japanese Restaurant",
       image:
-        "/group.png",
+        "/project/project3.png",
       stats: [
-        { label: "TikTok followers", value: "168K" },
-        { label: "TikTok views", value: "986K" },
+        { label: "Tiktok and Instagram Views", value: "200K+" }
+     
       ],
     },
     {
       id: 4,
-      title: "",
+      title: "DARRY RING",
+      subtitle: "Jewelry Store",
       image:
         "/project/project4.png",
+      stats: [
+          { label: "Tiktok and Instagram views", value: "700K+" }       
+        ],
     },
    
   ];
@@ -122,13 +130,13 @@ function FeaturedProjects() {
   return (   
    <section ref={ref} className={`bg-black py-16 md:py-24 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-12 md:mb-16 mt-24">
             <h1 className="font-display text-[60px] md:text-[94px] leading-[1.05] uppercase max-w-[1054px] mx-auto">
             Featured Projects
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-28 p-12 md:p-28 justify-items-center">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -142,13 +150,15 @@ function ProjectCard({ project }: { project: Project }) {
   const hasStats = project.stats && project.stats.length > 0;
 
   return (
-    <div className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-neutral-950 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
+    <div className="w-full h-full group overflow-hidden rounded-[26px] border border-white/10 bg-neutral-950 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
       <div className="relative aspect-[4/3]">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-        />
+          <div className="flex items-center justify-center h-full w-full">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="h-full w-full object-fill transition duration-500 group-hover:scale-105"
+              />
+            </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
         <div className="absolute inset-0 flex items-end p-6">
@@ -177,6 +187,7 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function CtaSection() {
+  const navigate = useNavigate();
   return (
     <section className="bg-black py-24 md:py-28 text-center">
       <div className="max-w-[960px] mx-auto px-6">
@@ -194,10 +205,12 @@ function CtaSection() {
           <br />
           unforgettable.
         </h2>
-        <button className="mt-8 rounded-2xl bg-cyan px-6 py-3 text-black font-semibold transition hover:scale-[1.02]">
-          <a href="/contact">
+        <button
+         onClick={() => navigate('/contact')} 
+         className="mt-8 rounded-2xl bg-cyan px-6 py-3 text-black font-semibold transition hover:scale-[1.02]">
+          
           Join the Wrong Side
-          </a>
+         
         </button>
       </div>
     </section>

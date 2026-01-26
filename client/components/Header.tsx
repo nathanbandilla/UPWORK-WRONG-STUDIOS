@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -24,6 +24,7 @@ export default function Header() {
     { to: "/contact", label: "Contact" },
   ];
 
+  const navigate = useNavigate();
   const NavLink = ({ to, label }: { to: string; label: string }) => (
     <Link
       to={to}
@@ -48,7 +49,7 @@ export default function Header() {
             <img
               src="/logo.png"
               alt="Wrong Studios"
-              className="w-[180px] md:w-[200px] h-[40px] md:h-[60px]"
+              className="w-[180px] md:w-[200px] h-[50px] md:h-[60px]"
             />
           </Link>
 
@@ -61,8 +62,10 @@ export default function Header() {
 
           {/* Desktop CTA Button */}
           <div className="hidden md:block">
-            <button className="bg-white text-[#191919] px-6 py-3 rounded-[40px] font-bold text-[18px] hover:bg-white/80 transition-colors capitalize">
-             <a href="/contact">Contact Us</a>           
+            <button
+            onClick={() => navigate('/contact')} 
+            className="bg-white text-[#191919] px-6 py-3 rounded-[40px] font-bold text-[18px] hover:bg-white/80 transition-colors capitalize">
+             Contact Us           
             </button>
           </div>
 

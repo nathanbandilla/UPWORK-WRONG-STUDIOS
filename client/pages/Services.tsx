@@ -57,14 +57,8 @@ function HeroSection() {
   return (
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
-      {/* Background Image *
-      <div className="absolute inset-0">
-        <img
-          src="/services_header.png"
-          alt=""
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
-        />
-      </div> /}
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[#232023] "></div> 
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -172,12 +166,21 @@ function ServiceSection1() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="relative w-full aspect-[605/578]">
-            <div className="absolute inset-0 rounded-[30px] overflow-hidden border-4 border-cyan/20">
-              <img
+            <div className="absolute inset-0 rounded-[30px] overflow-hidden border-0 border-cyan/20 flex items-center justify-center">
+                {/* Heading */}
+             
+                  <h1 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase">
+                    Define the voice
+                    <br />
+                    before you speak.
+                  </h1>
+               
+                  
+              {/*<img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/73d9be06553e2f340df07115d643a359327fa87c?width=1170"
                 alt=""
                 className="w-full h-full object-cover"
-              />
+              /> */}
             </div>
           </div>
 
@@ -194,12 +197,7 @@ function ServiceSection1() {
               <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
          
-            {/* Heading */}
-            <h2 className="font-display text-[60px] md:text-[70px] leading-[1] uppercase">
-              Define the voice
-              <br />
-              before you speak.
-            </h2>
+        
 
             {/* Description */}
             <p className="text-[18px] leading-[34px] text-white/90">
@@ -322,12 +320,13 @@ function ServiceSection3() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="relative w-full aspect-[605/578]">
-            <div className="absolute inset-0 rounded-[30px] overflow-hidden border-4 border-cyan/20">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/a79cdbdf10eab4acc6016e4e449e6a422efc9685?width=1170"
-                alt=""
-                className="w-full h-full object-cover"
-              />
+            <div className="absolute inset-0 rounded-[30px] overflow-hidden border-0 border-cyan/20 flex items-center justify-center">
+                {/* Heading */}
+                <h2 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase">
+                  We don't chase
+                  <br />
+                  trends we live them.
+                </h2>
             </div>
           </div>
 
@@ -343,14 +342,7 @@ function ServiceSection3() {
                   </div>
                 <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
-
-            {/* Heading */}
-            <h2 className="font-display text-[60px] md:text-[70px] leading-[1] uppercase">
-              We don't chase
-              <br />
-              trends we live them.
-            </h2>
-
+       
             {/* Description */}
             <p className="text-[18px] leading-[34px] text-white/90">
               We align your brand with culture, not noise, embedding your

@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "@/components/Layout";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
@@ -88,9 +88,53 @@ function ContactFormSection() {
     address: "",
     message: "",
   });
+  const [statusMessage, setStatusMessage] = React.useState("");
+  const [statusType, setStatusType] = React.useState<"success" | "error" | "">("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    emailjs
+    .send(
+      "service_ahncc52",
+      "template_jk5ilx4",
+      {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        address: formData.address,
+        message: formData.message,
+      },
+      "aQThBmN-8qPuSSKw6"
+    )
+    .then(
+      () => {
+        setStatusMessage("Message sent successfully.");
+        setStatusType("success");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          address: "",
+          message: "",
+        });
+        // Auto-hide message after 5 seconds
+        setTimeout(() => {
+          setStatusMessage("");
+          setStatusType("");
+        }, 5000);
+      },
+      (error) => {
+        console.error("Email error:", error);
+        setStatusMessage("Failed to send message. Please try again.");
+        setStatusType("error");
+        // Auto-hide message after 5 seconds
+        setTimeout(() => {
+          setStatusMessage("");
+          setStatusType("");
+        }, 5000);
+      }
+    );
   
   };
 
@@ -198,6 +242,21 @@ function ContactFormSection() {
               className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px] resize-none"
             />
           </div>
+
+          {/* Status Message Label */}
+          {statusMessage && (
+            <div className="text-center">
+              <label
+                className={`block font-display text-[24px] px-6 py-3 rounded-xl transition-all ${
+                  statusType === "success"
+                    ? "bg-[#03E9F4]/20 text-[#03E9F4] border border-[#03E9F4]/40"
+                    : "bg-red-500/20 text-red-400 border border-red-500/40"
+                }`}
+              >
+                {statusMessage}
+              </label>
+            </div>
+          )}
 
           {/* Submit Button */}
           <div className="text-center pt-4">

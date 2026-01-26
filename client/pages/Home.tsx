@@ -534,7 +534,7 @@ function LogoBanner() {
   ];
 
   return (
-    <div className="relative bg-[#03E9F4] py-1 overflow-hidden -mt-32">
+    <div className="relative bg-[#03E9F4] py-1 overflow-hidden ">
       {/* Scrolling Content */}
       <div className="flex gap-24 animate-scroll">
         {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
@@ -555,11 +555,14 @@ function TaglineSection() {
   const { ref, isVisible } = useFadeInOnScroll();
   return (
     <section ref={ref} className={`py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="max-w-[1280px] mx-auto px-8">
-        <h2 className="font-display text-[100px] leading-[104px] text-center uppercase">
-          we specialize in scroll-stopping short-form content
-        </h2>
+      <div className="bg-[#232023]">
+        <div className="max-w-[1280px] mx-auto px-8 mt-0 md:mt-22 p-32">
+          <h2 className="font-display text-[100px] leading-[104px] text-center uppercase">
+            we specialize in scroll-stopping short-form content
+          </h2>
+        </div>
       </div>
+    
     </section>
   );
 }
@@ -657,7 +660,7 @@ function ServicesSection() {
 
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="max-w-[1420px] mx-auto px-8">
+      <div className="max-w-[1420px] mx-auto">
         <div className="border-none border-[#292929] rounded-[20px] p-16 relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-0">
@@ -679,7 +682,7 @@ function ServicesSection() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-0 bg-[#033C3D] rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
+            <div className="grid md:grid-cols-3 gap-0 bg-cyan/20 rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
               {services.map((service, i) => (
                 <div 
                   key={i} 
@@ -883,11 +886,11 @@ function StorySection() {
             
           </div>
 
-          <div className="grid place-items-center h-[80px] md:h-[400px]">
+          <div className="grid place-items-center h-[80px] md:h-[400px] rounded-20px border-0 border-cyan/20">
           <img
               src="/logo.png"
               alt="Wrong Studios"
-              className="w-[220px] md:w-[280px] h-[60px] md:h-[90px]"
+              className="w-[320px] md:w-[420px] h-[100px] md:h-[120px]"
             />
             
           {/*className="w-full h-full object-contain rotate-[0deg]" />*/}
