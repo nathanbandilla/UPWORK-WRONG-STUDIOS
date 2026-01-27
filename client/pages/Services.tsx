@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from 'react';
+import { useScrollSlide } from "@/hooks/use-scroll-slide";
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
@@ -52,6 +53,8 @@ export default function Services() {
     </Layout>
   );
 }
+
+
 
 function HeroSection() {
   return (
@@ -153,6 +156,7 @@ function WhyItMattersSection() {
 }
 
 function ServiceSection1() {
+  const { slideToLeft, slideToRight } = useScrollSlide();
   const features = [
     { icon: CheckIcon, text: "Brand Voice & Personality Systems" },
     { icon: CheckIcon, text: "Visual Identity Direction" },
@@ -169,7 +173,7 @@ function ServiceSection1() {
             <div className="absolute inset-0 rounded-[30px] overflow-hidden border-0 border-cyan/20 flex items-center justify-center">
                 {/* Heading */}
              
-                  <h1 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase">
+                  <h1 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase" style={slideToLeft(2,0)}>
                     Define the voice
                     <br />
                     before you speak.
@@ -226,6 +230,7 @@ function ServiceSection1() {
 }
 
 function ServiceSection2() {
+  const { slideToLeft, slideToRight } = useScrollSlide();
   const features = [
     { icon: CheckIcon, text: "Concept Development & Scriptwriting" },
     { icon: CheckIcon, text: "On-Set Direction & Shooting" },
@@ -254,7 +259,7 @@ function ServiceSection2() {
           <div className="relative z-10 max-w-[1280px] mx-auto px-8 py-20">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Content First on Mobile, Second on Desktop */}
-              <div className="space-y-8 order-2 md:order-1">
+              <div className="space-y-8 order-2 md:order-1" style={slideToRight(8,0)}>
                 {/* Section Label */}
                 <div className="flex items-center gap-2">             
                   <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
@@ -295,7 +300,7 @@ function ServiceSection2() {
               </div>
 
               {/* Phone Mockup - First on Desktop, Second on Mobile */}
-              <div className="relative w-full order-1 md:order-2">
+              <div className="relative w-full order-1 md:order-2" style={slideToLeft(8,0)}>
                 <PhoneMockup />
               </div>
             </div>
@@ -307,6 +312,7 @@ function ServiceSection2() {
 }
 
 function ServiceSection3() {
+  const { slideToLeft, slideToRight } = useScrollSlide();
   const features = [
     { icon: CheckIcon, text: "Social Listening & Trend Mapping" },
     { icon: CheckIcon, text: "Creator & Influencer Collaborations" },
@@ -322,7 +328,7 @@ function ServiceSection3() {
           <div className="relative w-full aspect-[605/578]">
             <div className="absolute inset-0 rounded-[30px] overflow-hidden border-0 border-cyan/20 flex items-center justify-center">
                 {/* Heading */}
-                <h2 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase">
+                <h2 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase" style={slideToLeft(20,0)}>
                   We don't chase
                   <br />
                   trends we live them.
@@ -384,7 +390,7 @@ function PhoneMockup() {
             style={{ transform: "skewY(-2deg)" }}
           >
             <img
-              src="https://api.builder.io/api/v1/image/assets/db97d44be45145259cf315d885410297/5b3c3abf823a4e35960cbb33399017ce?format=webp&width=800"
+              src="/instagram_feed.png"
               alt=""
               className="w-full h-full object-cover"
             />
@@ -404,7 +410,7 @@ function PhoneMockup() {
             style={{ transform: "skewY(2deg)" }}
           >
             <img
-              src="https://api.builder.io/api/v1/image/assets/db97d44be45145259cf315d885410297/5b3c3abf823a4e35960cbb33399017ce?format=webp&width=800"
+              src="/tiktok_feed.png"
               alt=""
               className="w-full h-full object-cover"
             />

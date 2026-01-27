@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useScrollSlide } from "@/hooks/use-scroll-slide";
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
@@ -553,11 +554,12 @@ function LogoBanner() {
 
 function TaglineSection() {
   const { ref, isVisible } = useFadeInOnScroll();
+  const { slideToLeft, slideToRight } = useScrollSlide();
   return (
     <section ref={ref} className={`py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="bg-[#232023]">
         <div className="max-w-[1280px] mx-auto px-8 mt-0 md:mt-22 p-32">
-          <h2 className="font-display text-[100px] leading-[104px] text-center uppercase">
+          <h2 className="font-display text-[100px] leading-[104px] text-center uppercase" style={slideToRight(2,0)}>
             we specialize in scroll-stopping short-form content
           </h2>
         </div>
@@ -570,6 +572,7 @@ function TaglineSection() {
 function AboutSection() {
   const { ref, isVisible } = useFadeInOnScroll();
   const navigate = useNavigate();
+  const { slideToLeft, slideToRight } = useScrollSlide();
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-8">
@@ -583,7 +586,7 @@ function AboutSection() {
               <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
 
-            <h2 className="font-display text-[100px] leading-[104px] uppercase">
+            <h2 className="font-display text-[100px] leading-[104px] uppercase" style={slideToLeft(2,0)}>
               Wrong Studios are Creators first
             </h2>
            
@@ -612,36 +615,7 @@ function AboutSection() {
 function ServicesSection() {
   const { ref, isVisible } = useFadeInOnScroll();
   const navigate = useNavigate();
-  const [scrollY, setScrollY] = useState(0);
-
-  // scroll y effect for slide to left and right
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  const slideToLeft = (index: number, baseDelay: number) => {
-    const triggerPoint = 700 + index * 100; // Adjust trigger points as needed
-    const progress = Math.max(0, Math.min(1, (scrollY - triggerPoint) / 100));
-  
-    return {
-      transform: `translateX(${500 - progress * 500}px)`,
-      opacity: progress,
-      transition: 'all 1s ease-out',
-    };
-  };
-  
-  const slideToRight = (index: number, baseDelay: number) => {
-    const triggerPoint = 700 + index * 100; // Adjust trigger points as needed
-    const progress = Math.max(0, Math.min(1, (scrollY - triggerPoint) / 100));
-  
-    return {
-      transform: `translateX(${-500 - progress * -500}px)`,
-      opacity: progress,
-      transition: 'all 1s ease-out',
-    };
-  };
+  const { slideToLeft, slideToRight } = useScrollSlide();
 
   const services = [
     {

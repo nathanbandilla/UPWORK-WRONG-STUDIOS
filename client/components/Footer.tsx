@@ -13,8 +13,33 @@ export default function Footer() {
             </h3>
             <div className="space-y-6">
               <p className="text-[16px] text-white/70 capitalize">Social:</p>
-              <p className="text-[18px] capitalize">
-                Instagram | TikTok | Snapchat
+              <p className="text-[18px] capitalize space-x-2">
+                <a
+                  href="https://www.instagram.com/arwinclara"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#03E9F4] transition-colors"
+                >
+                  Instagram
+                </a>
+                <span>|</span>
+                <a
+                  href="https://www.tiktok.com/@arwinclara"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#03E9F4] transition-colors"
+                >
+                  TikTok
+                </a>
+                <span>|</span>
+                <a
+                  href="https://www.snapchat.com/@arwinandclara"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#03E9F4] transition-colors"
+                >
+                  Snapchat
+                </a>
               </p>
             </div>
           </div>
