@@ -55,7 +55,7 @@ function HeroSection() {
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
       
      {/*  Background Image ----commented for now */}
-      <div className="absolute inset-0 bg-[#232023]">
+      <div className="absolute inset-0 bg-[#03E9F4]/10">
          {/* <img 
           src="/about_header.png" 
           alt="" 

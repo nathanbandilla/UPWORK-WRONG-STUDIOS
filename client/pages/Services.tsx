@@ -61,7 +61,7 @@ function HeroSection() {
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[#232023] "></div> 
+      <div className="absolute inset-0 bg-[#03E9F4]/10 "></div> 
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">

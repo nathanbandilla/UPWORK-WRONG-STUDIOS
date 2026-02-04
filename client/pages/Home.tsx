@@ -557,7 +557,7 @@ function TaglineSection() {
   const { slideToLeft, slideToRight } = useScrollSlide();
   return (
     <section ref={ref} className={`py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="bg-[#232023]">
+      <div className="bg-[#03E9F4]/10">
         <div className="max-w-[1280px] mx-auto px-8 mt-0 md:mt-22 p-32">
           <h2 className="font-display text-[100px] leading-[104px] text-center uppercase" style={slideToRight(2,0)}>
             we specialize in scroll-stopping short-form content
@@ -656,7 +656,7 @@ function ServicesSection() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-0 bg-cyan/20 rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
+            <div className="grid md:grid-cols-3 gap-0 bg-[#03E9F4]/10 rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
               {services.map((service, i) => (
                 <div 
                   key={i} 
@@ -830,6 +830,7 @@ function StatsBanner() {
 function StorySection() {
   const { ref, isVisible } = useFadeInOnScroll();
   const navigate = useNavigate();
+  const { slideToLeft, slideToRight} = useScrollSlide();
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1280px] mx-auto px-8">
@@ -860,11 +861,12 @@ function StorySection() {
             
           </div>
 
-          <div className="grid place-items-center h-[80px] md:h-[400px] rounded-20px border-0 border-cyan/20">
+          <div className="grid place-items-center h-[80px] md:h-[400px] rounded-20px border-0 border-cyan/20 hover:bg-[#03E9F4]/10 hover:rounded-20px" style={slideToRight(32,0)} >
           <img
               src="/logo.png"
               alt="Wrong Studios"
               className="w-[320px] md:w-[420px] h-[100px] md:h-[120px]"
+             
             />
             
           {/*className="w-full h-full object-contain rotate-[0deg]" />*/}
