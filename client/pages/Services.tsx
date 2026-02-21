@@ -61,7 +61,7 @@ function HeroSection() {
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[#03E9F4]/10 "></div> 
+      <div className="absolute inset-0 bg-[#565449]"></div> 
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -280,7 +280,7 @@ function ServiceSection2() {
 
                 {/* Description */}
                 <p className="text-[18px] leading-[34px] text-white/90">
-                  Short-form content is the language of the internet — and we
+                  Short-form content is the language of the internet and we
                   speak it fluently. We plan, shoot, and edit high-performing
                   Reels, TikTok's, & social clips that don't just get views,
                   they get remembered.

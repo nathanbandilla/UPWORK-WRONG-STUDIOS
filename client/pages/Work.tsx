@@ -136,7 +136,7 @@ function FeaturedProjects() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-28 p-12 md:p-28 justify-items-center">
+        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-32 ">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -150,18 +150,19 @@ function ProjectCard({ project }: { project: Project }) {
   const hasStats = project.stats && project.stats.length > 0;
 
   return (
-    <div className="w-full h-full group overflow-hidden rounded-[26px] border border-white/10 bg-neutral-950 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
-      <div className="relative aspect-[4/3]">
-          <div className="flex items-center justify-center h-full w-full">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="h-full w-full object-fill transition duration-500 group-hover:scale-105"
-              />
-            </div>
+    <div className="h-full w-full group overflow-hidden border-2 rounded-2xl">
+        
+      <div className="relative aspect-[12/8]">
+     
+          <img
+            src={project.image}
+            alt={project.title}
+            className=" pt-4 w-full h-[50%] object-contain transition duration-500 group-hover:scale-105"
+          />
+        
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
-        <div className="absolute inset-0 flex items-end p-6">
+        <div className="absolute p-4">
           <div className="text-white">
             <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow">
               {project.title}
@@ -170,7 +171,7 @@ function ProjectCard({ project }: { project: Project }) {
               <div className="text-white/85 text-base mt-1">{project.subtitle}</div>
             )}
             {hasStats && (
-              <div className="mt-4 flex gap-6 text-sm uppercase tracking-wide text-white/80">
+              <div className="flex gap-6 text-sm uppercase tracking-wide text-white/80">
                 {project.stats?.map((item) => (
                   <div key={item.label} className="flex flex-col">
                     <span className="text-2xl font-semibold text-white">{item.value}</span>

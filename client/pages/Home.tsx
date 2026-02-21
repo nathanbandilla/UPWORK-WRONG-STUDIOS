@@ -406,14 +406,14 @@ function PhoneSlideshow() {
 
   // Video sources and their thumbnails
   const mediaData = React.useMemo(() => [
-    { video: "/vid_compressed/vid_1.mp4", thumb: "/thumbnails/thumb_1.jpg" },
-    { video: "/vid_compressed/vid_2.mp4", thumb: "/thumbnails/thumb_2.jpg" },
-    { video: "/vid_compressed/vid_3.mp4", thumb: "/thumbnails/thumb_3.jpg" },
-    { video: "/vid_compressed/vid_4.mp4", thumb: "/thumbnails/thumb_4.jpg" },
-    { video: "/vid_compressed/vid_5.mp4", thumb: "/thumbnails/thumb_5.jpg" },
-    { video: "/vid_compressed/vid_6.mp4", thumb: "/thumbnails/thumb_6.jpg" },
-    { video: "/vid_compressed/vid_7.mp4", thumb: "/thumbnails/thumb_7.jpg" },
-    { video: "/vid_compressed/vid_8.mp4", thumb: "/thumbnails/thumb_8.jpg" }
+    { video: "/vid_compressed/vid_1.webm", thumb: "/thumbnails/thumb_1.jpg" },
+    { video: "/vid_compressed/vid_2.webm", thumb: "/thumbnails/thumb_2.jpg" },
+    { video: "/vid_compressed/vid_3.webm", thumb: "/thumbnails/thumb_3.jpg" },
+    { video: "/vid_compressed/vid_4.webm", thumb: "/thumbnails/thumb_4.jpg" },
+    { video: "/vid_compressed/vid_5.webm", thumb: "/thumbnails/thumb_5.jpg" },
+    { video: "/vid_compressed/vid_6.webm", thumb: "/thumbnails/thumb_6.jpg" },
+    { video: "/vid_compressed/vid_7.webm", thumb: "/thumbnails/thumb_7.jpg" },
+    { video: "/vid_compressed/vid_8.webm", thumb: "/thumbnails/thumb_8.jpg" }
   ], []);
 
   const getVideoIndex = React.useCallback((offset: number) => {
@@ -535,7 +535,7 @@ function LogoBanner() {
   ];
 
   return (
-    <div className="relative bg-[#03E9F4] py-1 overflow-hidden ">
+    <div className="relative bg-[#03E9F4] py-1 overflow-hidden mt-[-50px] mb-[200px]">
       {/* Scrolling Content */}
       <div className="flex gap-24 animate-scroll">
         {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
@@ -557,9 +557,9 @@ function TaglineSection() {
   const { slideToLeft, slideToRight } = useScrollSlide();
   return (
     <section ref={ref} className={`py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="bg-[#03E9F4]/10">
+      <div className="bg-cyan">
         <div className="max-w-[1280px] mx-auto px-8 mt-0 md:mt-22 p-32">
-          <h2 className="font-display text-[100px] leading-[104px] text-center uppercase" style={slideToRight(2,0)}>
+          <h2 className="font-display text-black text-[100px] leading-[104px] text-center uppercase" style={slideToRight(2,0)}>
             we specialize in scroll-stopping short-form content
           </h2>
         </div>

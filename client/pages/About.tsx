@@ -55,27 +55,27 @@ function HeroSection() {
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
       
      {/*  Background Image ----commented for now */}
-      <div className="absolute inset-0 bg-[#03E9F4]/10">
-         {/* <img 
-          src="/about_header.png" 
+      <div className="absolute inset-0">
+         <img 
+          src="/neon_city.png" 
           alt="" 
           className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
-        />*/}
+        />
       </div> 
 
        {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
         {/* Section Label */}
          <div className="flex items-center justify-center gap-2 mb-8">
-          <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-            <div className="h-7 w-[88px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
-              <span className="h-9 ml-1 font-display text-[24.77px] tracking-wider uppercase">ABOUT US</span>          
+          {/*<img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />*/}
+            <div className="h-7 w-[120px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
+              <span className="text-white h-9 ml-1 font-display text-[24.77px] tracking-wider uppercase">[ ABOUT US ]</span>          
             </div>
-          <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
+           {/*<img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />*/} 
          </div>       
 
         <h1 className="font-display text-[60px] md:text-[94px] leading-[1.05] uppercase max-w-[760px] mx-auto">
-          <span className="text-white/60">We Break the Rules.</span>
+          <span className="text-white/50">We Break the Rules.</span>
           <br />
           <span className="text-[white]">You Break the Internet.</span>
         </h1>
@@ -89,22 +89,7 @@ function StorySection() {
   return (
     
     <section ref={ref} className={`py-10 md:py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      
-      <div className="">    
-         {/* Left Decorative Image */} 
-         <img 
-          src="/about_header_image_left.png" 
-          alt="" 
-          className="absolute left-12 md:left-12 top-[-130px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] -rotate-[5deg] rounded-3xl"
-           />
 
-           {/* Right Decorative Image */}
-          <img 
-            src="/about_header_image_right.png" 
-            alt="" 
-            className="absolute right-12 md:right-12 top-[-130px] md:top-[430px] w-[140px] md:w-[204px] h-[142px] md:h-[226px] rotate-[5deg] rounded-3xl"
-          />
-     </div>
 
       <div className="relative max-w-[1440px] mx-auto px-8">
 
