@@ -55,7 +55,7 @@ function HeroSection() {
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[#03E9F4]/10"></div> 
+      <div className="absolute inset-0"></div> 
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -150,7 +150,7 @@ function ProjectCard({ project }: { project: Project }) {
   const hasStats = project.stats && project.stats.length > 0;
 
   return (
-    <div className="h-full w-full group overflow-hidden border-2 rounded-2xl">
+    <div className="h-full w-full group overflow-hidden border-0 rounded-2xl">
         
       <div className="relative aspect-[12/8]">
      

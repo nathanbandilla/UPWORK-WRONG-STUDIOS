@@ -57,9 +57,9 @@ function HeroSection() {
      {/*  Background Image ----commented for now */}
       <div className="absolute inset-0">
          <img 
-          src="/neon_city.png" 
+          src="/group.png" 
           alt="" 
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
+          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-30"
         />
       </div> 
 

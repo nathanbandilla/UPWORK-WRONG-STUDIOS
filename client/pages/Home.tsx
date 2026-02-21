@@ -149,7 +149,7 @@ export default function Home() {
 function HeroSection() {
   const { ref, isVisible } = useFadeInOnScroll();
   return (   
-  <section ref={ref} className={`relative pt-[200px] overflow-hidden fade-in-section ${isVisible ? 'visible' : ''}`}>
+  <section ref={ref} className={`relative pt-[100px] md:pt-[200px] overflow-hidden fade-in-section ${isVisible ? 'visible' : ''}`}>
       {/* Gradient Overlays */}
       <div 
         className="absolute top-[787px] left-[42px] w-[482px] h-[474px] pointer-events-none"
@@ -165,9 +165,9 @@ function HeroSection() {
       />
 
       {/* Content Container */}
-      <div className="max-w-[1440px] mx-auto px-8 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
         {/* Section Label */}
-        <div className="flex items-center justify-center gap-2 mb-8">
+        <div className="pt-16 md:pt-0 flex items-center justify-center gap-2 mb-8">
         <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
           <div className="h-7 w-[142px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
             <span className="h-9 ml-1 font-display text-[24.77px] tracking-wider uppercase">WRONG STUDIOS</span>          
@@ -177,39 +177,39 @@ function HeroSection() {
 
         {/* Main Heading */}
         <div className="relative text-center mb-12">
-          <h1 className="font-display text-[140px] md:text-[194px] leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
+          <h1 className="font-display text-[70px] sm:text-[100px] md:text-[140px] lg:text-[194px] leading-[70px] sm:leading-[110px] md:leading-[150px] lg:leading-[170px] bg-gradient-to-b from-white/50 to-white/100 text-transparent bg-clip-text">
             DOING IT WRONG
           </h1>
-          <p className="font-display text-[64px] leading-[72px] uppercase">
+          <p className="font-display text-[34px] sm:text-[42px] md:text-[64px] leading-[38px] sm:leading-[50px] md:leading-[72px] uppercase">
             Never Looked This Right.
           </p>
         </div>
 
         {/* Stats */}
-        <div className="flex items-center justify-center gap-4 md:gap-8 mb-20">
+        <div className="flex items-center justify-center gap-4 md:gap-8 mb-10 md:mb-20">
           <div className="text-center">
-            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">
+            <div className="font-display text-[34px] md:text-[55px] leading-tight mb-1 md:mb-2 tracking-[-1.1px]">
               <CountUpNumber value="1.5B" suffix="+" isVisible={isVisible} />
             </div>
-            <div className="text-[18px] leading-[20px] text-white/90 lowercase">
+            <div className="text-[11px] md:text-[18px] leading-[14px] md:leading-[20px] text-white/90 lowercase">
               views in<br />viral videos
             </div>
           </div>
-          <div className="w-px h-[103px] bg-white/30" />
+          <div className="w-px h-[60px] md:h-[103px] bg-white/30" />
           <div className="text-center">
-            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">
+            <div className="font-display text-[34px] md:text-[55px] leading-tight mb-1 md:mb-2 tracking-[-1.1px]">
               <CountUpNumber value="1M" suffix="+" isVisible={isVisible} />
             </div>
-            <div className="text-[18px] leading-[20px] text-white/90 lowercase">
+            <div className="text-[11px] md:text-[18px] leading-[14px] md:leading-[20px] text-white/90 lowercase">
               followers<br />accumulated
             </div>
           </div>
-          <div className="w-px h-[103px] bg-white/30" />
+          <div className="w-px h-[60px] md:h-[103px] bg-white/30" />
           <div className="text-center">
-            <div className="font-display text-[55px] leading-tight mb-2 tracking-[-1.1px]">
+            <div className="font-display text-[34px] md:text-[55px] leading-tight mb-1 md:mb-2 tracking-[-1.1px]">
               <CountUpNumber value="150M" isVisible={isVisible} />
             </div>
-            <div className="text-[18px] leading-[20px] text-white/90 lowercase">
+            <div className="text-[11px] md:text-[18px] leading-[14px] md:leading-[20px] text-white/90 lowercase">
               overall<br />likes
             </div>
           </div>
@@ -220,7 +220,7 @@ function HeroSection() {
       </div>
 
              {/* Left and Right Images */}
-        <div className="flex justify-center gap-32 -mt-32">
+        <div className="hidden md:flex justify-center gap-32 -mt-32">
           <img 
             src="/vector_left.png" 
             alt="" 
@@ -286,10 +286,7 @@ const PhoneThumbnail = React.memo(({
         `,
         transformOrigin: 'center center',
         transition: `
-          transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
-          opacity 500ms ease,
-          width 700ms cubic-bezier(0.22, 1, 0.36, 1),
-          height 700ms cubic-bezier(0.22, 1, 0.36, 1)
+          transform 200ms cubic-bezier(0.22, 1, 0.36, 1) 
         `,
         willChange: 'transform, opacity',
       }}
@@ -336,6 +333,13 @@ function PhoneSlideshow() {
   const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
   const [direction, setDirection] = React.useState<1 | -1>(1);
   const isTransitioningRef = React.useRef(false);
+  const [isMobile, setIsMobile] = React.useState(typeof window !== 'undefined' && window.innerWidth < 640);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const totalVideos = 8;
 
@@ -430,15 +434,21 @@ function PhoneSlideshow() {
       };
     }
 
+    const spacing = isMobile ? 110 : 220;
+    const centerW = isMobile ? 170 : 360;
+    const centerH = isMobile ? 270 : 540;
+    const wShrink = isMobile ? 18 : 40;
+    const hShrink = isMobile ? 28 : 60;
+
     return {
-      x: delta * 220,
+      x: delta * spacing,
       scale: 1 - abs * 0.08,
       rotate: delta * 6,
       opacity: abs >= 3 ? 0.1 : 1 - abs * 0.25,
       zIndex: 10 - abs,
-      width: 360 - abs * 40,
-      height: 540 - abs * 60,
-      center: abs < 0.5, // Center position when delta is close to 0
+      width: centerW - abs * wShrink,
+      height: centerH - abs * hShrink,
+      center: abs < 0.5,
     };
   };
 
@@ -447,11 +457,11 @@ function PhoneSlideshow() {
       <div className="relative max-w-[1440px] mx-auto px-8 pb-20">
        
         {/* Position Tracker */}
-        <div className="absolute left-8 md:left-12 top-8 z-20 flex items-center gap-2 -mt-5 md:mt-0">
+        <div className="absolute left-8 md:left-12 top-8 z-20 hidden md:flex items-center gap-2 -mt-5 md:mt-3">
           {Array.from({ length: totalVideos }).map((_, index) => (
             <div
               key={index}
-              className={`h-4 rounded-full transition-all duration-300 ease-out ${
+              className={`h-1 md:h-4 md:rounded-full transition-all duration-300 ease-out ${
                 index === currentIndex 
                   ? 'w-8 bg-[#03E9F4]' 
                   : 'w-2 bg-white/30'
@@ -461,10 +471,10 @@ function PhoneSlideshow() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="absolute right-8 md:right-12 top-8 z-20 flex items-center gap-3 -mt-10 md:mt-0">
+        <div className="absolute right-8 md:right-12 top-8 z-20 flex items-center gap-3 -mt-7 md:mt-0">
           <button 
             onClick={handlePrevious}
-            className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
+            className="w-12 h-8 md:h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/0 transition-all"
             aria-label="Previous"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
@@ -473,7 +483,7 @@ function PhoneSlideshow() {
           </button>
           <button 
             onClick={handleNext}
-            className="w-12 h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/60 transition-all"
+            className="w-12 h-8 md:h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/0 transition-all"
             aria-label="Next"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
@@ -484,7 +494,7 @@ function PhoneSlideshow() {
 
         {/* Phone Mockups Grid */}
         <div
-          className="relative h-[640px] w-full flex items-center justify-center overflow-hidden md:-mt-20"
+          className="relative h-[360px] md:h-[640px] w-full flex items-center justify-center overflow-hidden md:-mt-20"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -535,13 +545,13 @@ function LogoBanner() {
   ];
 
   return (
-    <div className="relative bg-[#03E9F4] py-1 overflow-hidden mt-[-50px] mb-[200px]">
+    <div className="relative bg-[#03E9F4] py-5 md:py-6 overflow-hidden mt-[-50px] mb-[100px] md:mb-[200px]">
       {/* Scrolling Content */}
-      <div className="flex gap-24 animate-scroll">
+      <div className="flex gap-8 md:gap-24 animate-scroll">
         {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
           <div key={i} className="flex items-center gap-4 flex-shrink-0">
 
-           <img src={logo.img_path}  />
+           <img src={logo.img_path} className="h-9 md:h-16 object-contain" />
 
            {/* <span className="text-4xl">{logo.img_path}</span>
             <span className="font-display text-2xl font-bold text-black whitespace-nowrap">{logo.name}</span>*/}
@@ -556,10 +566,18 @@ function TaglineSection() {
   const { ref, isVisible } = useFadeInOnScroll();
   const { slideToLeft, slideToRight } = useScrollSlide();
   return (
-    <section ref={ref} className={`py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="bg-cyan">
-        <div className="max-w-[1280px] mx-auto px-8 mt-0 md:mt-22 p-32">
-          <h2 className="font-display text-black text-[100px] leading-[104px] text-center uppercase" style={slideToRight(2,0)}>
+    <section ref={ref} className={`py-0 fade-in-section ${isVisible ? 'visible' : ''}`}>
+      <div>
+        <div className="absolute inset-0">
+          <img
+            src="/we_specialize.png"
+            alt="wrong-studios scroll stoping content"
+            className="w-full h-full rounded-2xl opacity-30 object-cover mx-auto max-w-[1420px]"
+          />
+        </div>
+
+        <div className="max-w-[1280px] mx-auto px-8 mt-0 md:mt-22 p-20 md:p-32">
+          <h2 className="font-display text-white md:text-white text-[70px] md:text-[100px] leading-[70px] md:leading-[104px] text-center uppercase" style={slideToRight(0,2)}>
             we specialize in scroll-stopping short-form content
           </h2>
         </div>
@@ -586,19 +604,19 @@ function AboutSection() {
               <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
 
-            <h2 className="font-display text-[100px] leading-[104px] uppercase" style={slideToLeft(2,0)}>
+            <h2 className="font-display text-[70px] md:text-[100px] leading-[70px] md:leading-[104px] uppercase" style={slideToLeft(2,0)}>
               Wrong Studios are Creators first
             </h2>
            
           </div>
 
-          <div className="space-y-6 pt-16">
+          <div className="mt-[-30px] md:mt-[0px] md:space-y-6 md:pt-16">
             <p className="text-[18px] leading-[34px] text-white/90 capitalize">
               Wrong Studios was founded by content creators who understand the pulse of online culture. With acquiring over 1 billion views each year and years of creative social media experience, we craft scroll-stopping short-form content that connects emotionally and transforms your brand into something impossible to ignore.
             </p>
           </div>
         </div>
-         <div className="space-y-6 pt-8">
+         <div className="space-y-6 pt-16 md:pt-12">
             <button 
               onClick={() => navigate('/about')}
               className="block mx-auto bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
@@ -633,8 +651,8 @@ function ServicesSection() {
   ];
 
   return (
-    <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="max-w-[1420px] mx-auto">
+    <section ref={ref} className={`py-0 fade-in-section ${isVisible ? 'visible' : ''}`}>
+      <div className="max-w-[1440px] mx-auto">
         <div className="border-none border-[#292929] rounded-[20px] p-16 relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-0">
@@ -656,7 +674,7 @@ function ServicesSection() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-0 bg-[#03E9F4]/10 rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
+            <div className="grid md:grid-cols-3 gap-0 bg-gradient-to-r from-cyan/20 to-[#9201CB]/20 rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
               {services.map((service, i) => (
                 <div 
                   key={i} 
@@ -736,7 +754,7 @@ function WorkSection() {
               {duplicatedProjects.slice(0, 15).map((project, index) => (
                 <div
                   key={`row1-${project.id}-${index}`}
-                  className="flex-shrink-0 w-[280px] mx-2"
+                  className="flex-shrink-0 w-[120px] md:w-[280px] mx-2"
                 >
                   <div className="relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-500">
                     {/* Image */}
@@ -762,7 +780,7 @@ function WorkSection() {
               {duplicatedProjects.slice(15, 30).map((project, index) => (
                 <div
                   key={`row2-${project.id}-${index}`}
-                  className="flex-shrink-0 w-[280px] mx-2"
+                  className="flex-shrink-0 w-[120px] md:w-[280px] mx-2"
                 >
                   <div className="relative group overflow-hidden rounded-3xl border-2 border-white/20 hover:border-[#03E9F4] transition-all duration-500">
                     {/* Image */}
@@ -808,18 +826,18 @@ function StatsBanner() {
   ];
 
   return (
-    <div className="relative bg-[#03E9F4] py-10 overflow-hidden -rotate-[3deg] my-20">
+    <div className="relative bg-[#03E9F4] py-2 md:py-6 overflow-hidden -rotate-[3deg] my-20">
       {/* Background */}
  
 
       {/* Scrolling Content */}
       <div className="relative z-10 flex gap-16 animate-scroll">
         {[...stats, ...stats, ...stats].map((stat, i) => (
-          <div key={i} className="flex items-center gap-8 flex-shrink-0">
-            <span className="font-display text-[40px] text-[#191919] leading-[67px] tracking-wide whitespace-nowrap">
+          <div key={i} className="flex items-center gap-4 md:gap-8 flex-shrink-0">
+            <span className="font-display text-[20px] md:text-[40px] text-[#191919] leading-[67px] tracking-wide whitespace-nowrap">
               {stat}
             </span>
-            <img src="/signature_black.png" alt="" className="w-[73px] h-[49px]" />
+            <img src="/signature_black.png" alt="" className="w-[43px] md:w-[73px] h-[39px] md:h-[49px]" />
           </div>
         ))}
       </div>
@@ -861,7 +879,7 @@ function StorySection() {
             
           </div>
 
-          <div className="grid place-items-center h-[80px] md:h-[400px] rounded-20px border-0 border-cyan/20 hover:bg-[#03E9F4]/10 hover:rounded-20px" style={slideToRight(32,0)} >
+          <div className="pt-20 md:pt-0 grid place-items-center h-[80px] md:h-[400px] rounded-20px border-0 border-cyan/20 md:hover:bg-[#03E9F4]/10 hover:rounded-20px" style={slideToRight(32,0)} >
           <img
               src="/logo.png"
               alt="Wrong Studios"
