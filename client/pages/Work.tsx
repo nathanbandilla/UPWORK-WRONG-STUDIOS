@@ -156,7 +156,7 @@ function ProjectCard({ project }: { project: Project }) {
   const hasStats = project.stats && project.stats.length > 0;
 
   return (
-    <div className="h-full w-full group overflow-hidden border-[1px] rounded-0">
+    <div className="h-full w-full group overflow-hidden border-[1px] rounded-0 hover:border-cyan">
         
       <div className="relative aspect-[12/8]">
      
@@ -170,17 +170,17 @@ function ProjectCard({ project }: { project: Project }) {
 
         <div className="absolute p-4">
           <div className="text-white">
-            <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow text-cyan/50">
+            <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow text-white/50 ">
               {project.title}
             </div>
             {project.subtitle && (
-              <div className="text-cyan/50 text-base mt-1">{project.subtitle}</div>
+              <div className="text-white/50 text-base mt-1">{project.subtitle}</div>
             )}
             {hasStats && (
-              <div className="flex gap-6 text-sm uppercase tracking-wide text-cyan/50">
+              <div className="flex gap-6 text-sm uppercase tracking-wide text-white/50">
                 {project.stats?.map((item) => (
                   <div key={item.label} className="flex flex-col">
-                    <span className="text-2xl font-semibold text-cyan/50">{item.value}</span>
+                    <span className="text-base font-semibold text-white/50">{item.value}</span>
                     <span className="text-[11px]">{item.label}</span>
                   </div>
                 ))}
@@ -212,13 +212,17 @@ function CtaSection() {
           <br />
           unforgettable.
         </h2>
-        <button
-         onClick={() => navigate('/contact')} 
-         className="mt-8 rounded-2xl bg-cyan px-6 py-3 text-black font-semibold transition hover:scale-[1.02]">
-          
-          Join the Wrong Side
-         
-        </button>
+        
+        <div className="flex justify-center pt-4"> 
+          <div className="cta-running-border">
+            <button
+              onClick={() => navigate('/contact')}
+              className="relative bg-black text-white px-8 py-4 rounded-2xl font-bold text-[18px] transition-colors capitalize leading-[19.6px]"
+            >
+               JOIN THE WRONG SIDE
+            </button>
+          </div>
+          </div>
       </div>
     </section>
   );

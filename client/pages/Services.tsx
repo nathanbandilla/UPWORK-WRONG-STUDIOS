@@ -269,7 +269,7 @@ function ServiceSection2() {
                 {/* Section Label */}
                 <div className="flex items-center gap-2">             
                   <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-                  <div className="h-6 w-[328px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
+                  <div className="h-6 w-[350px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                     <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
                     02. SHORT-FORM CONTENT PRODUCTION
                     </span>
@@ -383,17 +383,20 @@ function ServiceSection3() {
 
 function PhoneMockup() {
   return (
-    <div className="relative w-full max-w-[605px] h-[578px] mx-auto">
-      {/* Left Phone */}
-      <div className="absolute left-0 top-0 w-[40%] h-full">
+    /* Mobile: flex column (left phone → right phone stacked, centered)
+       Desktop (md+): relative block with absolute-positioned side-by-side phones */
+    <div className="flex flex-col items-center gap-8 md:relative md:block md:w-full md:max-w-[605px] md:h-[578px] md:mx-auto">
+
+      {/* Left Phone – Instagram (appears first on mobile) */}
+      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute md:left-0 md:top-0 md:w-[40%] md:h-full">
         <div className="relative w-full h-full">
           <div
             className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-transparent rounded-[30px]"
-            style={{ transform: "skewY(-2deg)" }}
+            // style={{ transform: "skewY(-2deg)" }}
           />
           <div
             className="absolute inset-0 rounded-[30px] overflow-hidden border-2 border-cyan/20"
-            style={{ transform: "skewY(-2deg)" }}
+            // style={{ transform: "skewY(-2deg)" }}
           >
             <img
               src="/instagram_feed.png"
@@ -404,16 +407,16 @@ function PhoneMockup() {
         </div>
       </div>
 
-      {/* Right Phone */}
-      <div className="absolute right-0 top-0 w-[40%] h-full">
+      {/* Right Phone – TikTok (appears second on mobile) */}
+      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute md:right-0 md:top-0 md:w-[40%] md:h-full">
         <div className="relative w-full h-full">
           <div
             className="absolute inset-0 bg-gradient-to-l from-cyan/10 to-transparent rounded-[30px]"
-            style={{ transform: "skewY(2deg)" }}
+            // style={{ transform: "skewY(2deg)" }}
           />
           <div
             className="absolute inset-0 rounded-[30px] overflow-hidden border-2 border-cyan/20"
-            style={{ transform: "skewY(2deg)" }}
+            // style={{ transform: "skewY(2deg)" }}
           >
             <img
               src="/tiktok_feed.png"

@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useScrollSlide } from "@/hooks/use-scroll-slide";
 
 // Hook for fade-in on scroll
 function useFadeInOnScroll() {
@@ -122,7 +123,7 @@ function StorySection() {
 
 function IdentitySection() {
   const [scrollY, setScrollY] = useState(0);
-
+  const { slideToLeft, slideToRight } = useScrollSlide();
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -132,7 +133,7 @@ function IdentitySection() {
   const getTransform = (index: number, baseDelay: number) => {
     const triggerPoint = 700 + index * 100; // Adjust trigger points as needed
     const progress = Math.max(0, Math.min(1, (scrollY - triggerPoint) / 100));
-
+   
     return {
       transform: `translateY(${50 - progress * 50}px)`,
       opacity: progress,
@@ -141,6 +142,7 @@ function IdentitySection() {
   };
 
   return (
+  
     <section className="py-32 md:py-52 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
@@ -158,21 +160,21 @@ function IdentitySection() {
       <div className="relative z-10 max-w-[1420px] mx-auto px-8">
         <div className="max-w-[795px] mx-auto text-center space-y-6">
           <h2
-            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase"
-            style={getTransform(0, 0)}
+            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase"
+            style={slideToLeft(0,0)}
           >
             WRONG STUDIOS IS
           </h2>
 
           <div
-            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase -rotate-0 py-4"
-            style={getTransform(1, 200)}
+            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase -rotate-0 py-4"
+            style={slideToRight(0,0)}
           >
             <span
               className="inline-block"
               style={{
-                WebkitTextStroke: '1px white',
-                WebkitTextFillColor: 'transparent'
+                WebkitTextStroke: '0px white',
+                WebkitTextFillColor: '#45A29E'
               }}
             >
               A CREATOR-LED
@@ -180,21 +182,21 @@ function IdentitySection() {
           </div>
 
           <h3
-            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white"
-            style={getTransform(2, 400)}
+            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase text-white"
+            style={slideToLeft(0,0)}
           >
             PRODUCTION HOUSE
           </h3>
 
           <div
-            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase rotate-0 py-4"
-            style={getTransform(3, 600)}
+            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase rotate-0 py-4"
+            style={slideToRight(0,0)}
           >
             <span
               className="inline-block"
               style={{
-                WebkitTextStroke: '1px white',
-                WebkitTextFillColor: 'transparent'
+                WebkitTextStroke: '0px white',
+                WebkitTextFillColor: '#45A29E'
               }}
             >
               BUILT BY ARWIN
@@ -202,8 +204,8 @@ function IdentitySection() {
           </div>
 
           <h4
-            className="font-display text-[60px] md:text-[100px] leading-[0.82] uppercase text-white"
-            style={getTransform(4, 800)}
+            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase text-white"
+            style={slideToLeft(0,0)}
           >
             AND CLARA
           </h4>
@@ -224,43 +226,41 @@ function CTASection() {
         <div className="space-y-16">
           {/* Main CTA Text */}
           <div className="space-y-12">
-            <h2 className="font-display text-[80px] md:text-[140px] leading-[0.62] uppercase text-white">
+            <h2 className=" text-[60px] md:text-[80px] leading-[0.22] md:leading-[0.42] uppercase text-white">
               READY TO
             </h2>
             
             <div className="">
               <h3 
-                className="font-display text-[80px] md:text-[140px] leading-[0.69] uppercase"
+                className="text-[60px] md:text-[80px] leading-[0.42] md:leading-[0.62] uppercase"
                 style={{
-                  WebkitTextStroke: '1px white',
-                  WebkitTextFillColor: 'transparent'
+                  WebkitTextStroke: '0px white',
+                  WebkitTextFillColor: '#45A29E'
                 }}
               >
                 STOP BEING
               </h3>
             </div>
 
-            <h4 className="font-display text-[80px] md:text-[140px] leading-[0.75] uppercase text-white">
+            <h4 className="text-[60px] md:text-[80px] leading-[0.22] md:leading-[0.42] uppercase text-white">
               IGNORED?
             </h4>
           </div>
 
           {/* CTA Button */}
-          <div className="grid place-items-center pt-12"> 
+          <div className="grid place-items-center pt-2"> 
             <div className="flex gap-2">
-              <button
-              onClick={() => navigate('/contact')}  
-              className="group relative bg-black border-2 border-white rounded-xl px-8 py-4 md:px-8 md:py-4 hover:bg-cyan/20 transition-all">
-                <span className="font-display text-[20px] md:text-[40px] leading-[1.1] uppercase text-white">               
-                  JOIN THE WRONG SIDE                
-                </span>
-              </button>
-              
-              <div className="w-[80px] md:w-[80px] h-[60px] md:h-[80px] flex items-center justify-center bg-transparent border-2 border-white rounded-xl group-hover:bg-white/5 transition-all">
-                <svg width="33" height="38" viewBox="0 0 33 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30.6712 29.0257L2.75488 56.4486C16.8775 42.585 16.232 14.3275 3.24825 1.10938L30.6712 29.0257Z" fill="white"/>
-                </svg>
+              <div className="cta-running-border">
+                <button
+                onClick={() => navigate('/contact')}  
+                className="group relative bg-black rounded-[10px] px-8 py-4 md:px-8 md:py-4 transition-all">
+                  <span className="text-[20px] md:text-[20px] leading-[1.1] uppercase text-white">               
+                    JOIN THE WRONG SIDE                
+                  </span>
+                </button>
               </div>
+              
+       
             </div>
           </div>
        

@@ -674,7 +674,7 @@ function ServicesSection() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-0 bg-gradient-to-r from-cyan/20 to-[#9201CB]/20 rounded-[20px] pb-0 md:pb-8 pt-0 md:pt-6">
+            <div className="grid md:grid-cols-3 gap-0 bg-gradient-to-r from-cyan/20 to-[#9201CB]/20 rounded-[20px] -m-8 md:-m-0 pb-0 md:pb-8 pt-0 md:pt-6">
               {services.map((service, i) => (
                 <div 
                   key={i} 
@@ -921,13 +921,16 @@ function CTASection() {
              <br />
               unforgettable.
           </h2>
-
-          <button 
-            onClick={() => navigate('/contact')}
-            className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
-          >
-            join the wrong side
-          </button>
+          <div className="flex justify-center"> 
+          <div className="cta-running-border">
+            <button
+              onClick={() => navigate('/contact')}
+              className="relative bg-black text-white px-8 py-4 rounded-2xl font-bold text-[18px] transition-colors capitalize leading-[19.6px]"
+            >
+            JOIN THE WRONG SIDE
+            </button>
+          </div>
+          </div>
         </div>
       </div>
     </section>

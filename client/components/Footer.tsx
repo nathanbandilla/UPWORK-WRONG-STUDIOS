@@ -47,11 +47,11 @@ export default function Footer() {
           {/* Navigation Column */}
           <div className="space-y-6">
             <h4 className="font-display text-[30px] leading-[29px] uppercase">Navigation</h4>
-            <nav className="space-y-[35px]">
-              <Link to="/" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Home</Link>
-              <Link to="/about" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">About</Link>
-              <Link to="/work" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Our Work</Link>
-              <Link to="/services" className="block text-[18px] capitalize hover:text-[#03E9F4] transition-colors">Services</Link>          
+            <nav className="grid grid-cols-4 gap-2 md:block md:space-y-[35px]">
+              <Link to="/" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Home</Link>
+              <Link to="/about" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">About</Link>
+              <Link to="/work" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Our Work</Link>
+              <Link to="/services" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Services</Link>
             </nav>
           </div>
 

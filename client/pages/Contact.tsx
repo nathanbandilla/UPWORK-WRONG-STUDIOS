@@ -259,13 +259,15 @@ function ContactFormSection() {
           )}
 
           {/* Submit Button */}
-          <div className="text-center pt-4">
-            <button
-              type="submit"
-              className="bg-[#03E9F4] text-black px-8 py-4 rounded-xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors tracking-wider"
-            >
-              Work With Wrong Studios
-            </button>
+          <div className="flex justify-center pt-4">
+            <div className="cta-running-border">
+              <button
+                type="submit"
+                className="relative bg-black text-white hover:text-black px-8 py-4 rounded-[10px] font-bold text-[18px] transition-colors tracking-wider hover:bg-[#03E9F4]"
+              >
+                WORK WITH WRONG STUDIOS
+              </button>
+            </div>
           </div>
         </form>
       </div>

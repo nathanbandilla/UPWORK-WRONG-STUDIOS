@@ -152,4 +152,36 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── Running border animation for CTA button ── */
+  @keyframes cta-border-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .cta-running-border {
+    position: relative;
+    padding: 2px;
+    border-radius: 12px; /* matches rounded-xl */
+    overflow: hidden;
+    background: black;
+    
+    
+  }
+
+  /* The rotating conic-gradient that forms the running cyan beam */
+  .cta-running-border::before {
+    content: '';
+    position: absolute;
+    /* 500% ensures the spinning gradient reaches every corner of a wide button */
+    inset: -500%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 270deg,
+      #03E9F4 320deg,
+      transparent 360deg
+    );
+    animation: cta-border-spin 2.5s linear infinite;
+  }
 }
