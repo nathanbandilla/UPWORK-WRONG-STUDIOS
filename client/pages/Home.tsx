@@ -471,7 +471,7 @@ function PhoneSlideshow() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="absolute right-8 md:right-12 top-8 z-20 flex items-center gap-3 -mt-7 md:mt-0">
+        <div className="absolute right-8 md:right-12 top-8 z-20 hidden md:flex items-center gap-3 -mt-7 md:mt-0">
           <button 
             onClick={handlePrevious}
             className="w-12 h-8 md:h-12 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/0 transition-all"
@@ -572,7 +572,7 @@ function TaglineSection() {
           <img
             src="/we_specialize.png"
             alt="wrong-studios scroll stoping content"
-            className="w-full h-full rounded-2xl opacity-30 object-cover mx-auto max-w-[1420px]"
+            className="w-full h-full rounded-2xl opacity-30 object-cover mx-auto max-w-[1420px] blur-xl"
           />
         </div>
 

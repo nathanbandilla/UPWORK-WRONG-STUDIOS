@@ -55,7 +55,13 @@ function HeroSection() {
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
 
       {/* Background Image */}
-      <div className="absolute inset-0"></div> 
+      <div className="absolute inset-0">
+      <img 
+          src="/work.png" 
+          alt="" 
+          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-20"
+        />
+        </div> 
 
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
@@ -136,7 +142,7 @@ function FeaturedProjects() {
           </h1>
         </div>
 
-        <div className="p-2 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-32 ">
+        <div className="p-0 md:p-32 grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-0 border-0">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -150,7 +156,7 @@ function ProjectCard({ project }: { project: Project }) {
   const hasStats = project.stats && project.stats.length > 0;
 
   return (
-    <div className="h-full w-full group overflow-hidden border-0 rounded-2xl">
+    <div className="h-full w-full group overflow-hidden border-[1px] rounded-0">
         
       <div className="relative aspect-[12/8]">
      
@@ -164,17 +170,17 @@ function ProjectCard({ project }: { project: Project }) {
 
         <div className="absolute p-4">
           <div className="text-white">
-            <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow">
+            <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow text-cyan/50">
               {project.title}
             </div>
             {project.subtitle && (
-              <div className="text-white/85 text-base mt-1">{project.subtitle}</div>
+              <div className="text-cyan/50 text-base mt-1">{project.subtitle}</div>
             )}
             {hasStats && (
-              <div className="flex gap-6 text-sm uppercase tracking-wide text-white/80">
+              <div className="flex gap-6 text-sm uppercase tracking-wide text-cyan/50">
                 {project.stats?.map((item) => (
                   <div key={item.label} className="flex flex-col">
-                    <span className="text-2xl font-semibold text-white">{item.value}</span>
+                    <span className="text-2xl font-semibold text-cyan/50">{item.value}</span>
                     <span className="text-[11px]">{item.label}</span>
                   </div>
                 ))}

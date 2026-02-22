@@ -59,7 +59,7 @@ function HeroSection() {
          <img 
           src="/group.png" 
           alt="" 
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-30"
+          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-20"
         />
       </div> 
 
@@ -67,11 +67,11 @@ function HeroSection() {
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 text-center">
         {/* Section Label */}
          <div className="flex items-center justify-center gap-2 mb-8">
-          {/*<img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />*/}
-            <div className="h-7 w-[120px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
-              <span className="text-white h-9 ml-1 font-display text-[24.77px] tracking-wider uppercase">[ ABOUT US ]</span>          
+          <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
+            <div className="h-7 w-[87px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">         
+              <span className="text-white h-9 ml-1 font-display text-[24.77px] tracking-wider uppercase">ABOUT US</span>          
             </div>
-           {/*<img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />*/} 
+           <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" /> 
          </div>       
 
         <h1 className="font-display text-[60px] md:text-[94px] leading-[1.05] uppercase max-w-[760px] mx-auto">
