@@ -526,6 +526,7 @@ function PhoneSlideshow() {
           })}
         </div>
 
+
       </div>
 
     </>
@@ -916,7 +917,7 @@ function CTASection() {
             <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
           </div>
 
-          <h2 className="font-display text-[60px] md:text-[70px] leading-[1] uppercase">
+          <h2 className="font-display text-[55px] sm:text-[60px] md:text-[70px] leading-[1] uppercase">
              Let's build something
              <br />
               unforgettable.

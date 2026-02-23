@@ -199,7 +199,7 @@ function ServiceSection1() {
             {/* Section Label */}
             <div className="flex items-center gap-2">
              <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-              <div className="h-6 w-[300px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
+              <div className="h-6 w-[310px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                 <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
                   01. CREATIVE STRATEGY & IDENTITY
                 </span>
@@ -250,7 +250,7 @@ function ServiceSection2() {
   return (
     <section className="py-20 md:py-32 relative overflow-hidden">
       {/* Background with border */}
-      <div className="max-w-[1420px] mx-auto px-8">
+      <div className="max-w-[1420px] mx-auto px-2 md:px-8">
         <div className="border border-[#292929] rounded-3xl overflow-hidden relative">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-30 mix-blend-plus-darker">
@@ -262,14 +262,14 @@ function ServiceSection2() {
           </div>
 
           {/* Content */}
-          <div className="relative z-10 max-w-[1280px] mx-auto px-8 py-20">
+          <div className="relative z-10 max-w-[1280px] mx-auto px-0 md:px-8 py-20">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Content First on Mobile, Second on Desktop */}
               <div className="space-y-8 order-2 md:order-1" style={slideToRight(8,0)}>
                 {/* Section Label */}
                 <div className="flex items-center gap-2">             
                   <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-                  <div className="h-6 w-[350px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
+                  <div className="h-6 w-[343px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                     <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
                     02. SHORT-FORM CONTENT PRODUCTION
                     </span>
@@ -347,7 +347,7 @@ function ServiceSection3() {
             {/* Section Label */}
              <div className="flex items-center gap-2">             
                 <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-                  <div className="h-6 w-[321px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
+                  <div className="h-6 w-[341px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                     <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
                     03. COMMUNITY & TREND INTEGRATION
                     </span>
@@ -388,7 +388,7 @@ function PhoneMockup() {
     <div className="flex flex-col items-center gap-8 md:relative md:block md:w-full md:max-w-[605px] md:h-[578px] md:mx-auto">
 
       {/* Left Phone – Instagram (appears first on mobile) */}
-      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute md:left-0 md:top-0 md:w-[40%] md:h-full">
+      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute right-2 md:left-0 md:top-0 md:w-[40%] md:h-full">
         <div className="relative w-full h-full">
           <div
             className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-transparent rounded-[30px]"
@@ -408,7 +408,7 @@ function PhoneMockup() {
       </div>
 
       {/* Right Phone – TikTok (appears second on mobile) */}
-      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute md:right-0 md:top-0 md:w-[40%] md:h-full">
+      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute right-2 md:right-0 md:top-0 md:w-[40%] md:h-full">
         <div className="relative w-full h-full">
           <div
             className="absolute inset-0 bg-gradient-to-l from-cyan/10 to-transparent rounded-[30px]"

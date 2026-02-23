@@ -13,7 +13,7 @@ export default function Footer() {
             </h3>
             <div className="space-y-6">
               <p className="text-[16px] text-white/70 capitalize">Social:</p>
-              <p className="text-[18px] capitalize space-x-2">
+              <p className="text-[16px] capitalize space-x-2">
                 <a
                   href="https://www.instagram.com/arwinclara"
                   target="_blank"
@@ -22,7 +22,7 @@ export default function Footer() {
                 >
                   Instagram
                 </a>
-                <span>|</span>
+               
                 <a
                   href="https://www.tiktok.com/@arwinclara"
                   target="_blank"
@@ -31,7 +31,7 @@ export default function Footer() {
                 >
                   TikTok
                 </a>
-                <span>|</span>
+               
                 <a
                   href="https://www.snapchat.com/@arwinandclara"
                   target="_blank"
@@ -48,10 +48,10 @@ export default function Footer() {
           <div className="space-y-6">
             <h4 className="font-display text-[30px] leading-[29px] uppercase">Navigation</h4>
             <nav className="grid grid-cols-4 gap-2 md:block md:space-y-[35px]">
-              <Link to="/" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Home</Link>
-              <Link to="/about" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">About</Link>
-              <Link to="/work" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Our Work</Link>
-              <Link to="/services" className="block text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Services</Link>
+              <Link to="/" className="block text-[14px] sm:text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Home</Link>
+              <Link to="/about" className="block text-[14px] sm:text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">About</Link>
+              <Link to="/work" className="block text-[14px] sm:text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Our Work</Link>
+              <Link to="/services" className="block text-[14px] sm:text-[16px] md:text-[18px] capitalize text-center md:text-left hover:text-[#03E9F4] transition-colors">Services</Link>
             </nav>
           </div>
 
@@ -94,7 +94,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="text-center">
-          <p className="text-[18px] capitalize">
+          <p className="text-[12px] capitalize">
             © 2025 WRONG STUDIOS — Doing It Wrong Has Never Looked This Right.
           </p>
         </div>

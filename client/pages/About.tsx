@@ -160,14 +160,14 @@ function IdentitySection() {
       <div className="relative z-10 max-w-[1420px] mx-auto px-8">
         <div className="max-w-[795px] mx-auto text-center space-y-6">
           <h2
-            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase"
+            className="text-[28px] sm:text-[30px] md:text-[60px] leading-[0.12] md:leading-[0.52] uppercase"
             style={slideToLeft(0,0)}
           >
             WRONG STUDIOS IS
           </h2>
 
           <div
-            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase -rotate-0 py-4"
+            className="text-[28px] sm:text-[30px] md:text-[60px] leading-[0.12] md:leading-[0.52] uppercase -rotate-0 py-4"
             style={slideToRight(0,0)}
           >
             <span
@@ -182,14 +182,14 @@ function IdentitySection() {
           </div>
 
           <h3
-            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase text-white"
+            className="text-[28px] sm:text-[30px] md:text-[60px] leading-[0.12] md:leading-[0.52] uppercase text-white"
             style={slideToLeft(0,0)}
           >
             PRODUCTION HOUSE
           </h3>
 
           <div
-            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase rotate-0 py-4"
+            className="text-[28px] sm:text-[30px] md:text-[60px] leading-[0.12] md:leading-[0.52] uppercase rotate-0 py-4"
             style={slideToRight(0,0)}
           >
             <span
@@ -204,7 +204,7 @@ function IdentitySection() {
           </div>
 
           <h4
-            className="text-[40px] md:text-[60px] leading-[0.22] md:leading-[0.52] uppercase text-white"
+            className="text-[28px] sm:text-[30px] md:text-[60px] leading-[0.12] md:leading-[0.52] uppercase text-white"
             style={slideToLeft(0,0)}
           >
             AND CLARA
@@ -226,13 +226,13 @@ function CTASection() {
         <div className="space-y-16">
           {/* Main CTA Text */}
           <div className="space-y-12">
-            <h2 className=" text-[60px] md:text-[80px] leading-[0.22] md:leading-[0.42] uppercase text-white">
+            <h2 className=" text-[20px] md:text-[40px] leading-[0] md:leading-[0.42] uppercase text-white">
               READY TO
             </h2>
             
             <div className="">
               <h3 
-                className="text-[60px] md:text-[80px] leading-[0.42] md:leading-[0.62] uppercase"
+                className="text-[40px] md:text-[60px] leading-[0.1] md:leading-[0.62] uppercase"
                 style={{
                   WebkitTextStroke: '0px white',
                   WebkitTextFillColor: '#45A29E'
@@ -242,7 +242,7 @@ function CTASection() {
               </h3>
             </div>
 
-            <h4 className="text-[60px] md:text-[80px] leading-[0.22] md:leading-[0.42] uppercase text-white">
+            <h4 className="text-[59px] sm:text-[60px] md:text-[100px] leading-[0.3] md:leading-[0.72] uppercase text-white">
               IGNORED?
             </h4>
           </div>
