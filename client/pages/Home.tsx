@@ -352,7 +352,7 @@ function PhoneSlideshow() {
 
     setTimeout(() => {
       isTransitioningRef.current = false;
-    }, 700);
+    }, 100);
   }, []);
 
   const handleNext = React.useCallback(() => {
@@ -364,7 +364,7 @@ function PhoneSlideshow() {
 
     setTimeout(() => {
       isTransitioningRef.current = false;
-    }, 600);
+    }, 100);
   }, []);
 
   // Swipe gesture handling
@@ -420,9 +420,6 @@ function PhoneSlideshow() {
     { video: "/vid_compressed/vid_8.webm", thumb: "/thumbnails/thumb_8.jpg" }
   ], []);
 
-  const getVideoIndex = React.useCallback((offset: number) => {
-    return (currentIndex + offset + totalVideos) % totalVideos;
-  }, [currentIndex]);
 
   const getPositionStyle = (delta: number) => {
     const abs = Math.abs(delta);
@@ -454,7 +451,7 @@ function PhoneSlideshow() {
 
   return (
     <>
-      <div className="relative max-w-[1440px] mx-auto px-8 pb-20">
+      <div className="relative max-w-[1440px] mx-auto px-0 pb-20">
        
         {/* Position Tracker */}
         <div className="absolute left-8 md:left-12 top-8 z-20 hidden md:flex items-center gap-2 -mt-5 md:mt-3">
@@ -527,6 +524,30 @@ function PhoneSlideshow() {
         </div>
 
 
+        
+          {/* navigation buttons for mobile */}
+          <div className="flex top-8 z-20 md:hidden items-center justify-center gap-6 -mt-7 md:mt-0">
+          <button 
+            onClick={handlePrevious}
+            className="w-12 h-6 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/0 transition-all"
+            aria-label="Previous"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button 
+            onClick={handleNext}
+            className="w-12 h-6 rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 hover:border-white/0 transition-all"
+            aria-label="Next"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+
       </div>
 
     </>
@@ -573,7 +594,7 @@ function TaglineSection() {
           <img
             src="/we_specialize.png"
             alt="wrong-studios scroll stoping content"
-            className="w-full h-full rounded-2xl opacity-30 object-cover mx-auto max-w-[1420px] blur-xl"
+            className="w-full h-full rounded-2xl opacity-30 object-cover mx-auto max-w-[1360px] blur-xl"
           />
         </div>
 
@@ -730,7 +751,7 @@ function WorkSection() {
 
   return (
     <section ref={ref} className={`py-20 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="max-w-[1440px] mx-auto px-8">
+      <div className="max-w-[1440px] mx-auto px-0">
         <div className="text-center space-y-8 mb-16">
           <div className="flex items-center justify-center gap-2">
             <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
@@ -907,11 +928,11 @@ function CTASection() {
         <img src="/cta-bg.svg" alt="" className="w-full h-full object-cover" />
       </div>
 
-      <div className="max-w-[1040px] mx-auto px-8 relative z-10">
+      <div className="max-w-[1040px] mx-auto px-4 relative z-10">
         <div className="text-center space-y-8">
           <div className="flex items-center justify-center gap-2">
             <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-            <div className="h-6 w-[264px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
+            <div className="leading-[20px] h-6 w-[264px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
             <span className="font-display text-[24px] tracking-wider uppercase">Ready to Stop Being Ignored?</span>
             </div>
             <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />

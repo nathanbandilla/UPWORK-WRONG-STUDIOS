@@ -117,7 +117,7 @@ function WhyItMattersSection() {
 
   return ( 
     <section ref={ref} className={`py-20 md:py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="max-w-[1280px] mx-auto px-8">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left Column: Why It Matters */}
           <div className="space-y-10">
@@ -133,7 +133,7 @@ function WhyItMattersSection() {
             </div>
 
             {/* Description */}
-            <p className="font-display text-[40px] md:text-[40px] leading-[1.2] uppercase text-white">
+            <p className="font-display text-[28px] md:text-[40px] leading-[1.2] uppercase text-white/70">
               In today's digital chaos, attention is the new currency and it's
               shrinking by the second. Most brands post endlessly, but very few
               actually connect. We build short-form content that breaks through
@@ -145,11 +145,11 @@ function WhyItMattersSection() {
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat, i) => (
               <div key={i} className="space-y-6">
-                <div className="font-display text-[75px] leading-[1.2] tracking-tight text-white">
+                <div className="font-display text-[75px] leading-[1.2] tracking-tight text-white/80">
                   {stat.number}
                 </div>
                 <div className="h-px bg-white/20 w-full" />
-                <p className="text-[18px] leading-[34px] text-white/90">
+                <p className="text-[18px] leading-[34px] text-white/50">
                   {stat.description}
                 </p>
               </div>
@@ -172,7 +172,7 @@ function ServiceSection1() {
 
   return (
     <section className="py-20 md:py-32">
-      <div className="max-w-[1280px] mx-auto px-8">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="relative w-full aspect-[605/578]">
@@ -222,7 +222,7 @@ function ServiceSection1() {
               {features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-5">
                   <feature.icon />
-                  <span className="text-[20px] font-bold text-white/90">
+                  <span className="text-[16px] md:text-[18px] text-white/50">
                     {feature.text}
                   </span>
                 </div>
@@ -250,7 +250,7 @@ function ServiceSection2() {
   return (
     <section className="py-20 md:py-32 relative overflow-hidden">
       {/* Background with border */}
-      <div className="max-w-[1420px] mx-auto px-2 md:px-8">
+      <div className="max-w-[1420px] mx-auto px-4 md:px-8">
         <div className="border border-[#292929] rounded-3xl overflow-hidden relative">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-30 mix-blend-plus-darker">
@@ -263,18 +263,18 @@ function ServiceSection2() {
 
           {/* Content */}
           <div className="relative z-10 max-w-[1280px] mx-auto px-0 md:px-8 py-20">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
               {/* Content First on Mobile, Second on Desktop */}
               <div className="space-y-8 order-2 md:order-1" style={slideToRight(8,0)}>
                 {/* Section Label */}
                 <div className="flex items-center gap-2">             
-                  <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-                  <div className="h-6 w-[343px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
+                  <img src="/bracket-left-alt.png" alt="" className=" w-[7px] h-[33px] sm:h-[23px] md:h-[23px]" />
+                  <div className="leading-[20px] h-10 md:h-6 w-[290px] md:w-[330px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                     <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
                     02. SHORT-FORM CONTENT PRODUCTION
                     </span>
                   </div>
-                  <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
+                  <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[33px] sm:h-[23px] h-[23px]" />
                 </div>
 
                 {/* Heading */}
@@ -297,7 +297,7 @@ function ServiceSection2() {
                   {features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-5">
                       <feature.icon />
-                      <span className="text-[20px] font-bold text-white/90">
+                      <span className="text-[16px] md:text-[18px] text-white/50">
                         {feature.text}
                       </span>
                     </div>
@@ -328,8 +328,8 @@ function ServiceSection3() {
 
   return (
     <section className="py-20 md:py-32">
-      <div className="max-w-[1280px] mx-auto px-8">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="relative w-full aspect-[605/578]">
             <div className="absolute inset-0 rounded-[30px] overflow-hidden border-0 border-cyan/20 flex items-center justify-center">
@@ -346,13 +346,13 @@ function ServiceSection3() {
           <div className="space-y-8">
             {/* Section Label */}
              <div className="flex items-center gap-2">             
-                <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-                  <div className="h-6 w-[341px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
+                <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[35px] sm:h-[23px] md:h-[23px]" />
+                  <div className="leading-[20px] h-10 sm:h-6 md:h-6 w-[321px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                     <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
                     03. COMMUNITY & TREND INTEGRATION
                     </span>
                   </div>
-                <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
+                <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[35px] sm:h-[23px] md:h-[23px]" />
             </div>
        
             {/* Description */}
@@ -368,7 +368,7 @@ function ServiceSection3() {
               {features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-5">
                   <feature.icon />
-                  <span className="text-[20px] font-bold text-white/90">
+                  <span className="text-[16px] md:text-[18px] text-white/50">
                     {feature.text}
                   </span>
                 </div>
@@ -388,15 +388,15 @@ function PhoneMockup() {
     <div className="flex flex-col items-center gap-8 md:relative md:block md:w-full md:max-w-[605px] md:h-[578px] md:mx-auto">
 
       {/* Left Phone – Instagram (appears first on mobile) */}
-      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute right-2 md:left-0 md:top-0 md:w-[40%] md:h-full">
+      <div className="relative w-[142px] h-[328px] md:w-[242px] md:h-[570px] flex-shrink-100 md:absolute md:top-0 md:w-[40%] md:h-full">
         <div className="relative w-full h-full">
           <div
             className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-transparent rounded-[30px]"
-            // style={{ transform: "skewY(-2deg)" }}
+             style={{ transform: "skewY(-2deg)" }}
           />
           <div
             className="absolute inset-0 rounded-[30px] overflow-hidden border-2 border-cyan/20"
-            // style={{ transform: "skewY(-2deg)" }}
+             style={{ transform: "skewY(-2deg)" }}
           >
             <img
               src="/instagram_feed.png"
@@ -408,15 +408,15 @@ function PhoneMockup() {
       </div>
 
       {/* Right Phone – TikTok (appears second on mobile) */}
-      <div className="relative w-[242px] h-[578px] flex-shrink-0 md:absolute right-2 md:right-0 md:top-0 md:w-[40%] md:h-full">
+      <div className="relative w-[142px] h-[328px] md:w-[242px] md:h-[578px] flex-shrink-0 md:absolute md:right-0 md:top-0 md:w-[40%] md:h-full">
         <div className="relative w-full h-full">
           <div
             className="absolute inset-0 bg-gradient-to-l from-cyan/10 to-transparent rounded-[30px]"
-            // style={{ transform: "skewY(2deg)" }}
+             style={{ transform: "skewY(2deg)" }}
           />
           <div
             className="absolute inset-0 rounded-[30px] overflow-hidden border-2 border-cyan/20"
-            // style={{ transform: "skewY(2deg)" }}
+             style={{ transform: "skewY(2deg)" }}
           >
             <img
               src="/tiktok_feed.png"

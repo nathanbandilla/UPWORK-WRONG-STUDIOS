@@ -92,7 +92,7 @@ function StorySection() {
     <section ref={ref} className={`py-10 md:py-32 fade-in-section ${isVisible ? 'visible' : ''}`}>
 
 
-      <div className="relative max-w-[1440px] mx-auto px-8">
+      <div className="relative max-w-[1440px] mx-auto px-4">
 
         <div className="text-center">
         <div className="flex items-center justify-center gap-2 mb-8">
@@ -157,7 +157,7 @@ function IdentitySection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1420px] mx-auto px-8">
+      <div className="relative z-10 max-w-[1420px] mx-auto px-4">
         <div className="max-w-[795px] mx-auto text-center space-y-6">
           <h2
             className="text-[28px] sm:text-[30px] md:text-[60px] leading-[0.12] md:leading-[0.52] uppercase"
@@ -222,7 +222,7 @@ function CTASection() {
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
 
-      <div className="relative z-10 max-w-[1420px] mx-auto px-8">
+      <div className="relative z-10 max-w-[1420px] mx-auto px-4">
         <div className="space-y-16">
           {/* Main CTA Text */}
           <div className="space-y-12">
@@ -253,7 +253,7 @@ function CTASection() {
               <div className="cta-running-border">
                 <button
                 onClick={() => navigate('/contact')}  
-                className="group relative bg-black rounded-[10px] px-8 py-4 md:px-8 md:py-4 transition-all">
+                className="group relative bg-black rounded-[10px] px-4 py-4 md:px-8 md:py-4 transition-all">
                   <span className="text-[20px] md:text-[20px] leading-[1.1] uppercase text-white">               
                     JOIN THE WRONG SIDE                
                   </span>

@@ -152,7 +152,7 @@ function ContactFormSection() {
       ref={ref}
       className={`py-20 md:py-32 fade-in-section ${isVisible ? "visible" : ""}`}
     >
-      <div className="max-w-[1280px] mx-auto px-8">
+      <div className="max-w-[1280px] mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="font-display text-[60px] md:text-[80px] leading-[1.1] uppercase text-white">
@@ -263,7 +263,7 @@ function ContactFormSection() {
             <div className="cta-running-border">
               <button
                 type="submit"
-                className="relative bg-black text-white hover:text-black px-8 py-4 rounded-[10px] font-bold text-[18px] transition-colors tracking-wider hover:bg-[#03E9F4]"
+                className="relative bg-black text-white hover:text-black px-2 py-4 rounded-[10px] font-bold text-[18px] transition-colors tracking-wider hover:bg-[#03E9F4]"
               >
                 WORK WITH WRONG STUDIOS
               </button>

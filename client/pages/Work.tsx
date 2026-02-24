@@ -135,7 +135,7 @@ function FeaturedProjects() {
 
   return (   
    <section ref={ref} className={`bg-black py-16 md:py-24 fade-in-section ${isVisible ? 'visible' : ''}`}>
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="max-w-[1280px] mx-auto px-2">
         <div className="text-center mb-12 md:mb-16 mt-24">
             <h1 className="font-display text-[60px] md:text-[94px] leading-[1.05] uppercase max-w-[1054px] mx-auto">
             Featured Projects
@@ -168,7 +168,7 @@ function ProjectCard({ project }: { project: Project }) {
         
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
-        <div className="absolute p-4">
+        <div className="absolute p-2 md:p-4">
           <div className="text-white">
             <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow text-white/50 ">
               {project.title}
@@ -197,10 +197,10 @@ function CtaSection() {
   const navigate = useNavigate();
   return (
     <section className="bg-black py-24 md:py-28 text-center">
-      <div className="max-w-[960px] mx-auto px-6">
+      <div className="max-w-[960px] mx-auto px-4">
         <div className="mb-4 flex items-center justify-center gap-2 text-sm tracking-[0.3em] uppercase text-white/70">
             <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-              <div className="h-6 w-[268px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
+              <div className="leading-[20px] h-6 w-[268px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                 <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
                 Ready to stop being ignored?
                 </span>
