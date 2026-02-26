@@ -594,7 +594,7 @@ function TaglineSection() {
           <img
             src="/we_specialize.png"
             alt="wrong-studios scroll stoping content"
-            className="w-full h-full rounded-2xl opacity-30 object-cover mx-auto max-w-[1360px] blur-xl"
+            className="w-full h-full rounded-2xl opacity-30 object-cover mx-auto max-w-[1360px] blur-md bg-gray-500"
           />
         </div>
 

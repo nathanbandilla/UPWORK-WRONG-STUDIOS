@@ -55,12 +55,12 @@ function HeroSection() {
   return (
     <section className="relative min-h-[630px] pt-[200px] pb-20 overflow-hidden">
       
-     {/*  Background Image ----commented for now */}
+     {/*  Background Image */}
       <div className="absolute inset-0">
          <img 
           src="/group.png" 
           alt="" 
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-20"
+          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-20 blur-md"
         />
       </div> 
 
@@ -218,34 +218,13 @@ function IdentitySection() {
 function CTASection() {
   const navigate = useNavigate();
   return (
-    <section className="py-32 md:py-32 relative overflow-hidden text-center">
+    <section className="py-20 md:py-32 relative overflow-hidden text-center">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
 
       <div className="relative z-10 max-w-[1420px] mx-auto px-4">
         <div className="space-y-16">
-          {/* Main CTA Text */}
-          <div className="space-y-12">
-            <h2 className=" text-[20px] md:text-[40px] leading-[0] md:leading-[0.42] uppercase text-white">
-              READY TO
-            </h2>
-            
-            <div className="">
-              <h3 
-                className="text-[40px] md:text-[60px] leading-[0.1] md:leading-[0.62] uppercase"
-                style={{
-                  WebkitTextStroke: '0px white',
-                  WebkitTextFillColor: '#45A29E'
-                }}
-              >
-                STOP BEING
-              </h3>
-            </div>
-
-            <h4 className="text-[59px] sm:text-[60px] md:text-[100px] leading-[0.3] md:leading-[0.72] uppercase text-white">
-              IGNORED?
-            </h4>
-          </div>
+        
 
           {/* CTA Button */}
           <div className="grid place-items-center pt-2"> 
@@ -253,8 +232,8 @@ function CTASection() {
               <div className="cta-running-border">
                 <button
                 onClick={() => navigate('/contact')}  
-                className="group relative bg-black rounded-[10px] px-4 py-4 md:px-8 md:py-4 transition-all">
-                  <span className="text-[20px] md:text-[20px] leading-[1.1] uppercase text-white">               
+                className="group relative bg-black rounded-[10px] px-2 py-4 md:px-8 md:py-4 transition-all">
+                  <span className="text-[25px] md:text-[30px] leading-[1.1] uppercase text-white">               
                     JOIN THE WRONG SIDE                
                   </span>
                 </button>

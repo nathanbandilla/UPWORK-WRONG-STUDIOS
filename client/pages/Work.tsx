@@ -59,7 +59,7 @@ function HeroSection() {
       <img 
           src="/work.png" 
           alt="" 
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-20"
+          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] opacity-20 blur-md"
         />
         </div> 
 

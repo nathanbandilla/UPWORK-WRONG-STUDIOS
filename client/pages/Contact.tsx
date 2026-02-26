@@ -52,7 +52,7 @@ function HeroSection() {
         <img
           src="/contact_header.png"
           alt=""
-          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px]"
+          className="w-full h-full object-cover rounded-3xl border-2 border-white/20 mx-auto max-w-[1420px] blur-md"
         />
       </div>
 
