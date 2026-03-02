@@ -7,20 +7,23 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16 text-white/70">
           {/* Brand Column */}
           <div className="space-y-6">
-            <img src="/signature.png" alt="Wrong Studios" className="w-[109px] h-[69px]" />
-            <h3 className="font-display text-[30px] leading-[29px] uppercase">
+            <div className="flex justify-center md:justify-start"> 
+              <img src="/signature.png" alt="Wrong Studios" className="w-[109px] h-[69px]" />
+            </div>
+            
+            <h3 className="font-display text-[30px] leading-[29px] uppercase text-center md:text-left pb-8 md:pb-0">
               Doing It Wrong Has Never Looked This Right.
             </h3>
             <div className="md:space-y-6">
               <p className="text-[16px] capitalize">SOCIALS</p>
               <p className="text-[15px] md:text-[16px] capitalize space-x-2">
                 <a
-                  href="https://www.instagram.com/arwinclara"
+                  href="https://www.instagram.com/wrongstudiosnl?igsh=MTB4czF0bTBqN3pq"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#03E9F4]/50 transition-colors"
                 >
-                  Instagram |
+                  Instagram | 
                 </a>
                
                 <a
@@ -29,7 +32,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-[#03E9F4]/50 transition-colors"
                 >
-                  TikTok |
+                 TikTok | 
                 </a>
                
                 <a

@@ -156,9 +156,9 @@ function ProjectCard({ project }: { project: Project }) {
   const hasStats = project.stats && project.stats.length > 0;
 
   return (
-    <div className="h-full w-full group overflow-hidden border-[1px] rounded-0 hover:border-cyan">
+    <div className="h-full w-full group overflow-hidden border-[1px] rounded-0 hover:border-cyan/30">
         
-      <div className="relative aspect-[12/8]">
+      <div className="relative aspect-[12/8]  ">
      
           <img
             src={project.image}
@@ -166,22 +166,22 @@ function ProjectCard({ project }: { project: Project }) {
             className=" pt-4 w-full h-[50%] object-contain transition duration-500 group-hover:scale-105"
           />
         
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-cyan/10 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
-        <div className="absolute p-2 md:p-4">
-          <div className="text-white">
-            <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow text-white/50 ">
+        <div className="flex justify-center p-2 md:p-4">
+          <div className="text-white ">
+            <div className="font-display text-2xl md:text-3xl leading-tight drop-shadow text-white/50 text-center">
               {project.title}
             </div>
             {project.subtitle && (
-              <div className="text-white/50 text-base mt-1">{project.subtitle}</div>
+              <div className="text-white/50 text-base mt-1 text-center">{project.subtitle}</div>
             )}
             {hasStats && (
-              <div className="flex gap-6 text-sm uppercase tracking-wide text-white/50">
+              <div className="flex justify-center gap-6 text-sm uppercase tracking-wide text-white/50">
                 {project.stats?.map((item) => (
                   <div key={item.label} className="flex flex-col">
-                    <span className="text-base font-semibold text-white/50">{item.value}</span>
-                    <span className="text-[11px]">{item.label}</span>
+                    <span className="text-base font-semibold text-white/50 text-center">{item.value}</span>
+                    <span className="text-[11px] text-center">{item.label}</span>
                   </div>
                 ))}
               </div>

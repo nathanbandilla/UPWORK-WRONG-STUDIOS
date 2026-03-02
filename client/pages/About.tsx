@@ -124,6 +124,7 @@ function StorySection() {
 function IdentitySection() {
   const [scrollY, setScrollY] = useState(0);
   const { slideToLeft, slideToRight } = useScrollSlide();
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -210,24 +211,9 @@ function IdentitySection() {
             AND CLARA
           </h4>
         </div>
-      </div>
-    </section>
-  );
-}
 
-function CTASection() {
-  const navigate = useNavigate();
-  return (
-    <section className="py-20 md:py-32 relative overflow-hidden text-center">
-      {/* Background gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
-
-      <div className="relative z-10 max-w-[1420px] mx-auto px-4">
-        <div className="space-y-16">
-        
-
-          {/* CTA Button */}
-          <div className="grid place-items-center pt-2"> 
+                    {/* CTA Button */}
+            <div className="grid place-items-center pt-20 md:pt-32"> 
             <div className="flex gap-2">
               <div className="cta-running-border">
                 <button
@@ -242,6 +228,25 @@ function CTASection() {
        
             </div>
           </div>
+      </div>
+
+
+    </section>
+  );
+}
+
+function CTASection() {
+
+  return (
+    <section className="py-0 md:py-0 relative overflow-hidden text-center">
+      {/* Background gradient effect */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan/5 to-transparent" />
+
+      <div className="relative z-10 max-w-[1420px] mx-auto px-4">
+        <div className="space-y-16">
+        
+
+ 
        
         </div>
       </div>

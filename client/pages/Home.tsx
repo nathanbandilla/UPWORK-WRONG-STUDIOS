@@ -618,22 +618,22 @@ function AboutSection() {
       <div className="max-w-[1280px] mx-auto px-8">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="space-y-8">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center md:justify-start gap-2">
               <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
-              <div className="h-6 w-[200px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
+              <div className="h-6 w-[196px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
                 <span className="font-display text-[24px] tracking-wider uppercase">We Don't Play It Safe.</span>
               </div>
               <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
 
-            <h2 className="font-display text-[70px] md:text-[100px] leading-[70px] md:leading-[104px] uppercase" style={slideToLeft(2,0)}>
+            <h2 className="font-display text-[70px] md:text-[100px] leading-[70px] md:leading-[104px] uppercase text-center md:text-left" style={slideToLeft(2,0)}>
               Wrong Studios are Creators first
             </h2>
            
           </div>
 
           <div className="mt-[-30px] md:mt-[0px] md:space-y-6 md:pt-16">
-            <p className="text-[18px] leading-[34px] text-white/90 capitalize">
+            <p className="text-[18px] leading-[34px] text-white/90 capitalize text-center md:text-left">
               Wrong Studios was founded by content creators who understand the pulse of online culture. With acquiring over 1 billion views each year and years of creative social media experience, we craft scroll-stopping short-form content that connects emotionally and transforms your brand into something impossible to ignore.
             </p>
           </div>
@@ -675,7 +675,7 @@ function ServicesSection() {
   return (
     <section ref={ref} className={`py-0 fade-in-section ${isVisible ? 'visible' : ''}`}>
       <div className="max-w-[1440px] mx-auto">
-        <div className="border-none border-[#292929] rounded-[20px] p-16 relative overflow-hidden">
+        <div className="border-none border-[#292929] rounded-[20px] p-2 md:p-16 relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-0">
             <img src="/services-bg.svg" alt="" className="w-full h-full object-cover" />
@@ -696,16 +696,16 @@ function ServicesSection() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-0 bg-gradient-to-r from-cyan/20 to-[#9201CB]/20 rounded-[20px] -m-8 md:-m-0 pb-0 md:pb-8 pt-0 md:pt-6">
+            <div className="grid md:grid-cols-3 gap-0 bg-gradient-to-r from-cyan/20 to-[#9201CB]/20 rounded-[20px]  pb-0 md:pb-8 pt-0 md:pt-6">
               {services.map((service, i) => (
                 <div 
                   key={i} 
                   className={`p-4 md:p-8 pb-8 md:pb-0 ${i > 0 ? 'border-none md:border-white md:border-l md:border-dashed' : ''}`}
                 >
-                  <h3 className="font-display text-[31.51px] leading-[34.66px] uppercase mb-6" style={slideToLeft(12,200)}>
+                  <h3 className="font-display text-[31.51px] leading-[34.66px] uppercase mb-6 text-center md:text-left" style={slideToLeft(12,200)}>
                     {service.title}
                   </h3>
-                  <p className="text-[18px] leading-[28px] hover:leading-[30px] text-white/70 hover:text-white/100 capitalize" style={slideToRight(12,400)}>
+                  <p className="text-[18px] leading-[28px] hover:leading-[30px] text-white/70 hover:text-white/100 capitalize text-center md:text-left" style={slideToRight(12,400)}>
                     {service.description}
                   </p>
                 </div>
@@ -876,7 +876,7 @@ function StorySection() {
       <div className="max-w-[1280px] mx-auto px-8">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center md:justify-start gap-2">
               <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
               <div className="h-6 w-[90px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">    
               <span className="font-display text-[24px] tracking-wider uppercase">Our Story</span>
@@ -884,24 +884,25 @@ function StorySection() {
               <img src="/bracket-right-alt.png" alt="" className="w-[7px] h-[23px]" />
             </div>
 
-            <h2 className="font-display text-[70px] leading-[70px] uppercase">
+            <h2 className="font-display text-[70px] leading-[70px] uppercase text-center md:text-left">
               we dont create content. We create culture.
             </h2>
 
-            <p className="text-[18px] leading-[34px] text-white/90 capitalize">
+            <p className="text-[18px] leading-[34px] text-white/90 capitalize  text-center md:text-left">
               most brands post to be seen. We create to be felt. Every brand has a heart beat, a story that deserves more than likes or views. At Wrong Studios, we don't just make videos that look good, we build personalities that stick in people's minds. Our work crafts intention and character behind content that turns short-form content into lasting cultural impact.
             </p>
-           
+            <div className="text-center md:text-left">
             <button 
               onClick={() => navigate('/work')}
-              className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px]"
+              className="bg-[#03E9F4] text-[#191919] px-8 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#03E9F4]/90 transition-colors capitalize leading-[19.6px] "
             >
               Read Our Story
             </button>
+            </div>
             
           </div>
 
-          <div className="pt-20 md:pt-0 grid place-items-center h-[80px] md:h-[400px] rounded-20px border-0 border-cyan/20 md:hover:bg-[#03E9F4]/10 hover:rounded-20px" style={slideToRight(32,0)} >
+          <div className="hidden md:block pt-28 md:pt-0 pb-20 md:pb-0 grid place-items-center h-[80px] md:h-[400px] rounded-20px border-0 border-cyan/20 md:hover:bg-[#03E9F4]/10 hover:rounded-20px" style={slideToRight(32,0)} >
           <img
               src="/logo.png"
               alt="Wrong Studios"

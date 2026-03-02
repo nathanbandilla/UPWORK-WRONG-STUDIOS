@@ -165,7 +165,7 @@ function ContactFormSection() {
           {/* First Name and Last Name - Side by Side */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider">
+              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider text-center md:text-left">
                 FIRST NAME
               </label>
               <input
@@ -175,12 +175,12 @@ function ContactFormSection() {
                 value={formData.firstName}
                 onChange={handleChange}
                 required
-                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px]"
+                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px] text-center md:text-left"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider">
+              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider text-center md:text-left">
                 LAST NAME
               </label>
               <input
@@ -190,7 +190,7 @@ function ContactFormSection() {
                 value={formData.lastName}
                 onChange={handleChange}
                 required
-                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px]"
+                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px] text-center md:text-left"
               />
             </div>
           </div>
@@ -198,7 +198,7 @@ function ContactFormSection() {
           {/* E-Mail and Address - Side by Side */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider">
+              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider text-center md:text-left">
                 E-MAIL
               </label>
               <input
@@ -208,12 +208,12 @@ function ContactFormSection() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px]"
+                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px] text-center md:text-left"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider">
+              <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider text-center md:text-left">
                 ADDRESS
               </label>
               <input
@@ -222,14 +222,14 @@ function ContactFormSection() {
                 placeholder="Type Here"
                 value={formData.address}
                 onChange={handleChange}
-                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px]"
+                className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px] text-center md:text-left"
               />
             </div>
           </div>
 
           {/* Message - Full Width */}
           <div className="space-y-2">
-            <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider">
+            <label className="block font-display text-[14px] uppercase text-white/90 tracking-wider text-center md:text-left">
               MESSAGE
             </label>
             <textarea
@@ -239,7 +239,7 @@ function ContactFormSection() {
               onChange={handleChange}
               required
               rows={6}
-              className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px] resize-none"
+              className="w-full bg-transparent border border-white/20 rounded-xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#03E9F4] transition-colors text-[16px] resize-none text-center md:text-left"
             />
           </div>
 

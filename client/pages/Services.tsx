@@ -122,7 +122,7 @@ function WhyItMattersSection() {
           {/* Left Column: Why It Matters */}
           <div className="space-y-10">
             {/* Section Label */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center md:justify-start gap-2">
              <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
               <div className="h-6 w-[142px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
                 <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
@@ -133,7 +133,7 @@ function WhyItMattersSection() {
             </div>
 
             {/* Description */}
-            <p className="font-display text-[28px] md:text-[40px] leading-[1.2] uppercase text-white/70">
+            <p className="font-display text-[28px] md:text-[40px] leading-[1.2] uppercase text-white/70 text-center md:text-left">
               In today's digital chaos, attention is the new currency and it's
               shrinking by the second. Most brands post endlessly, but very few
               actually connect. We build short-form content that breaks through
@@ -145,11 +145,11 @@ function WhyItMattersSection() {
           <div className="grid grid-cols-2 gap-4">
             {stats.map((stat, i) => (
               <div key={i} className="space-y-6">
-                <div className="font-display text-[75px] leading-[1.2] tracking-tight text-white/80">
+                <div className="font-display text-[75px] leading-[1.2] tracking-tight text-white/80 text-center md:text-left">
                   {stat.number}
                 </div>
                 <div className="h-px bg-white/20 w-full" />
-                <p className="text-[18px] leading-[34px] text-white/50">
+                <p className="text-[18px] leading-[34px] text-white/50 text-center md:text-left">
                   {stat.description}
                 </p>
               </div>
@@ -179,7 +179,7 @@ function ServiceSection1() {
             <div className="absolute inset-0 rounded-[30px] overflow-hidden border-0 border-cyan/20 flex items-center justify-center">
                 {/* Heading */}
              
-                  <h1 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase" style={slideToLeft(2,0)}>
+                  <h1 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase text-center md:text-left" style={slideToLeft(2,0)}>
                     Define the voice
                     <br />
                     before you speak.
@@ -197,10 +197,10 @@ function ServiceSection1() {
           {/* Content */}
           <div className="space-y-8">
             {/* Section Label */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center md:justify-start gap-2">
              <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[23px]" />
               <div className="h-6 w-[310px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
-                <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
+                <span className="font-display text-[24px] tracking-wider ml-1 text-white text-center md:text-left">                  
                   01. CREATIVE STRATEGY & IDENTITY
                 </span>
               </div>
@@ -210,7 +210,7 @@ function ServiceSection1() {
         
 
             {/* Description */}
-            <p className="text-[18px] leading-[34px] text-white/90">
+            <p className="text-[18px] leading-[34px] text-white/90 text-center md:text-left">
               We help you find your tone, attitude and digital personality; The
               human behind the logo. From storytelling frameworks to content
               pillars, we build strategies that feel as natural as the creators
@@ -218,7 +218,7 @@ function ServiceSection1() {
             </p>
 
             {/* Features */}
-            <div className="space-y-7">
+            <div className="space-y-7 p-6 md:p-0">
               {features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-5">
                   <feature.icon />
@@ -262,15 +262,15 @@ function ServiceSection2() {
           </div>
 
           {/* Content */}
-          <div className="relative z-10 max-w-[1280px] mx-auto px-0 md:px-8 py-20">
+          <div className="relative z-10 max-w-[1280px] mx-auto px-0 md:px-8 py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
               {/* Content First on Mobile, Second on Desktop */}
               <div className="space-y-8 order-2 md:order-1" style={slideToRight(8,0)}>
                 {/* Section Label */}
-                <div className="flex items-center gap-2">             
+                <div className="flex items-center justify-center md:justify-start gap-2">             
                   <img src="/bracket-left-alt.png" alt="" className=" w-[7px] h-[33px] sm:h-[23px] md:h-[23px]" />
                   <div className="leading-[20px] h-10 md:h-6 w-[290px] md:w-[330px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
-                    <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
+                    <span className="font-display text-[24px] tracking-wider ml-1 text-white text-center md:text-left">                  
                     02. SHORT-FORM CONTENT PRODUCTION
                     </span>
                   </div>
@@ -278,14 +278,14 @@ function ServiceSection2() {
                 </div>
 
                 {/* Heading */}
-                <h2 className="font-display text-[60px] md:text-[70px] leading-[1] uppercase">
+                <h2 className="font-display text-[60px] md:text-[70px] leading-[1] uppercase text-center md:text-left">
                   Scroll-Stopping. Story
                   <br />
                   Driven. Unforgettable.
                 </h2>
 
                 {/* Description */}
-                <p className="text-[18px] leading-[34px] text-white/90">
+                <p className="text-[18px] leading-[34px] text-white/90 text-center md:text-left">
                   Short-form content is the language of the internet and we
                   speak it fluently. We plan, shoot, and edit high-performing
                   Reels, TikTok's, & social clips that don't just get views,
@@ -293,7 +293,7 @@ function ServiceSection2() {
                 </p>
 
                 {/* Features */}
-                <div className="space-y-7">
+                <div className="space-y-7 p-6 md:p-0">
                   {features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-5">
                       <feature.icon />
@@ -306,7 +306,7 @@ function ServiceSection2() {
               </div>
 
               {/* Phone Mockup - First on Desktop, Second on Mobile */}
-              <div className="relative w-full order-1 md:order-2" style={slideToLeft(8,0)}>
+              <div className="hidden md:block relative w-full order-1 md:order-2" style={slideToLeft(8,0)}>
                 <PhoneMockup />
               </div>
             </div>
@@ -334,7 +334,7 @@ function ServiceSection3() {
           <div className="relative w-full aspect-[605/578]">
             <div className="absolute inset-0 rounded-[30px] overflow-hidden border-0 border-cyan/20 flex items-center justify-center">
                 {/* Heading */}
-                <h2 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase" style={slideToLeft(20,0)}>
+                <h2 className="font-display text-[60px] md:text-[80px] leading-[1.05] uppercase text-center md:text-left" style={slideToLeft(20,0)}>
                   We don't chase
                   <br />
                   trends we live them.
@@ -345,10 +345,10 @@ function ServiceSection3() {
           {/* Content */}
           <div className="space-y-8">
             {/* Section Label */}
-             <div className="flex items-center gap-2">             
+             <div className="flex items-center justify-center md:justify-start gap-2">             
                 <img src="/bracket-left-alt.png" alt="" className="w-[7px] h-[35px] sm:h-[23px] md:h-[23px]" />
                   <div className="leading-[20px] h-10 sm:h-6 md:h-6 w-[321px] bg-gradient-to-r from-cyan/60 to-transparent flex items-center">
-                    <span className="font-display text-[24px] tracking-wider ml-1 text-white">                  
+                    <span className="font-display text-[24px] tracking-wider ml-1 text-white ">                  
                     03. COMMUNITY & TREND INTEGRATION
                     </span>
                   </div>
@@ -356,7 +356,7 @@ function ServiceSection3() {
             </div>
        
             {/* Description */}
-            <p className="text-[18px] leading-[34px] text-white/90">
+            <p className="text-[18px] leading-[34px] text-white/90 text-center md:text-left">
               We align your brand with culture, not noise, embedding your
               content into conversations that matter. From meme culture to
               creator collabs, we make sure your brand feels like it belongs in
@@ -364,7 +364,7 @@ function ServiceSection3() {
             </p>
 
             {/* Features */}
-            <div className="space-y-7">
+            <div className="space-y-7 p-6 md:p-0">
               {features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-5">
                   <feature.icon />

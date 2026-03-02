@@ -97,7 +97,7 @@ export default function Header() {
                         className="text-white hover:text-cyan transition-colors p-2"
                         aria-label="Close menu"
                       >
-                        <X className="h-6 w-6" />
+                       
                       </button>
                     </SheetTrigger>
                   </div>
